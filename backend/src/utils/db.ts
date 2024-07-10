@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize-typescript';
+import { Sequelize } from 'sequelize';
 import { DATABASE_URL } from './config';
 
 if (!DATABASE_URL) {
@@ -12,7 +12,6 @@ const connectToDatabase = async () => {
   try {
     await sequelize.authenticate();
     console.log('Connected to the database');
-    await sequelize.close();
   } catch (err) {
     console.log('Failed to connect to the database:');
     console.log(err);
