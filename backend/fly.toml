@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for zoltan-antal-wedding-website-backend on 2024-07-04T15:16:50+01:00
+# fly.toml app configuration file generated for zoltan-antal-wedding-website-backend on 2024-07-10T20:45:05+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -6,11 +6,9 @@
 app = 'zoltan-antal-wedding-website-backend'
 primary_region = 'lhr'
 
-[deploy]
-
-[processes]
-
 [build]
+
+[deploy]
 
 [http_service]
   internal_port = 3000
