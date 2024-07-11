@@ -16,6 +16,7 @@ class Guest extends Model<
   declare id: CreationOptional<number>;
   declare firstName: string;
   declare lastName: string | null;
+  declare passwordHash: string;
   declare householdId: ForeignKey<Household['id']>;
 }
 
@@ -29,6 +30,11 @@ Guest.init(
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    passwordHash: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: null,
     },
     lastName: {
       type: DataTypes.STRING,
