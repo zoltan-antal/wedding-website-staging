@@ -31,13 +31,14 @@ Guest.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     passwordHash: {
       type: DataTypes.STRING,
       allowNull: true,
       defaultValue: null,
-    },
-    lastName: {
-      type: DataTypes.STRING,
     },
   },
   { sequelize, underscored: true, timestamps: false, modelName: 'guest' }
