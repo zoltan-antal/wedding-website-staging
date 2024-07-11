@@ -1,5 +1,6 @@
 import { QueryTypes } from 'sequelize';
 import { sequelize } from '../utils/db';
+import { Guest } from '../models';
 
 interface FullName {
   firstName: string;
@@ -16,6 +17,8 @@ const getGuestByName = async ({ firstName, lastName }: FullName) => {
       },
       type: QueryTypes.SELECT,
       plain: true,
+      mapToModel: true,
+      model: Guest,
     }
   );
 
