@@ -8,9 +8,12 @@ interface FullName {
 
 const getGuestByName = async ({ firstName, lastName }: FullName) => {
   const guest = await sequelize.query(
-    "SELECT g.* FROM guests g LEFT JOIN name_variations first_nv ON g.id = first_nv.guest_id AND first_nv.type = 'first' LEFT JOIN name_variations last_nv ON g.id = last_nv.guest_id AND last_nv.type = 'last' WHERE (g.first_name = :firstName OR first_nv.name = :firstName) AND (g.last_name = :lastName OR last_nv.name = :lastName);",
+    "SELECT g.* FROM guests g LEFT JOIN name_variations first_nv ON g.id = first_nv.guest_id AND first_nv.type = 'first' LEFT JOIN name_variations last_nv ON g.id = last_nv.guest_id AND last_nv.type = 'last' WHERE (UNACCENT(g.first_name) ILIKE :firstName OR UNACCENT(first_nv.name) ILIKE :firstName) AND (UNACCENT(g.last_name) ILIKE :lastName OR UNACCENT(last_nv.name) ILIKE :lastName);",
     {
-      replacements: { firstName: firstName, lastName: lastName },
+      replacements: {
+        firstName: firstName.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+        lastName: lastName.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+      },
       type: QueryTypes.SELECT,
       plain: true,
     }
