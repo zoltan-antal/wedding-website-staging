@@ -1,10 +1,15 @@
 header {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 10% auto 10%;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    ". title language"
+    ". nav .";
+  justify-content: space-between;
 
   .title {
+    grid-area: title;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -18,9 +23,31 @@ header {
       word-spacing: 0.75rem;
       text-transform: uppercase;
     }
+
+    .date {
+      font-size: 1.25rem;
+    }
   }
 
-  .date {
-    font-size: 1.25rem;
+  .language {
+    grid-area: language;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    padding: 10px;
+
+    button {
+      background-color: var(--background);
+      border: none;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+  }
+
+  nav {
+    grid-area: nav;
   }
 }
