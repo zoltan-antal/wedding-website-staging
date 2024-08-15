@@ -22,6 +22,10 @@ header {
       font-size: 3.25rem;
       word-spacing: 0.75rem;
       text-transform: uppercase;
+
+      .ampersand {
+        text-transform: none;
+      }
     }
 
     .date {

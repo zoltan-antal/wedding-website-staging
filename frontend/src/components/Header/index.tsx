@@ -11,10 +11,23 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
   return (
     <header>
       <div className="title">
-        <h1 className="names">Ella & Zoltán</h1>
-        <h2 className="date">19th July 2025</h2>
+        <h1 className="names">
+          Ella{' '}
+          <span className="ampersand">
+            {{ English: '&', Hungarian: 'és' }[language]}
+          </span>{' '}
+          Zoltán
+        </h1>
+        <h2 className="date">
+          {
+            {
+              English: '19th July 2025',
+              Hungarian: '2025. július 19.',
+            }[language]
+          }
+        </h2>
       </div>
-      <Nav></Nav>
+      <Nav language={language}></Nav>
       <div className="language">
         {language === 'English' && (
           <button onClick={() => setLanguage('Hungarian')}>magyar</button>

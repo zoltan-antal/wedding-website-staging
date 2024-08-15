@@ -1,30 +1,91 @@
 import './Nav.css';
 import { NavLink } from 'react-router-dom';
+import { Language } from '../../types/language';
 
-const Nav = () => {
+interface NavProps {
+  language: Language;
+}
+
+const Nav = ({ language }: NavProps) => {
   return (
     <nav>
       <ul>
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">
+            {' '}
+            {
+              {
+                English: 'Home',
+                Hungarian: 'Főoldal',
+              }[language]
+            }
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/location">Location</NavLink>
+          <NavLink to="/location">
+            {' '}
+            {
+              {
+                English: 'Location',
+                Hungarian: 'Helyszín',
+              }[language]
+            }
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/travel">Travel</NavLink>
+          <NavLink to="/travel">
+            {' '}
+            {
+              {
+                English: 'Travel',
+                Hungarian: 'Érkezés',
+              }[language]
+            }
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/schedule">Schedule</NavLink>
+          <NavLink to="/schedule">
+            {' '}
+            {
+              {
+                English: 'Schedule',
+                Hungarian: 'Program',
+              }[language]
+            }
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/registry">Registry</NavLink>
+          <NavLink to="/registry">
+            {' '}
+            {
+              {
+                English: 'Registry',
+                Hungarian: 'Ajándéklista',
+              }[language]
+            }
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/faq">FAQ</NavLink>
+          <NavLink to="/faq">
+            {' '}
+            {
+              {
+                English: 'FAQ',
+                Hungarian: 'GYIK',
+              }[language]
+            }
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/rsvp">RSVP</NavLink>
+          <NavLink to="/rsvp">
+            {' '}
+            {
+              {
+                English: 'RSVP',
+                Hungarian: 'Visszaigazolás',
+              }[language]
+            }
+          </NavLink>
         </li>
       </ul>
     </nav>
