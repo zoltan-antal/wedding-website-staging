@@ -30,10 +30,24 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
       <Nav language={language}></Nav>
       <div className="language">
         {language === 'English' && (
-          <button onClick={() => setLanguage('Hungarian')}>magyar</button>
+          <button
+            onClick={() => {
+              setLanguage('Hungarian');
+              localStorage.setItem('EllaZoltanLanguage', 'Hungarian');
+            }}
+          >
+            magyar
+          </button>
         )}
         {language === 'Hungarian' && (
-          <button onClick={() => setLanguage('English')}>English</button>
+          <button
+            onClick={() => {
+              setLanguage('English');
+              localStorage.setItem('EllaZoltanLanguage', 'English');
+            }}
+          >
+            English
+          </button>
         )}
       </div>
     </header>

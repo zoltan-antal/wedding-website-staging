@@ -7,7 +7,11 @@ import { Language } from './types/language';
 
 function App() {
   const [language, setLanguage] = useState<Language>(
-    navigator.language === 'hu' ? 'Hungarian' : 'English'
+    localStorage.getItem('EllaZoltanLanguage') !== null
+      ? (localStorage.getItem('EllaZoltanLanguage') as Language)
+      : navigator.language === 'hu'
+      ? 'Hungarian'
+      : 'English'
   );
 
   return (
