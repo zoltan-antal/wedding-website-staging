@@ -6,7 +6,9 @@ import { useState } from 'react';
 import { Language } from './types/language';
 
 function App() {
-  const [language, setLanguage] = useState<Language>('English');
+  const [language, setLanguage] = useState<Language>(
+    navigator.language === 'hu' ? 'Hungarian' : 'English'
+  );
 
   return (
     <>
