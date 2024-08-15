@@ -1,0 +1,26 @@
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+
+    padding: 30px 0 20px;
+
+    .names {
+      font-size: 3.25rem;
+      word-spacing: 0.75rem;
+      text-transform: uppercase;
+    }
+  }
+
+  .date {
+    font-size: 1.25rem;
+  }
+}

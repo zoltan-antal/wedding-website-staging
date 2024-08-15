@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Radley:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+@font-face {
+  font-family: 'RadleyDownloaded';
+  src: url("./assets/fonts/Radley-Regular.ttf") format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RadleyDownloaded';
+  src: url("./assets/fonts/Radley-Italic.ttf") format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DancingScriptDownloaded';
+  src: url("./assets/fonts/DancingScript-VariableFont_wght.ttf") format('truetype');
+  font-optical-sizing: auto;
+  font-weight: 400 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BrittanySignature';
+  src: url("./assets/fonts/BrittanySignature.ttf") format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: Radley, RadleyDownloaded, Arial, sans-serif;
+}
+
+p,
+pre,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+a,
+label,
+td,
+th,
+caption {
+  color: var(--text);
+  background-color: var(--background);
+}
+
+button {
+  &:hover {
+    cursor: pointer;
+
+    &:disabled {
+      cursor: auto;
+    }
+  }
+}
+
+html {
+  font-size: 16px;
+  height: 100vh;
+  height: 100dvh;
+}
+
+#root {
+  height: 100vh;
+  height: 100dvh;
+  background-color: var(--background);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  /* overflow-y: scroll; */
+  /* overflow-x: hidden; */
+
+  --background: white;
+  --text: black;
+
+  main {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    h1 {
+      font-size: 2.4rem;
+    }
+  }
+}
