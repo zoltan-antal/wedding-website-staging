@@ -12,11 +12,16 @@ const app = express();
 
 switch (app.get('env')) {
   case 'development':
-    app.use(cors());
+    app.use(
+      cors({
+        origin: (_origin, callback) => callback(null, true),
+        credentials: true,
+      })
+    );
     break;
 
   case 'production':
-    app.use(cors({ origin: FRONTEND_URL }));
+    app.use(cors({ origin: FRONTEND_URL, credentials: true }));
     break;
 }
 
