@@ -50,6 +50,7 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
           </button>
         )}
       </div>
+      <div className="account-buttons"></div>
     </header>
   );
 };
