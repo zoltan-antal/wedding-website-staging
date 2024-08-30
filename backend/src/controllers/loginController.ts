@@ -47,9 +47,10 @@ const loginGuest = async (req: HouseholdLoginRequest, res: Response) => {
 
   return res.status(200).json({
     token,
+    id: guest.id,
     firstName: guest.firstName,
     lastName: guest.lastName,
-    id: guest.id,
+    householdId: guest.householdId,
   });
 };
 
