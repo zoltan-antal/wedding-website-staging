@@ -55,6 +55,17 @@ const Nav = ({ language }: NavProps) => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/dress-code">
+            {' '}
+            {
+              {
+                English: 'Dress Code',
+                Hungarian: 'Dress code',
+              }[language]
+            }
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/registry">
             {' '}
             {
@@ -72,6 +83,17 @@ const Nav = ({ language }: NavProps) => {
               {
                 English: 'FAQ',
                 Hungarian: 'GYIK',
+              }[language]
+            }
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/contact">
+            {' '}
+            {
+              {
+                English: 'Contact',
+                Hungarian: 'Kapcsolat',
               }[language]
             }
           </NavLink>
