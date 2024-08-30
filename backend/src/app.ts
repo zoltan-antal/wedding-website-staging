@@ -8,12 +8,13 @@ import configurePassport from './utils/passport';
 
 const app = express();
 
+app.use(express.json());
 app.use(cookieParser());
+app.use(morgan('tiny'));
+
 configurePassport(passport);
 app.use(passport.initialize());
 
-app.use(express.json());
-app.use(morgan('tiny'));
 app.use('/', router);
 app.get('/ping', (_req, res) => {
   res.send('pong');
