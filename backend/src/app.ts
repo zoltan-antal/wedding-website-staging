@@ -2,11 +2,13 @@ import express from 'express';
 import morgan from 'morgan';
 require('express-async-errors');
 import router from './routes';
+import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import configurePassport from './utils/passport';
 
 const app = express();
 
+app.use(cookieParser());
 configurePassport(passport);
 app.use(passport.initialize());
 

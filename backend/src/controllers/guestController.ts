@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import guestService from '../services/guestService';
+import { GuestAttributes } from '../models/guests';
 
 interface CreatePasswordRequest extends Request {
   body: {
@@ -44,6 +45,21 @@ const findUser = async (req: Request, res: Response) => {
     firstName: guest.firstName,
     lastName: guest.lastName,
     password: !!guest.passwordHash,
+  });
+};
+
+const me = (req: Request, res: Response) => {
+  const guest = req.user as GuestAttributes;
+  if (!guest) {
+    return res.status(404).json({
+      error: 'Guest not found',
+    });
+  }
+  return res.json({
+    id: guest.id,
+    firstName: guest.firstName,
+    lastName: guest.lastName,
+    householdId: guest.householdId,
   });
 };
 
@@ -128,4 +144,4 @@ const changePassword = async (req: ChangePasswordRequest, res: Response) => {
   return res.status(200).json({ message: 'Password successfully changed' });
 };
 
-export default { findUser, createPassword, changePassword };
+export default { findUser, me, createPassword, changePassword };

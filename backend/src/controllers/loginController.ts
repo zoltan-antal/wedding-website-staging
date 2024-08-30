@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import guestService from '../services/guestService';
-import { JWT_SECRET } from '../utils/config';
+import { JWT_SECRET, NODE_ENV } from '../utils/config';
 
 interface HouseholdLoginRequest extends Request {
   body: {
@@ -45,13 +45,20 @@ const loginGuest = async (req: HouseholdLoginRequest, res: Response) => {
   };
   const token = jwt.sign(guestForToken, JWT_SECRET);
 
-  return res.status(200).json({
-    token,
-    id: guest.id,
-    firstName: guest.firstName,
-    lastName: guest.lastName,
-    householdId: guest.householdId,
+  res.cookie('authToken', token, {
+    httpOnly: true,
+    secure: NODE_ENV === 'production',
+    sameSite: 'strict',
   });
+  return res.status(200).json({ message: 'Successfully logged in' });
+
+  // return res.status(200).json({
+  //   token,
+  //   id: guest.id,
+  //   firstName: guest.firstName,
+  //   lastName: guest.lastName,
+  //   householdId: guest.householdId,
+  // });
 };
 
 export default { loginGuest };

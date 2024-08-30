@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction } from 'express';
 import passport from 'passport';
 import {
   Strategy as JwtStrategy,
@@ -11,9 +12,19 @@ interface JwtPayload {
   id: number;
 }
 
+interface CustomRequest extends Request {
+  cookies: {
+    authToken?: string;
+  };
+}
+
 const opts: StrategyOptionsWithoutRequest = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  // jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  jwtFromRequest: ExtractJwt.fromExtractors([
+    (req: CustomRequest) => req.cookies.authToken || null,
+  ]),
   secretOrKey: JWT_SECRET,
+  algorithms: ['HS256'],
 };
 
 const configurePassport = (passport: passport.PassportStatic) => {
@@ -38,4 +49,10 @@ const configurePassport = (passport: passport.PassportStatic) => {
   );
 };
 
+type RequestHandler = (req: Request, res: Response, next: NextFunction) => void;
+const authenticateJwt: RequestHandler = passport.authenticate('jwt', {
+  session: false,
+}) as RequestHandler;
+
 export default configurePassport;
+export { authenticateJwt };
