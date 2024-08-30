@@ -51,14 +51,16 @@ const loginGuest = async (req: HouseholdLoginRequest, res: Response) => {
     sameSite: 'strict',
   });
   return res.status(200).json({ message: 'Successfully logged in' });
-
-  // return res.status(200).json({
-  //   token,
-  //   id: guest.id,
-  //   firstName: guest.firstName,
-  //   lastName: guest.lastName,
-  //   householdId: guest.householdId,
-  // });
 };
 
-export default { loginGuest };
+const logoutGuest = (_req: Request, res: Response) => {
+  res.cookie('authToken', '', {
+    httpOnly: true,
+    secure: NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge: 0,
+  });
+  return res.status(200).json({ message: 'Successfully logged out' });
+};
+
+export default { loginGuest, logoutGuest };
