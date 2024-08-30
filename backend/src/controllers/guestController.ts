@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import guestService from '../services/guestService';
-import loginController from './loginController';
 
 interface CreatePasswordRequest extends Request {
   body: {
@@ -81,7 +80,7 @@ const createPassword = async (req: CreatePasswordRequest, res: Response) => {
   guest.passwordHash = passwordHash;
   await guest.save();
 
-  return loginController.loginGuest(req, res);
+  return res.status(200).json({ message: 'Password successfully created' });
 };
 
 const changePassword = async (req: ChangePasswordRequest, res: Response) => {
@@ -121,7 +120,7 @@ const changePassword = async (req: ChangePasswordRequest, res: Response) => {
   guest.passwordHash = passwordHash;
   await guest.save();
 
-  return res.status(200).send();
+  return res.status(200).json({ message: 'Password successfully changed' });
 };
 
 export default { findUser, createPassword, changePassword };
