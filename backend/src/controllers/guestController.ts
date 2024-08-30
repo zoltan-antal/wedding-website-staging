@@ -108,6 +108,11 @@ const changePassword = async (req: ChangePasswordRequest, res: Response) => {
     });
   }
 
+  if (newPassword === currentPassword) {
+    return res.status(400).json({
+      error: 'Password must be different than current password',
+    });
+  }
   if (newPassword.length < 8) {
     return res.status(400).json({
       error: 'Password must be at least 8 characters long',
