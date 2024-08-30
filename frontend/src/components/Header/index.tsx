@@ -1,13 +1,15 @@
 import './index.css';
 import Nav from './Nav';
 import { Language } from '../../types/language';
+import { Guest } from '../../types/guest';
 
 interface HeaderProps {
   language: Language;
   setLanguage: React.Dispatch<React.SetStateAction<Language>>;
+  guest: Guest | null;
 }
 
-const Header = ({ language, setLanguage }: HeaderProps) => {
+const Header = ({ language, setLanguage, guest }: HeaderProps) => {
   return (
     <header>
       <div className="title">
@@ -50,7 +52,10 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
           </button>
         )}
       </div>
-      <div className="account-buttons"></div>
+      <div className="account-buttons">
+        {guest && 'true'}
+        {!guest && 'false'}
+      </div>
     </header>
   );
 };
