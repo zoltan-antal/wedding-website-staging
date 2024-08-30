@@ -9,6 +9,7 @@ import Registry from '../components/Registry';
 import Faq from '../components/Faq';
 import Contact from '../components/Contact';
 import Rsvp from '../components/Rsvp';
+import Login from '../components/Login';
 
 const router = createHashRouter(
   [
@@ -25,6 +26,7 @@ const router = createHashRouter(
         { path: 'faq', element: <Faq /> },
         { path: 'contact', element: <Contact /> },
         { path: 'rsvp', element: <Rsvp /> },
+        { path: 'login', element: <Login /> },
       ],
     },
   ],

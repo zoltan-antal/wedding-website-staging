@@ -4,3 +4,9 @@ export type Guest = {
   lastName: string;
   householdId: string;
 };
+
+export type GuestCredentials = {
+  firstName: string;
+  lastName: string;
+  password: string;
+};

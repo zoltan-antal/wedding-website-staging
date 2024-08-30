@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 import Nav from './Nav';
 import { Language } from '../../types/language';
 import { Guest } from '../../types/guest';
+import authService from '../../services/auth';
 
 interface HeaderProps {
   language: Language;
@@ -10,6 +12,8 @@ interface HeaderProps {
 }
 
 const Header = ({ language, setLanguage, guest }: HeaderProps) => {
+  const navigate = useNavigate();
+
   return (
     <header>
       <div className="title">
@@ -53,8 +57,34 @@ const Header = ({ language, setLanguage, guest }: HeaderProps) => {
         )}
       </div>
       <div className="account-buttons">
-        {guest && 'true'}
-        {!guest && 'false'}
+        {guest && (
+          <button
+            onClick={async () => {
+              await authService.logout();
+            }}
+          >
+            {
+              {
+                English: 'Log out',
+                Hungarian: 'Kijelentkezés',
+              }[language]
+            }
+          </button>
+        )}
+        {!guest && (
+          <button
+            onClick={() => {
+              navigate('/login');
+            }}
+          >
+            {
+              {
+                English: 'Guest login',
+                Hungarian: 'Vendég bejelentkezés',
+              }[language]
+            }
+          </button>
+        )}
       </div>
     </header>
   );
