@@ -11,6 +11,34 @@ interface CreatePasswordRequest extends Request {
   };
 }
 
+const findUser = async (req: Request, res: Response) => {
+  const { firstName, lastName } = req.query;
+  if (!firstName || !lastName) {
+    return res.status(400).json({
+      error: 'Missing query parameters',
+    });
+  }
+  if (typeof firstName !== 'string' || typeof lastName !== 'string') {
+    return res.status(400).json({
+      error: 'Invalid query parameters',
+    });
+  }
+
+  const guest = await guestService.getGuestByName({ firstName, lastName });
+  if (!guest) {
+    return res.status(404).json({
+      error: 'Guest not found',
+    });
+  }
+
+  return res.status(200).json({
+    id: guest.id,
+    firstName: guest.firstName,
+    lastName: guest.lastName,
+    password: !!guest.passwordHash,
+  });
+};
+
 const createPassword = async (req: CreatePasswordRequest, res: Response) => {
   const { firstName, lastName, password } = req.body;
   if (!firstName || !lastName || !password) {
@@ -22,7 +50,7 @@ const createPassword = async (req: CreatePasswordRequest, res: Response) => {
   const guest = await guestService.getGuestByName({ firstName, lastName });
   if (!guest) {
     return res.status(404).json({
-      error: 'User not found',
+      error: 'Guest not found',
     });
   }
 
@@ -47,4 +75,4 @@ const createPassword = async (req: CreatePasswordRequest, res: Response) => {
   return loginController.loginGuest(req, res);
 };
 
-export default { createPassword };
+export default { findUser, createPassword };
