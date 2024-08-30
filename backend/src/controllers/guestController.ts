@@ -11,6 +11,15 @@ interface CreatePasswordRequest extends Request {
   };
 }
 
+interface ChangePasswordRequest extends Request {
+  body: {
+    firstName: string;
+    lastName: string;
+    currentPassword: string;
+    newPassword: string;
+  };
+}
+
 const findUser = async (req: Request, res: Response) => {
   const { firstName, lastName } = req.query;
   if (!firstName || !lastName) {
@@ -75,4 +84,44 @@ const createPassword = async (req: CreatePasswordRequest, res: Response) => {
   return loginController.loginGuest(req, res);
 };
 
-export default { findUser, createPassword };
+const changePassword = async (req: ChangePasswordRequest, res: Response) => {
+  const { firstName, lastName, currentPassword, newPassword } = req.body;
+  if (!firstName || !lastName || !currentPassword || !newPassword) {
+    return res.status(400).json({
+      error: 'Missing required fields',
+    });
+  }
+
+  const guest = await guestService.getGuestByName({ firstName, lastName });
+  if (!guest) {
+    return res.status(404).json({
+      error: 'Guest not found',
+    });
+  }
+
+  const passwordCorrect = await bcrypt.compare(
+    currentPassword,
+    guest.passwordHash
+  );
+  if (!passwordCorrect) {
+    return res.status(401).json({
+      error: 'Incorrect current password',
+    });
+  }
+
+  if (newPassword.length < 8) {
+    return res.status(400).json({
+      error: 'Password must be at least 8 characters long',
+    });
+  }
+
+  const saltRounds = 10;
+  const passwordHash = await bcrypt.hash(newPassword, saltRounds);
+
+  guest.passwordHash = passwordHash;
+  await guest.save();
+
+  return res.status(200).send();
+};
+
+export default { findUser, createPassword, changePassword };
