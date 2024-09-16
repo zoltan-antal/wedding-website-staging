@@ -44,7 +44,7 @@ const findGuest = async (req: Request, res: Response) => {
     id: guest.id,
     firstName: guest.firstName,
     lastName: guest.lastName,
-    password: !!guest.passwordHash,
+    hasPassword: !!guest.passwordHash,
   });
 };
 
