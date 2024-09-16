@@ -22,18 +22,14 @@ const CreatePasswordStep = ({
       setErrorMessage('Passwords do not match.');
       return;
     }
-    try {
-      const response = await guestService.createPassword(
-        firstName,
-        lastName,
-        password
-      );
-      setErrorMessage('');
-      console.log(response);
-      onCreatePassword(password);
-    } catch (error) {
-      setErrorMessage('Invalid password.');
-    }
+    const response = await guestService.createPassword(
+      firstName,
+      lastName,
+      password
+    );
+    setErrorMessage('');
+    console.log(response);
+    onCreatePassword(password);
   };
 
   return (
