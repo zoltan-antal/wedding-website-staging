@@ -5,7 +5,7 @@ import { authenticateJwt } from '../utils/passport';
 const guestRoutes = Router();
 
 guestRoutes.get('', (req, res, next) => {
-  guestController.findUser(req, res).catch(next);
+  guestController.findGuest(req, res).catch(next);
 });
 
 guestRoutes.get('/me', authenticateJwt, (req, res) => {

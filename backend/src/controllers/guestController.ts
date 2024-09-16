@@ -20,7 +20,7 @@ interface ChangePasswordRequest extends Request {
   };
 }
 
-const findUser = async (req: Request, res: Response) => {
+const findGuest = async (req: Request, res: Response) => {
   const { firstName, lastName } = req.query;
   if (!firstName || !lastName) {
     return res.status(400).json({
@@ -144,4 +144,4 @@ const changePassword = async (req: ChangePasswordRequest, res: Response) => {
   return res.status(200).json({ message: 'Password successfully changed' });
 };
 
-export default { findUser, me, createPassword, changePassword };
+export default { findGuest, me, createPassword, changePassword };
