@@ -33,6 +33,16 @@ header {
     }
   }
 
+  .language,
+  .account-buttons {
+    button {
+      background-color: var(--background);
+      border: none;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+  }
+
   .language {
     grid-area: language;
 
@@ -42,17 +52,17 @@ header {
     align-items: flex-start;
 
     padding: 10px;
-
-    button {
-      background-color: var(--background);
-      border: none;
-      font-size: 1rem;
-      text-transform: uppercase;
-    }
   }
 
   .account-buttons {
     grid-area: account-buttons;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    padding: 10px;
   }
 
   nav {
