@@ -9,9 +9,10 @@ interface HeaderProps {
   language: Language;
   setLanguage: React.Dispatch<React.SetStateAction<Language>>;
   guest: Guest | null;
+  setGuest: React.Dispatch<React.SetStateAction<Guest | null>>;
 }
 
-const Header = ({ language, setLanguage, guest }: HeaderProps) => {
+const Header = ({ language, setLanguage, guest, setGuest }: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
@@ -61,6 +62,7 @@ const Header = ({ language, setLanguage, guest }: HeaderProps) => {
           <button
             onClick={async () => {
               await authService.logout();
+              setGuest(null);
             }}
           >
             {

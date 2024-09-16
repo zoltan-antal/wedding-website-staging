@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import { useEffect, useState } from 'react';
 import { Language } from './types/language';
 import { Guest } from './types/guest';
+import { Context } from './types/context';
 import guestService from './services/guest';
 
 function App() {
@@ -34,8 +35,9 @@ function App() {
         language={language}
         setLanguage={setLanguage}
         guest={guest}
+        setGuest={setGuest}
       ></Header>
-      <Outlet context={{ language }} />
+      <Outlet context={{ language, guest, setGuest } satisfies Context} />
       <Footer></Footer>
     </>
   );

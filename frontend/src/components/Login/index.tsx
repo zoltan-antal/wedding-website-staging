@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import { Context } from '../../types/context';
 import authService from '../../services/auth';
+import guestService from '../../services/guest';
 import EnterNameStep from './EnterNameStep';
 import EnterPasswordStep from './EnterPasswordStep';
 import CreatePasswordStep from './CreatePasswordStep';
@@ -9,6 +11,7 @@ const Login = () => {
   const [step, setStep] = useState<
     'enter-name' | 'enter-password' | 'create-password'
   >('enter-name');
+  const { setGuest } = useOutletContext<Context>();
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
 
@@ -28,7 +31,9 @@ const Login = () => {
     }
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    const guestData = await guestService.me();
+    setGuest(guestData);
     navigate(-1);
   };
 
@@ -40,7 +45,7 @@ const Login = () => {
       password,
     });
     console.log(response);
-    navigate(-1);
+    handleLogin();
   };
 
   return (
