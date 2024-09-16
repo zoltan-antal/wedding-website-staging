@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import { Context } from '../../types/context';
 import authService from '../../services/auth';
 
 interface EnterPasswordStepProps {
@@ -12,6 +14,8 @@ const EnterPasswordStep = ({
   lastName,
   onLogin,
 }: EnterPasswordStepProps) => {
+  const { language } = useOutletContext<Context>();
+
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -27,21 +31,40 @@ const EnterPasswordStep = ({
       console.log(response);
       onLogin();
     } catch (error) {
-      setErrorMessage('Invalid password.');
+      setErrorMessage(
+        {
+          English: 'Invalid password.',
+          Hungarian: 'Helytelen jelszó.',
+        }[language]
+      );
     }
   };
 
   return (
     <form onSubmit={handleLogin}>
       <label>
-        Password:
+        {
+          {
+            English: 'Password',
+            Hungarian: 'Jelszó',
+          }[language]
+        }
+        {':'}
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <button type="submit">Next</button>
+      <button type="submit">
+        {' '}
+        {
+          {
+            English: 'Login',
+            Hungarian: 'Bejelentkezés',
+          }[language]
+        }
+      </button>
       <p>{errorMessage}</p>
     </form>
   );

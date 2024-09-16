@@ -11,7 +11,8 @@ const Login = () => {
   const [step, setStep] = useState<
     'enter-name' | 'enter-password' | 'create-password'
   >('enter-name');
-  const { setGuest } = useOutletContext<Context>();
+  const { language, setGuest } = useOutletContext<Context>();
+
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
 
@@ -38,7 +39,12 @@ const Login = () => {
   };
 
   const handleCreatePassword = async (password: string) => {
-    alert('Password created successfully!');
+    alert(
+      {
+        English: 'Password created successfully!',
+        Hungarian: 'Jelszó sikeresen létrehozva!',
+      }[language]
+    );
     const response = await authService.login({
       firstName,
       lastName,
@@ -50,7 +56,14 @@ const Login = () => {
 
   return (
     <main>
-      <h1>Guest login</h1>
+      <h1>
+        {
+          {
+            English: 'Guest login',
+            Hungarian: 'Vendég bejelentkezés',
+          }[language]
+        }
+      </h1>
       {step === 'enter-name' && <EnterNameStep onNext={handleNext} />}
       {step === 'enter-password' && (
         <EnterPasswordStep

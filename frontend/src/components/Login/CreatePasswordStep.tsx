@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import { Context } from '../../types/context';
 import guestService from '../../services/guest';
 
 interface CreatePasswordStepProps {
@@ -12,6 +14,8 @@ const CreatePasswordStep = ({
   lastName,
   onCreatePassword,
 }: CreatePasswordStepProps) => {
+  const { language } = useOutletContext<Context>();
+
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -19,7 +23,12 @@ const CreatePasswordStep = ({
   const handleCreatePassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setErrorMessage('Passwords do not match.');
+      setErrorMessage(
+        {
+          English: 'Passwords do not match.',
+          Hungarian: 'A jelszavak nem egyeznek.',
+        }[language]
+      );
       return;
     }
     const response = await guestService.createPassword(
@@ -34,9 +43,23 @@ const CreatePasswordStep = ({
 
   return (
     <form onSubmit={handleCreatePassword}>
-      <h3>You're logging in for the first time. Please create a password.</h3>
+      <h3>
+        {
+          {
+            English:
+              "You're logging in for the first time. Please create a password.",
+            Hungarian: 'Először jelentkezel be. Hozz létre egy jelszót!',
+          }[language]
+        }
+      </h3>
       <label>
-        Password:
+        {
+          {
+            English: 'Password',
+            Hungarian: 'Jelszó',
+          }[language]
+        }
+        {':'}
         <input
           type="password"
           value={password}
@@ -44,14 +67,28 @@ const CreatePasswordStep = ({
         />
       </label>
       <label>
-        Confirm password:
+        {
+          {
+            English: 'Confirm password',
+            Hungarian: 'Jelszó újra',
+          }[language]
+        }
+        {':'}
         <input
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </label>
-      <button type="submit">Next</button>
+      <button type="submit">
+        {' '}
+        {
+          {
+            English: 'Create password',
+            Hungarian: 'Jelszó létrehozása',
+          }[language]
+        }
+      </button>
       <p>{errorMessage}</p>
     </form>
   );
