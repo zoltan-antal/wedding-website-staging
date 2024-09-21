@@ -12,7 +12,6 @@ const Nav = ({ language }: NavProps) => {
       <ul>
         <li>
           <NavLink to="/">
-            {' '}
             {
               {
                 English: 'Home',
@@ -23,7 +22,6 @@ const Nav = ({ language }: NavProps) => {
         </li>
         <li>
           <NavLink to="/location">
-            {' '}
             {
               {
                 English: 'Location',
@@ -34,7 +32,6 @@ const Nav = ({ language }: NavProps) => {
         </li>
         <li>
           <NavLink to="/travel">
-            {' '}
             {
               {
                 English: 'Travel',
@@ -45,7 +42,6 @@ const Nav = ({ language }: NavProps) => {
         </li>
         <li>
           <NavLink to="/schedule">
-            {' '}
             {
               {
                 English: 'Schedule',
@@ -56,7 +52,6 @@ const Nav = ({ language }: NavProps) => {
         </li>
         <li>
           <NavLink to="/dress-code">
-            {' '}
             {
               {
                 English: 'Dress Code',
@@ -67,7 +62,6 @@ const Nav = ({ language }: NavProps) => {
         </li>
         <li>
           <NavLink to="/registry">
-            {' '}
             {
               {
                 English: 'Registry',
@@ -78,7 +72,6 @@ const Nav = ({ language }: NavProps) => {
         </li>
         <li>
           <NavLink to="/faq">
-            {' '}
             {
               {
                 English: 'FAQ',
@@ -89,7 +82,6 @@ const Nav = ({ language }: NavProps) => {
         </li>
         <li>
           <NavLink to="/contact">
-            {' '}
             {
               {
                 English: 'Contact',
@@ -100,7 +92,6 @@ const Nav = ({ language }: NavProps) => {
         </li>
         <li>
           <NavLink to="/rsvp">
-            {' '}
             {
               {
                 English: 'RSVP',
