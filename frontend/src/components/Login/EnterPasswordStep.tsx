@@ -71,6 +71,7 @@ const EnterPasswordStep = ({
               <input
                 ref={passwordInputRef}
                 type="password"
+                autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
