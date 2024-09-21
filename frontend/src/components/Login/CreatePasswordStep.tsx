@@ -117,10 +117,31 @@ const CreatePasswordStep = ({
       )}
       {passwordCreationSuccess && !loginSuccess && (
         <h2>
-          Password created successfully!<br></br>Logging you in...
+          {
+            {
+              English: 'Password created successfully!',
+              Hungarian: 'Jelszó sikeresen létrehozva!',
+            }[language]
+          }
+          <br></br>
+          {
+            {
+              English: 'Logging you in...',
+              Hungarian: 'Bejelentkezés...',
+            }[language]
+          }
         </h2>
       )}
-      {loginSuccess && <h2>Login successful!</h2>}
+      {loginSuccess && (
+        <h2>
+          {
+            {
+              English: 'Login successful!',
+              Hungarian: 'Sikeres bejelentkezés!',
+            }[language]
+          }
+        </h2>
+      )}
     </>
   );
 };

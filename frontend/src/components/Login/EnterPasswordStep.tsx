@@ -77,7 +77,16 @@ const EnterPasswordStep = ({
           <p>{errorMessage}</p>
         </form>
       )}
-      {loginSuccess && <h2>Login successful!</h2>}
+      {loginSuccess && (
+        <h2>
+          {
+            {
+              English: 'Login successful!',
+              Hungarian: 'Sikeres bejelentkezés!',
+            }[language]
+          }
+        </h2>
+      )}
     </>
   );
 };
