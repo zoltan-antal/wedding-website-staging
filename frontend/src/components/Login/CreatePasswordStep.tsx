@@ -37,6 +37,15 @@ const CreatePasswordStep = ({
       );
       return;
     }
+    if (password.length < 6) {
+      setErrorMessage(
+        {
+          English: 'Password must be at least 6 characters long.',
+          Hungarian: 'A jelszónak minimum 6 karakter hosszúnak kell lennie.',
+        }[language]
+      );
+      return;
+    }
     setButtonDisabled(true);
     setErrorMessage('');
     await guestService.createPassword(firstName, lastName, password);
