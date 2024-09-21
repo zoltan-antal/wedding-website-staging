@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import guestService from '../../services/guest';
@@ -15,6 +15,18 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+
+  const firstNameInputRef = useRef<HTMLInputElement>(null);
+  const lastNameInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (language === 'English' && firstNameInputRef.current) {
+      firstNameInputRef.current.focus();
+    }
+    if (language === 'Hungarian' && lastNameInputRef.current) {
+      lastNameInputRef.current.focus();
+    }
+  }, [language]);
 
   const handleNext = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,6 +57,7 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
       }
       {':'}
       <input
+        ref={firstNameInputRef}
         type="text"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
@@ -59,6 +72,7 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
       }
       {':'}
       <input
+        ref={lastNameInputRef}
         type="text"
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}

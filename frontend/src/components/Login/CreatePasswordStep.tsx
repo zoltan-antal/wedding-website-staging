@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import guestService from '../../services/guest';
@@ -25,6 +25,14 @@ const CreatePasswordStep = ({
   const [passwordCreationSuccess, setPasswordCreationSuccess] =
     useState<boolean>(false);
   const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
+
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (passwordInputRef.current) {
+      passwordInputRef.current.focus();
+    }
+  }, []);
 
   const handleCreatePassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -84,6 +92,7 @@ const CreatePasswordStep = ({
             }
             {':'}
             <input
+              ref={passwordInputRef}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
