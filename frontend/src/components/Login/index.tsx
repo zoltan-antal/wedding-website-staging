@@ -37,22 +37,6 @@ const Login = () => {
     navigate(-1);
   };
 
-  // const handleCreatePassword = async (password: string) => {
-  //   alert(
-  //     {
-  //       English: 'Password created successfully!',
-  //       Hungarian: 'Jelszó sikeresen létrehozva!',
-  //     }[language]
-  //   );
-  //   const response = await authService.login({
-  //     firstName,
-  //     lastName,
-  //     password,
-  //   });
-  //   console.log(response);
-  //   handleLogin();
-  // };
-
   return (
     <main>
       <h1>
