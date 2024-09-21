@@ -50,7 +50,7 @@ const CreatePasswordStep = ({
     setErrorMessage('');
     await guestService.createPassword(firstName, lastName, password);
     setPasswordCreationSuccess(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     await authService.login({
       firstName,
       lastName,
@@ -116,21 +116,24 @@ const CreatePasswordStep = ({
         </form>
       )}
       {passwordCreationSuccess && !loginSuccess && (
-        <h2>
-          {
+        <>
+          <h2>
             {
-              English: 'Password created successfully!',
-              Hungarian: 'Jelszó sikeresen létrehozva!',
-            }[language]
-          }
-          <br></br>
-          {
+              {
+                English: 'Password created successfully!',
+                Hungarian: 'Jelszó sikeresen létrehozva!',
+              }[language]
+            }
+          </h2>
+          <h2>
             {
-              English: 'Logging you in...',
-              Hungarian: 'Bejelentkezés...',
-            }[language]
-          }
-        </h2>
+              {
+                English: 'Logging you in...',
+                Hungarian: 'Bejelentkezés...',
+              }[language]
+            }
+          </h2>
+        </>
       )}
       {loginSuccess && (
         <h2>
