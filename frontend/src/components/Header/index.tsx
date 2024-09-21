@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import './index.css';
 import Nav from './Nav';
 import { Language } from '../../types/language';
@@ -59,19 +59,30 @@ const Header = ({ language, setLanguage, guest, setGuest }: HeaderProps) => {
       </div>
       <div className="account-buttons">
         {guest && (
-          <button
-            onClick={async () => {
-              await authService.logout();
-              setGuest(null);
-            }}
-          >
-            {
+          <>
+            <NavLink to="account">
               {
-                English: 'Log out',
-                Hungarian: 'Kijelentkezés',
-              }[language]
-            }
-          </button>
+                {
+                  English: 'Settings',
+                  Hungarian: 'Beállítások',
+                }[language]
+              }
+            </NavLink>
+            <button
+              onClick={async () => {
+                await authService.logout();
+                setGuest(null);
+                navigate('/');
+              }}
+            >
+              {
+                {
+                  English: 'Log out',
+                  Hungarian: 'Kijelentkezés',
+                }[language]
+              }
+            </button>
+          </>
         )}
         {!guest && (
           <button

@@ -29,4 +29,19 @@ async function createPassword(
   return response;
 }
 
-export default { findGuest, me, createPassword };
+async function changePassword(
+  firstName: string,
+  lastName: string,
+  currentPassword: string,
+  newPassword: string
+) {
+  const response = await axios.put(`${baseUrl}/password`, {
+    firstName,
+    lastName,
+    currentPassword,
+    newPassword,
+  });
+  return response;
+}
+
+export default { findGuest, me, createPassword, changePassword };

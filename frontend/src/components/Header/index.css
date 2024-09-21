@@ -1,6 +1,6 @@
 header {
   display: grid;
-  grid-template-columns: 10% auto 10%;
+  grid-template-columns: 15% auto 15%;
   grid-template-rows: auto auto;
   grid-template-areas:
     "language title account-buttons"
@@ -35,7 +35,13 @@ header {
 
   .language,
   .account-buttons {
-    button {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 5px;
+
+    button,
+    a {
       background-color: var(--background);
       border: none;
       font-size: 1rem;
@@ -46,9 +52,6 @@ header {
   .language {
     grid-area: language;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
     align-items: flex-start;
 
     padding: 10px;
@@ -57,10 +60,7 @@ header {
   .account-buttons {
     grid-area: account-buttons;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: flex-start;
+    align-items: flex-end;
 
     padding: 10px;
   }

@@ -12,6 +12,8 @@ import Rsvp from '../components/Rsvp';
 import Login from '../components/Login';
 import ResetPassword from '../components/Login/ResetPasword';
 import NotFound from './NotFound';
+import Account from '../components/Account';
+import ChangePassword from '../components/Account/ChangePassword';
 
 const router = createHashRouter(
   [
@@ -30,6 +32,8 @@ const router = createHashRouter(
         { path: 'rsvp', element: <Rsvp /> },
         { path: 'login', element: <Login /> },
         { path: 'reset-password', element: <ResetPassword /> },
+        { path: 'account', element: <Account /> },
+        { path: 'change-password', element: <ChangePassword /> },
         { path: '*', element: <NotFound /> },
       ],
     },
