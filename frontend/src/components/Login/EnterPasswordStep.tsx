@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { NavLink, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import authService from '../../services/auth';
 
@@ -58,33 +58,43 @@ const EnterPasswordStep = ({
   return (
     <>
       {!loginSuccess && (
-        <form onSubmit={handleLogin}>
-          <label>
+        <>
+          <form onSubmit={handleLogin}>
+            <label>
+              {
+                {
+                  English: 'Password',
+                  Hungarian: 'Jelszó',
+                }[language]
+              }
+              {':'}
+              <input
+                ref={passwordInputRef}
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+            <button type="submit" disabled={buttonDisabled}>
+              {' '}
+              {
+                {
+                  English: 'Login',
+                  Hungarian: 'Bejelentkezés',
+                }[language]
+              }
+            </button>
+            <p>{errorMessage}</p>
+          </form>
+          <NavLink to="/reset-password">
             {
               {
-                English: 'Password',
-                Hungarian: 'Jelszó',
+                English: 'Forgot password?',
+                Hungarian: 'Elfelejtetted a jelszavad?',
               }[language]
             }
-            {':'}
-            <input
-              ref={passwordInputRef}
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-          <button type="submit" disabled={buttonDisabled}>
-            {' '}
-            {
-              {
-                English: 'Login',
-                Hungarian: 'Bejelentkezés',
-              }[language]
-            }
-          </button>
-          <p>{errorMessage}</p>
-        </form>
+          </NavLink>
+        </>
       )}
       {loginSuccess && (
         <h2>

@@ -10,6 +10,7 @@ import Faq from '../components/Faq';
 import Contact from '../components/Contact';
 import Rsvp from '../components/Rsvp';
 import Login from '../components/Login';
+import ResetPassword from '../components/Login/ResetPasword';
 
 const router = createHashRouter(
   [
@@ -27,6 +28,7 @@ const router = createHashRouter(
         { path: 'contact', element: <Contact /> },
         { path: 'rsvp', element: <Rsvp /> },
         { path: 'login', element: <Login /> },
+        { path: 'reset-password', element: <ResetPassword /> },
       ],
     },
   ],
