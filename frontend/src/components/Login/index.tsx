@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
-import authService from '../../services/auth';
 import guestService from '../../services/guest';
 import EnterNameStep from './EnterNameStep';
 import EnterPasswordStep from './EnterPasswordStep';
@@ -38,21 +37,21 @@ const Login = () => {
     navigate(-1);
   };
 
-  const handleCreatePassword = async (password: string) => {
-    alert(
-      {
-        English: 'Password created successfully!',
-        Hungarian: 'Jelszó sikeresen létrehozva!',
-      }[language]
-    );
-    const response = await authService.login({
-      firstName,
-      lastName,
-      password,
-    });
-    console.log(response);
-    handleLogin();
-  };
+  // const handleCreatePassword = async (password: string) => {
+  //   alert(
+  //     {
+  //       English: 'Password created successfully!',
+  //       Hungarian: 'Jelszó sikeresen létrehozva!',
+  //     }[language]
+  //   );
+  //   const response = await authService.login({
+  //     firstName,
+  //     lastName,
+  //     password,
+  //   });
+  //   console.log(response);
+  //   handleLogin();
+  // };
 
   return (
     <main>
@@ -76,7 +75,7 @@ const Login = () => {
         <CreatePasswordStep
           firstName={firstName}
           lastName={lastName}
-          onCreatePassword={handleCreatePassword}
+          onLogin={handleLogin}
         />
       )}
     </main>

@@ -19,17 +19,23 @@ const EnterPasswordStep = ({
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
 
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+  const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await authService.login({
+      setButtonDisabled(true);
+      await authService.login({
         firstName,
         lastName,
         password,
       });
       setErrorMessage('');
-      console.log(response);
-      onLogin();
+      setLoginSuccess(true);
+      setTimeout(() => {
+        onLogin();
+      }, 1000);
     } catch (error) {
       setErrorMessage(
         {
@@ -37,36 +43,42 @@ const EnterPasswordStep = ({
           Hungarian: 'Helytelen jelszó.',
         }[language]
       );
+      setButtonDisabled(false);
     }
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <label>
-        {
-          {
-            English: 'Password',
-            Hungarian: 'Jelszó',
-          }[language]
-        }
-        {':'}
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <button type="submit">
-        {' '}
-        {
-          {
-            English: 'Login',
-            Hungarian: 'Bejelentkezés',
-          }[language]
-        }
-      </button>
-      <p>{errorMessage}</p>
-    </form>
+    <>
+      {!loginSuccess && (
+        <form onSubmit={handleLogin}>
+          <label>
+            {
+              {
+                English: 'Password',
+                Hungarian: 'Jelszó',
+              }[language]
+            }
+            {':'}
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <button type="submit" disabled={buttonDisabled}>
+            {' '}
+            {
+              {
+                English: 'Login',
+                Hungarian: 'Bejelentkezés',
+              }[language]
+            }
+          </button>
+          <p>{errorMessage}</p>
+        </form>
+      )}
+      {loginSuccess && <h2>Login successful!</h2>}
+    </>
   );
 };
 

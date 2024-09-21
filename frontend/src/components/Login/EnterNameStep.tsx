@@ -14,9 +14,12 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
   const [lastName, setLastName] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
 
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+
   const handleNext = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      setButtonDisabled(true);
       const guestDetails = await guestService.findGuest(firstName, lastName);
       setErrorMessage('');
       console.log(guestDetails);
@@ -28,6 +31,7 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
           Hungarian: 'Vendég nem található.',
         }[language]
       );
+      setButtonDisabled(false);
     }
   };
 
@@ -65,7 +69,7 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
   return (
     <form onSubmit={handleNext}>
       {language === 'English' ? fields : fields.reverse()}
-      <button type="submit">
+      <button type="submit" disabled={buttonDisabled}>
         {
           {
             English: 'Next',
