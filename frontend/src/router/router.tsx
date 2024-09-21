@@ -11,6 +11,7 @@ import Contact from '../components/Contact';
 import Rsvp from '../components/Rsvp';
 import Login from '../components/Login';
 import ResetPassword from '../components/Login/ResetPasword';
+import NotFound from './NotFound';
 
 const router = createHashRouter(
   [
@@ -29,6 +30,7 @@ const router = createHashRouter(
         { path: 'rsvp', element: <Rsvp /> },
         { path: 'login', element: <Login /> },
         { path: 'reset-password', element: <ResetPassword /> },
+        { path: '*', element: <NotFound /> },
       ],
     },
   ],
