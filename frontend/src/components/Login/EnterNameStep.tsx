@@ -47,7 +47,7 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
   };
 
   const fields = [
-    <label>
+    <label key="firstName">
       {
         {
           English: 'First name',
@@ -62,7 +62,7 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
         onChange={(e) => setFirstName(e.target.value)}
       />
     </label>,
-    <label>
+    <label key="lastName">
       {
         {
           English: 'Last name',
