@@ -13,6 +13,8 @@ class Household extends Model<
 > {
   declare id: CreationOptional<number>;
   declare username: string;
+  declare type: 'single' | 'couple' | 'family';
+  declare special: boolean;
 }
 
 Household.init(
@@ -26,6 +28,15 @@ Household.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+    },
+    type: {
+      type: DataTypes.ENUM,
+      values: ['single', 'couple', 'family'],
+      allowNull: false,
+    },
+    special: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
   },
   { sequelize, underscored: true, timestamps: false, modelName: 'household' }
