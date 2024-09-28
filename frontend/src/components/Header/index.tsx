@@ -3,6 +3,7 @@ import './index.css';
 import Nav from './Nav';
 import { Language } from '../../types/language';
 import { Guest } from '../../types/guest';
+import { Household } from '../../types/household';
 import authService from '../../services/auth';
 
 interface HeaderProps {
@@ -10,9 +11,16 @@ interface HeaderProps {
   setLanguage: React.Dispatch<React.SetStateAction<Language>>;
   guest: Guest | null;
   setGuest: React.Dispatch<React.SetStateAction<Guest | null>>;
+  setHousehold: React.Dispatch<React.SetStateAction<Household | null>>;
 }
 
-const Header = ({ language, setLanguage, guest, setGuest }: HeaderProps) => {
+const Header = ({
+  language,
+  setLanguage,
+  guest,
+  setGuest,
+  setHousehold,
+}: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
@@ -72,6 +80,7 @@ const Header = ({ language, setLanguage, guest, setGuest }: HeaderProps) => {
               onClick={async () => {
                 await authService.logout();
                 setGuest(null);
+                setHousehold(null);
                 navigate('/');
               }}
             >
