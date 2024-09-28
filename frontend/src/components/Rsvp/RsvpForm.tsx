@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useImmer } from 'use-immer';
 // import axios from 'axios';
 import { useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
@@ -16,7 +17,7 @@ const RsvpForm = () => {
 
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
-  const [formData, setFormData] = useState<RsvpFormData>({
+  const [formData, updateFormData] = useImmer<RsvpFormData>({
     [RsvpFormFieldNames.GuestsAttending]:
       household?.guests.map((guest) => guest.id) || [],
   });
@@ -25,19 +26,20 @@ const RsvpForm = () => {
     const { name, value, type, checked } = e.target;
     const groupName = name.split('.')[0] as keyof RsvpFormData;
 
-    if (type === 'checkbox') {
-      if (groupName === RsvpFormFieldNames.GuestsAttending) {
-        const id = Number(value);
-
-        setFormData((prevData) => {
-          const updatedGroup = checked
-            ? [...prevData[groupName], id]
-            : prevData[groupName].filter((item) => item !== id);
-
-          return { ...prevData, [groupName]: updatedGroup };
-        });
+    updateFormData((draft) => {
+      if (type === 'checkbox') {
+        if (groupName === RsvpFormFieldNames.GuestsAttending) {
+          const itemValue = Number(value);
+          if (checked) {
+            draft.guestsAttending.push(itemValue);
+          } else {
+            draft.guestsAttending = draft.guestsAttending.filter(
+              (guestId) => guestId !== itemValue
+            );
+          }
+        }
       }
-    }
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -66,7 +68,6 @@ const RsvpForm = () => {
               <label key={guest.id}>
                 <input
                   type="checkbox"
-                  // name="guestsAttending"
                   name={`${RsvpFormFieldNames.GuestsAttending}.${guest.id}`}
                   value={guest.id}
                   checked={formData.guestsAttending.includes(guest.id)}
