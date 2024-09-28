@@ -1,8 +1,8 @@
 export type Guest = {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
-  householdId: string;
+  householdId: number;
 };
 
 export type GuestCredentials = {

@@ -1,5 +1,5 @@
 export type Household = {
-  id: string;
+  id: number;
   username: string;
   type: 'single' | 'couple' | 'family';
   special: boolean;
