@@ -27,6 +27,7 @@ const me = async (req: Request, res: Response) => {
     username: household.username,
     type: household.type,
     special: household.special,
+    guests: household.guests,
   });
 };
 
