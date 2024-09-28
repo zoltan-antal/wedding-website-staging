@@ -63,8 +63,8 @@ const Header = ({ language, setLanguage, guest, setGuest }: HeaderProps) => {
             <NavLink to="account">
               {
                 {
-                  English: 'Settings',
-                  Hungarian: 'Beállítások',
+                  English: 'Account',
+                  Hungarian: 'Fiók',
                 }[language]
               }
             </NavLink>
