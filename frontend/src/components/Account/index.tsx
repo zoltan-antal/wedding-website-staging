@@ -19,11 +19,20 @@ const Account = () => {
       <h1>
         {
           {
-            English: 'Guest account settings',
-            Hungarian: 'Vendég fiók beállítások',
+            English: 'Guest account',
+            Hungarian: 'Vendég fiók',
           }[language]
         }
       </h1>
+      <h2>
+        {' '}
+        {
+          {
+            English: 'Settings',
+            Hungarian: 'Beállítások',
+          }[language]
+        }
+      </h2>
       <NavLink to="/change-password">
         {
           {
