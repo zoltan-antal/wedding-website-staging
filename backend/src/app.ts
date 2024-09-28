@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import fs from 'fs';
+import path from 'path';
 import { Resend } from 'resend';
 require('express-async-errors');
 import router from './routes';
@@ -53,5 +55,26 @@ app.post('/email-test', (_req, res, next) => {
     })
     .catch(next);
 });
+
+const dataDirectoryPath = path.join(__dirname, '..', 'data');
+const csvFilePath = path.join(__dirname, '..', 'data', 'test.csv');
+app.post('/write-test', (_req, res) => {
+  if (!fs.existsSync(dataDirectoryPath)) {
+    fs.mkdirSync(dataDirectoryPath);
+  }
+  if (!fs.existsSync(csvFilePath)) {
+    fs.writeFileSync(csvFilePath, 'Household,Answer\n');
+  }
+
+  fs.appendFileSync(csvFilePath, 'JD,Test\n', 'utf8');
+  res.send('Test line written successfully.');
+});
+// app.get('/download-data-test', (_req, res) => {
+//   res.download(csvFilePath, (err) => {
+//     if (err) {
+//       res.status(500).send('Error downloading the file.');
+//     }
+//   });
+// });
 
 export default app;
