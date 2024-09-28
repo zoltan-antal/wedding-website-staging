@@ -16,7 +16,7 @@ guestRoutes.post('/password', (req, res, next) => {
   guestController.createPassword(req, res).catch(next);
 });
 
-guestRoutes.put('/password', (req, res, next) => {
+guestRoutes.put('/password', authenticateJwt, (req, res, next) => {
   guestController.changePassword(req, res).catch(next);
 });
 

@@ -35,12 +35,17 @@ async function changePassword(
   currentPassword: string,
   newPassword: string
 ) {
-  const response = await axios.put(`${baseUrl}/password`, {
-    firstName,
-    lastName,
-    currentPassword,
-    newPassword,
-  });
+  const requestConfig = { withCredentials: true };
+  const response = await axios.put(
+    `${baseUrl}/password`,
+    {
+      firstName,
+      lastName,
+      currentPassword,
+      newPassword,
+    },
+    requestConfig
+  );
   return response;
 }
 
