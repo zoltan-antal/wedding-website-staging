@@ -11,4 +11,8 @@ authRoutes.post('/logout', (req, res) => {
   authController.logoutGuest(req, res);
 });
 
+authRoutes.get('/status', (req, res) => {
+  authController.status(req, res);
+});
+
 export default authRoutes;

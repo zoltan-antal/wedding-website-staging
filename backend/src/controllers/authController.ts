@@ -63,4 +63,12 @@ const logoutGuest = (_req: Request, res: Response) => {
   return res.status(200).json({ message: 'Successfully logged out' });
 };
 
-export default { loginGuest, logoutGuest };
+const status = (req: Request, res: Response) => {
+  if (req.cookies.authToken) {
+    res.status(200).json({ loggedIn: true });
+  } else {
+    res.status(200).json({ loggedIn: false });
+  }
+};
+
+export default { loginGuest, logoutGuest, status };
