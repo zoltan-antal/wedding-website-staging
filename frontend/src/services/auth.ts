@@ -20,4 +20,10 @@ async function logout() {
   return response;
 }
 
-export default { login, logout };
+async function status() {
+  const requestConfig = { withCredentials: true };
+  const response = await axios.get(`${baseUrl}/status`, requestConfig);
+  return response.data;
+}
+
+export default { login, logout, status };

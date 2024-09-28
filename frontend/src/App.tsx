@@ -6,9 +6,11 @@ import { useEffect, useState } from 'react';
 import { Language } from './types/language';
 import { Guest } from './types/guest';
 import { Household } from './types/household';
+import { AuthStatus } from './types/auth';
 import { Context } from './types/context';
 import guestService from './services/guest';
 import householdService from './services/household';
+import authService from './services/auth';
 
 function App() {
   const [language, setLanguage] = useState<Language>(
@@ -21,6 +23,15 @@ function App() {
   const [guest, setGuest] = useState<Guest | null>(null);
   const [household, setHousehold] = useState<Household | null>(null);
   useEffect(() => {
+    const getAuthStatus = async () => {
+      try {
+        const authStatus: AuthStatus = await authService.status();
+        return authStatus.loggedIn;
+      } catch (error) {
+        console.error('Error checking authentication status: ', error);
+      }
+    };
+
     const fetchGuestData = async () => {
       try {
         const guestData = await guestService.me();
@@ -29,7 +40,6 @@ function App() {
         console.error('Error fetching guest data: ', error);
       }
     };
-    fetchGuestData();
 
     const fetchHouseholdData = async () => {
       try {
@@ -39,7 +49,16 @@ function App() {
         console.error('Error fetching household data: ', error);
       }
     };
-    fetchHouseholdData();
+
+    const fetchData = async () => {
+      const loggedIn = await getAuthStatus();
+      if (loggedIn) {
+        await fetchGuestData();
+        await fetchHouseholdData();
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
