@@ -34,7 +34,6 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
       setButtonDisabled(true);
       const guestDetails = await guestService.findGuest(firstName, lastName);
       setErrorMessage('');
-      console.log(guestDetails);
       onNext(firstName, lastName, guestDetails.hasPassword);
     } catch (error) {
       setErrorMessage(
