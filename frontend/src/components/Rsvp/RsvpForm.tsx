@@ -8,11 +8,13 @@ import RadioCheckbox from './RadioCheckbox';
 enum RsvpFormFieldNames {
   GuestsAttending = 'guestsAttending',
   DietaryRequirements = 'dietaryRequirements',
+  Comments = 'comments',
 }
 
 interface RsvpFormData {
   [RsvpFormFieldNames.GuestsAttending]: number[];
   [RsvpFormFieldNames.DietaryRequirements]: string;
+  [RsvpFormFieldNames.Comments]: string;
 }
 
 const RsvpForm = () => {
@@ -23,6 +25,7 @@ const RsvpForm = () => {
   const [formData, updateFormData] = useImmer<RsvpFormData>({
     guestsAttending: household?.guests.map((guest) => guest.id) || [],
     dietaryRequirements: '',
+    comments: '',
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,7 +40,10 @@ const RsvpForm = () => {
   return (
     <>
       {household && (
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
           <fieldset>
             <legend>
               {
@@ -93,8 +99,28 @@ const RsvpForm = () => {
               <label>
                 {
                   {
-                    English: `Are there any allergies or dietary requirements that we should be aware of?`,
-                    Hungarian: `Bármilyen allergia vagy különleges étrendi követelmény, amiről tudnunk kell?`,
+                    English:
+                      'Are there any allergies or dietary requirements that we should be aware of?',
+                    Hungarian:
+                      'Bármilyen allergia vagy különleges étrendi követelmény, amiről tudnunk kell?',
+                  }[language]
+                }
+                <input
+                  type="textarea"
+                  name={RsvpFormFieldNames.DietaryRequirements}
+                  value={formData.dietaryRequirements}
+                  onChange={(e) => {
+                    updateFormData((draft) => {
+                      draft.dietaryRequirements = e.target.value;
+                    });
+                  }}
+                />
+              </label>
+              <label>
+                {
+                  {
+                    English: `Is there anything else you'd like to add?`,
+                    Hungarian: 'Van bármi más, amiről tudnunk kell?',
                   }[language]
                 }
                 <input
