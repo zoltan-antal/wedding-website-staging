@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext, useLocation } from 'react-router-dom';
 import { Context } from '../../types/context';
 import guestService from '../../services/guest';
 import householdService from '../../services/household';
@@ -19,6 +19,8 @@ const Login = () => {
   const [password, setPassword] = useState<string>('');
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
 
   const handleNameEntered = (
     firstName: string,
@@ -44,7 +46,7 @@ const Login = () => {
     setGuest(guestData);
     const householdData = await householdService.me();
     setHousehold(householdData);
-    navigate(-1);
+    navigate(queryParams.get('redirectTo') || '/');
   };
 
   return (
