@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
+import validator from 'validator';
 import guestService from '../services/guestService';
 import { GuestAttributes } from '../models/guests';
 
@@ -17,6 +18,14 @@ interface ChangePasswordRequest extends Request {
     lastName: string;
     currentPassword: string;
     newPassword: string;
+  };
+}
+
+interface SetEmailRequest extends Request {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
   };
 }
 
@@ -144,4 +153,37 @@ const changePassword = async (req: ChangePasswordRequest, res: Response) => {
   return res.status(200).json({ message: 'Password successfully changed' });
 };
 
-export default { findGuest, me, createPassword, changePassword };
+const setEmail = async (req: SetEmailRequest, res: Response) => {
+  const { firstName, lastName, email } = req.body;
+  if (!firstName || !lastName || !email) {
+    return res.status(400).json({
+      error: 'Missing request body parameters',
+    });
+  }
+
+  const guest = await guestService.getGuestByName({ firstName, lastName });
+  if (!guest) {
+    return res.status(404).json({
+      error: 'Guest not found',
+    });
+  }
+
+  if (guest.email !== null) {
+    return res.status(403).json({
+      error: 'Email has already been set',
+    });
+  }
+
+  if (!validator.isEmail(email)) {
+    return res.status(400).json({
+      error: 'Provided email is not valid',
+    });
+  }
+
+  guest.email = email;
+  await guest.save();
+
+  return res.status(200).json({ message: 'Email successfully set' });
+};
+
+export default { findGuest, me, createPassword, changePassword, setEmail };

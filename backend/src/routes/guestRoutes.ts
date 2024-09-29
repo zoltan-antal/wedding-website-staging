@@ -20,4 +20,8 @@ guestRoutes.put('/password', authenticateJwt, (req, res, next) => {
   guestController.changePassword(req, res).catch(next);
 });
 
+guestRoutes.post('/email', (req, res, next) => {
+  guestController.setEmail(req, res).catch(next);
+});
+
 export default guestRoutes;
