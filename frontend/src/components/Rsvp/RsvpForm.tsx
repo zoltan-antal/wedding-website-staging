@@ -4,6 +4,7 @@ import { useImmer } from 'use-immer';
 import { useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import RadioCheckbox from './RadioCheckbox';
+import RadioGroup from './RadioGroup';
 
 enum RsvpFormFieldNames {
   GuestsAttending = 'guestsAttending',
@@ -182,83 +183,50 @@ const RsvpForm = () => {
                   }
                 ></RadioCheckbox>
                 {formData.requireAccommodation && household.special && (
-                  <fieldset>
-                    <legend>
+                  <RadioGroup
+                    name={RsvpFormFieldNames.AccommodationPreference}
+                    label={
                       {
-                        {
-                          English:
-                            'Would you like to stay at the venue in a glamping tent or in a hotel in the nearby town of Vác?',
-                          Hungarian:
-                            'A helyszínen szeretnél aludni glamping sátorban vagy egy közeli hotelben Vácon?',
-                        }[language]
-                      }
-                      <br></br>
+                        English:
+                          'Would you like to stay at the venue in a glamping tent or in a hotel in the nearby town of Vác?\nTransport will be provided to the hotel during the course of the evening.',
+                        Hungarian:
+                          'A helyszínen szeretnél aludni glamping sátorban vagy egy közeli hotelben Vácon?\nBiztosítjuk az utazást a hotelbe az este folyamán.',
+                      }[language]
+                    }
+                    entries={[
                       {
-                        {
-                          English:
-                            'Transport will be provided to the hotel during the course of the evening.',
-                          Hungarian:
-                            'Biztosítjuk az utazást a hotelbe az este folyamán.',
-                        }[language]
-                      }
-                    </legend>
-                    <label>
-                      <input
-                        type="radio"
-                        name={RsvpFormFieldNames.AccommodationPreference}
-                        checked={formData.accommodationPreference === 'tent'}
-                        onChange={() =>
-                          updateFormData((draft) => {
-                            draft.accommodationPreference = 'tent';
-                          })
-                        }
-                      />
-                      {
-                        {
+                        checked: formData.accommodationPreference === 'tent',
+                        value: 'tent',
+                        label: {
                           English: 'At the venue',
                           Hungarian: 'A helyszínen',
-                        }[language]
-                      }
-                    </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name={RsvpFormFieldNames.AccommodationPreference}
-                        checked={formData.accommodationPreference === 'hotel'}
-                        onChange={() =>
-                          updateFormData((draft) => {
-                            draft.accommodationPreference = 'hotel';
-                          })
-                        }
-                      />
+                        }[language],
+                      },
                       {
-                        {
+                        checked: formData.accommodationPreference === 'hotel',
+                        value: 'hotel',
+                        label: {
                           English: 'In a hotel',
                           Hungarian: 'Hotelben',
-                        }[language]
-                      }
-                    </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name={RsvpFormFieldNames.AccommodationPreference}
-                        checked={
-                          formData.accommodationPreference === 'no preference'
-                        }
-                        onChange={() =>
-                          updateFormData((draft) => {
-                            draft.accommodationPreference = 'no preference';
-                          })
-                        }
-                      />
+                        }[language],
+                      },
                       {
-                        {
+                        checked:
+                          formData.accommodationPreference === 'no preference',
+                        value: 'no preference',
+                        label: {
                           English: 'No preference',
                           Hungarian: 'Mindegy',
-                        }[language]
-                      }
-                    </label>
-                  </fieldset>
+                        }[language],
+                      },
+                    ]}
+                    onChange={(e) => {
+                      updateFormData((draft) => {
+                        draft.accommodationPreference = e.target
+                          .value as RsvpFormData[RsvpFormFieldNames.AccommodationPreference];
+                      });
+                    }}
+                  ></RadioGroup>
                 )}
                 {formData.requireAccommodation &&
                   household.special === false &&
