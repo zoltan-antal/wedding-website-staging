@@ -8,6 +8,7 @@ import RadioCheckbox from './RadioCheckbox';
 enum RsvpFormFieldNames {
   GuestsAttending = 'guestsAttending',
   RequireAccommodation = 'requireAccommodation',
+  AccommodationPreference = 'accommodationPreference',
   DietaryRequirements = 'dietaryRequirements',
   Comments = 'comments',
 }
@@ -15,6 +16,10 @@ enum RsvpFormFieldNames {
 interface RsvpFormData {
   [RsvpFormFieldNames.GuestsAttending]: number[];
   [RsvpFormFieldNames.RequireAccommodation]: boolean | null;
+  [RsvpFormFieldNames.AccommodationPreference]?:
+    | 'tent'
+    | 'hotel'
+    | 'no preference';
   [RsvpFormFieldNames.DietaryRequirements]: string;
   [RsvpFormFieldNames.Comments]: string;
 }
@@ -27,6 +32,7 @@ const RsvpForm = () => {
   const [formData, updateFormData] = useImmer<RsvpFormData>({
     guestsAttending: household?.guests.map((guest) => guest.id) || [],
     requireAccommodation: null,
+    accommodationPreference: undefined,
     dietaryRequirements: '',
     comments: '',
   });
@@ -112,6 +118,7 @@ const RsvpForm = () => {
                 onNo={() =>
                   updateFormData((draft) => {
                     draft.requireAccommodation = false;
+                    draft.accommodationPreference = undefined;
                   })
                 }
                 label={
@@ -135,6 +142,85 @@ const RsvpForm = () => {
                   }[language]
                 }
               ></RadioCheckbox>
+              {household.special && formData.requireAccommodation && (
+                <fieldset>
+                  <legend>
+                    {
+                      {
+                        English:
+                          'Would you like to stay at the venue in a glamping tent or in a hotel in the nearby town of Vác?',
+                        Hungarian:
+                          'A helyszínen szeretnél aludni glamping sátorban vagy egy közeli hotelben Vácon?',
+                      }[language]
+                    }
+                    <br></br>
+                    {
+                      {
+                        English:
+                          'Transport will be provided to the hotel during the course of the evening.',
+                        Hungarian:
+                          'Biztosítjuk az utazást a hotelbe az este folyamán.',
+                      }[language]
+                    }
+                  </legend>
+                  <label>
+                    <input
+                      type="radio"
+                      name={RsvpFormFieldNames.AccommodationPreference}
+                      checked={formData.accommodationPreference === 'tent'}
+                      onChange={() =>
+                        updateFormData((draft) => {
+                          draft.accommodationPreference = 'tent';
+                        })
+                      }
+                    />
+                    {
+                      {
+                        English: 'At the venue',
+                        Hungarian: 'A helyszínen',
+                      }[language]
+                    }
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name={RsvpFormFieldNames.AccommodationPreference}
+                      checked={formData.accommodationPreference === 'hotel'}
+                      onChange={() =>
+                        updateFormData((draft) => {
+                          draft.accommodationPreference = 'hotel';
+                        })
+                      }
+                    />
+                    {
+                      {
+                        English: 'In a hotel',
+                        Hungarian: 'Hotelben',
+                      }[language]
+                    }
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name={RsvpFormFieldNames.AccommodationPreference}
+                      checked={
+                        formData.accommodationPreference === 'no preference'
+                      }
+                      onChange={() =>
+                        updateFormData((draft) => {
+                          draft.accommodationPreference = 'no preference';
+                        })
+                      }
+                    />
+                    {
+                      {
+                        English: 'No preference',
+                        Hungarian: 'Mindegy',
+                      }[language]
+                    }
+                  </label>
+                </fieldset>
+              )}
               <label>
                 {
                   {
