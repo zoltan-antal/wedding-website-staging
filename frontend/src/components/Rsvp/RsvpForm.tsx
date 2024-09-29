@@ -67,12 +67,27 @@ const RsvpForm = () => {
   }, [formData.guestsAttending]);
 
   useEffect(() => {
+    if (numberOfAttendingGuests === 0) {
+      updateFormData((draft) => {
+        draft.requireAccommodation = undefined;
+        draft.requireTransport = undefined;
+      });
+    }
     if (numberOfAttendingGuests !== 2) {
       updateFormData((draft) => {
         draft.willingToShareTent = undefined;
       });
     }
   }, [numberOfAttendingGuests, updateFormData]);
+
+  useEffect(() => {
+    if (!formData.requireAccommodation) {
+      updateFormData((draft) => {
+        draft.accommodationPreference = undefined;
+        draft.willingToShareTent = undefined;
+      });
+    }
+  }, [formData.requireAccommodation, updateFormData]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -159,9 +174,6 @@ const RsvpForm = () => {
                   onNo={() =>
                     updateFormData((draft) => {
                       draft.requireAccommodation = false;
-                      draft.accommodationPreference = undefined;
-                      draft.willingToShareTent = undefined;
-                      draft.requireTransport = undefined;
                     })
                   }
                   label={
