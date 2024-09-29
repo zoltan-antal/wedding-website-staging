@@ -42,8 +42,8 @@ const RsvpForm = () => {
             <legend>
               {
                 {
-                  English: 'Will you be attending?',
-                  Hungarian: 'Ott leszel?',
+                  English: 'Who will be attending?',
+                  Hungarian: 'Ki jön?',
                 }[language]
               }
             </legend>
@@ -63,22 +63,17 @@ const RsvpForm = () => {
                     }
                   });
                 }}
-                label={
-                  {
-                    English: `${guest.firstName} ${guest.lastName}`,
-                    Hungarian: `${guest.lastName} ${guest.firstName}`,
-                  }[language]
-                }
+                label={guest.firstName}
                 trueLabel={
                   {
-                    English: 'Yes',
-                    Hungarian: 'Igen',
+                    English: "I'll be there",
+                    Hungarian: 'Ott leszek',
                   }[language]
                 }
                 falseLabel={
                   {
-                    English: 'No',
-                    Hungarian: 'Nem',
+                    English: "I can't make it",
+                    Hungarian: 'Nem tudok jönni',
                   }[language]
                 }
               ></RadioCheckbox>
@@ -89,14 +84,8 @@ const RsvpForm = () => {
               <label>
                 {
                   {
-                    English: `Do ${
-                      household.guests.length > 1 ? 'any of ' : ''
-                    }you have any allergies or dietary requirements that we should be aware of?`,
-                    Hungarian: `Vam ${
-                      household.guests.length > 1
-                        ? 'bármelyikőtöknek valamilyen allergiája vagy különleges étrendi követelménye'
-                        : 'valamilyen allergiád vagy különleges étrendi követelményed'
-                    }, amiről tudnunk kell?`,
+                    English: `Are there any allergies or dietary requirements that we should be aware of?`,
+                    Hungarian: `Bármilyen allergia vagy különleges étrendi követelmény, amiről tudnunk kell?`,
                   }[language]
                 }
                 <input
@@ -116,10 +105,10 @@ const RsvpForm = () => {
             <p>
               {
                 {
-                  English: "We're sorry you can't attend!",
-                  Hungarian: `Sajnáljuk, hogy nem ${
-                    household.guests.length > 1 ? 'tudtok' : 'tudsz'
-                  } részt venni!`,
+                  English: "We'll miss you!",
+                  Hungarian: `Hiányozni ${
+                    household.guests.length > 1 ? 'fogtok' : 'fogsz'
+                  }!`,
                 }[language]
               }
             </p>
