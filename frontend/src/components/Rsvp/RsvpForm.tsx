@@ -94,21 +94,12 @@ const RsvpForm = () => {
                       : formData.guestsAttending[guest.id]
                   }
                   name={`${RsvpFormFieldNames.GuestsAttending}.${guest.id}`}
-                  // value={guest.id}
                   onYes={() =>
-                    // updateFormData((draft) => {
-                    //   draft.guestsAttending.push(Number(e.target.value));
-                    // })
                     updateFormData((draft) => {
                       draft.guestsAttending![guest.id] = true;
                     })
                   }
                   onNo={() =>
-                    // updateFormData((draft) => {
-                    //   draft.guestsAttending = draft.guestsAttending.filter(
-                    //     (guestId) => guestId !== Number(e.target.value)
-                    //   );
-                    // })
                     updateFormData((draft) => {
                       draft.guestsAttending![guest.id] = false;
                     })
