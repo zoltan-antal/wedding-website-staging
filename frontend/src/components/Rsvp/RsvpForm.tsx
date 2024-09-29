@@ -13,6 +13,7 @@ enum RsvpFormFieldNames {
   WillingToShareTent = 'willingToShareTent',
   RequireTransport = 'requireTransport',
   DietaryRequirements = 'dietaryRequirements',
+  InterestedInMeetAndGreet = 'interestedInMeetAndGreet',
   Comments = 'comments',
 }
 
@@ -26,6 +27,7 @@ interface RsvpFormData {
   [RsvpFormFieldNames.WillingToShareTent]?: boolean;
   [RsvpFormFieldNames.RequireTransport]?: boolean;
   [RsvpFormFieldNames.DietaryRequirements]: string;
+  [RsvpFormFieldNames.InterestedInMeetAndGreet]?: boolean;
   [RsvpFormFieldNames.Comments]: string;
 }
 
@@ -71,6 +73,7 @@ const RsvpForm = () => {
       updateFormData((draft) => {
         draft.requireAccommodation = undefined;
         draft.requireTransport = undefined;
+        draft.interestedInMeetAndGreet = undefined;
       });
     }
     if (numberOfAttendingGuests !== 2) {
@@ -348,6 +351,43 @@ const RsvpForm = () => {
                     }}
                   />
                 </label>
+                <RadioCheckbox
+                  checked={formData.interestedInMeetAndGreet}
+                  name={RsvpFormFieldNames.InterestedInMeetAndGreet}
+                  onYes={() =>
+                    updateFormData((draft) => {
+                      draft.interestedInMeetAndGreet = true;
+                    })
+                  }
+                  onNo={() =>
+                    updateFormData((draft) => {
+                      draft.interestedInMeetAndGreet = false;
+                    })
+                  }
+                  label={
+                    {
+                      English:
+                        "Would you be interested in coming to a meet & greet the day before the wedding?\nIt'd be a chance to meet others who are coming to the wedding before the big day. It will most likely be held in Budapest.",
+                      Hungarian: `Érdekelne egy "meet & greet" találkozó az esküvő előtti napon?\nEz egy lehetőség lenne arra, hogy ${
+                        numberOfAttendingGuests > 1
+                          ? 'megismerjétek'
+                          : 'megismerd'
+                      } a többi vendéget, aki az esküvőre jön. Ez valószínűleg Budapesten történne.`,
+                    }[language]
+                  }
+                  trueLabel={
+                    {
+                      English: 'Yes',
+                      Hungarian: 'Igen',
+                    }[language]
+                  }
+                  falseLabel={
+                    {
+                      English: 'No',
+                      Hungarian: 'Nem',
+                    }[language]
+                  }
+                ></RadioCheckbox>
                 <label>
                   {
                     {
