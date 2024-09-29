@@ -25,26 +25,6 @@ const RsvpForm = () => {
     dietaryRequirements: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type } = e.target;
-    const groupName = name.split('.')[0] as keyof RsvpFormData;
-
-    updateFormData((draft) => {
-      if (type === 'radio') {
-        if (groupName === RsvpFormFieldNames.GuestsAttending) {
-          const id = Number(name.split('.')[1]);
-          if (value == 'true') {
-            draft.guestsAttending.push(id);
-          } else {
-            draft.guestsAttending = draft.guestsAttending.filter(
-              (guestId) => guestId !== id
-            );
-          }
-        }
-      }
-    });
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -72,7 +52,17 @@ const RsvpForm = () => {
                 key={guest.id}
                 checked={formData.guestsAttending.includes(guest.id)}
                 name={`${RsvpFormFieldNames.GuestsAttending}.${guest.id}`}
-                onChange={handleChange}
+                onChange={(e) => {
+                  updateFormData((draft) => {
+                    if (e.target.value == 'true') {
+                      draft.guestsAttending.push(guest.id);
+                    } else {
+                      draft.guestsAttending = draft.guestsAttending.filter(
+                        (guestId) => guestId !== guest.id
+                      );
+                    }
+                  });
+                }}
                 label={
                   {
                     English: `${guest.firstName} ${guest.lastName}`,
