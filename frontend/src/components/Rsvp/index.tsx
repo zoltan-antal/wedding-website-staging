@@ -10,7 +10,7 @@ const Rsvp = () => {
 
   useEffect(() => {
     if (!guest || !household) {
-      navigate('/');
+      navigate('/login');
     }
   }, [guest, household, navigate]);
 
