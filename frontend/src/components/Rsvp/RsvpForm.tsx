@@ -92,6 +92,18 @@ const RsvpForm = () => {
               ></RadioCheckbox>
             ))}
           </fieldset>
+          {!formData.guestsAttending.length && (
+            <p>
+              {
+                {
+                  English: "We're sorry you can't attend!",
+                  Hungarian: `Sajnáljuk, hogy nem ${
+                    household.guests.length > 1 ? 'tudtok' : 'tudsz'
+                  } részt venni!`,
+                }[language]
+              }
+            </p>
+          )}
           <button type="submit" disabled={buttonDisabled}>
             {' '}
             {
