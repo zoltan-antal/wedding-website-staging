@@ -41,6 +41,8 @@ const RsvpForm = () => {
     comments: '',
   });
 
+  const [numberOfAttendingGuests, setNumberOfAttendingGuests] = useState(0);
+
   useEffect(() => {
     updateFormData((draft) => {
       draft.guestsAttending = household
@@ -50,6 +52,12 @@ const RsvpForm = () => {
         : {};
     });
   }, [household, updateFormData]);
+
+  useEffect(() => {
+    setNumberOfAttendingGuests(
+      Object.values(formData.guestsAttending).filter((val) => !!val).length
+    );
+  }, [formData.guestsAttending]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -144,7 +152,7 @@ const RsvpForm = () => {
                       English:
                         'Do you require accommodation for Saturday night?',
                       Hungarian: `${
-                        household.guests.length > 1 ? 'Igényeltek' : 'Igényelsz'
+                        numberOfAttendingGuests > 1 ? 'Igényeltek' : 'Igényelsz'
                       } szállást szombat éjszakára?`,
                     }[language]
                   }
