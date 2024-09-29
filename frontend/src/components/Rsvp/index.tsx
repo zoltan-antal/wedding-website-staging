@@ -4,7 +4,7 @@ import { Context } from '../../types/context';
 import RsvpForm from './RsvpForm';
 
 const Rsvp = () => {
-  const { guest, household } = useOutletContext<Context>();
+  const { guest, household, language } = useOutletContext<Context>();
 
   const navigate = useNavigate();
 
@@ -16,7 +16,14 @@ const Rsvp = () => {
 
   return (
     <main>
-      <h1>RSVP</h1>
+      <h1>
+        {
+          {
+            English: 'RSVP',
+            Hungarian: 'Visszajelzés',
+          }[language]
+        }
+      </h1>
       <RsvpForm></RsvpForm>
     </main>
   );
