@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface RadioCheckboxProps {
   checked?: boolean;
   name: string;
@@ -21,7 +23,14 @@ const RadioCheckbox = ({
 }: RadioCheckboxProps) => {
   return (
     <fieldset>
-      <legend>{label}</legend>
+      <legend>
+        {label.split('\n').map((line, index) => (
+          <React.Fragment key={index}>
+            {line}
+            {index < label.length - 1 && <br />}
+          </React.Fragment>
+        ))}
+      </legend>
       <label>
         <input
           type="radio"
