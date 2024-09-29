@@ -47,37 +47,46 @@ const RsvpForm = () => {
                 }[language]
               }
             </legend>
-            {household.guests.map((guest) => (
-              <RadioCheckbox
-                key={guest.id}
-                checked={formData.guestsAttending.includes(guest.id)}
-                name={`${RsvpFormFieldNames.GuestsAttending}.${guest.id}`}
-                onChange={(e) => {
-                  updateFormData((draft) => {
-                    if (e.target.value == 'true') {
-                      draft.guestsAttending.push(guest.id);
-                    } else {
-                      draft.guestsAttending = draft.guestsAttending.filter(
-                        (guestId) => guestId !== guest.id
-                      );
-                    }
-                  });
-                }}
-                label={guest.firstName}
-                trueLabel={
-                  {
-                    English: "I'll be there",
-                    Hungarian: 'Ott leszek',
-                  }[language]
-                }
-                falseLabel={
-                  {
-                    English: "I can't make it",
-                    Hungarian: 'Nem tudok jönni',
-                  }[language]
-                }
-              ></RadioCheckbox>
-            ))}
+            {household.guests
+              .toSorted((a, b) => {
+                const nameA = a.firstName.toLowerCase();
+                const nameB = b.firstName.toLowerCase();
+
+                if (nameA < nameB) return -1;
+                if (nameA > nameB) return 1;
+                return 0;
+              })
+              .map((guest) => (
+                <RadioCheckbox
+                  key={guest.id}
+                  checked={formData.guestsAttending.includes(guest.id)}
+                  name={`${RsvpFormFieldNames.GuestsAttending}.${guest.id}`}
+                  onChange={(e) => {
+                    updateFormData((draft) => {
+                      if (e.target.value == 'true') {
+                        draft.guestsAttending.push(guest.id);
+                      } else {
+                        draft.guestsAttending = draft.guestsAttending.filter(
+                          (guestId) => guestId !== guest.id
+                        );
+                      }
+                    });
+                  }}
+                  label={guest.firstName}
+                  trueLabel={
+                    {
+                      English: "I'll be there",
+                      Hungarian: 'Ott leszek',
+                    }[language]
+                  }
+                  falseLabel={
+                    {
+                      English: "I can't make it",
+                      Hungarian: 'Nem tudok jönni',
+                    }[language]
+                  }
+                ></RadioCheckbox>
+              ))}
           </fieldset>
           {!!formData.guestsAttending.length && (
             <>
