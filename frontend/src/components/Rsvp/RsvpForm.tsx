@@ -67,17 +67,19 @@ const RsvpForm = () => {
                   key={guest.id}
                   checked={formData.guestsAttending.includes(guest.id)}
                   name={`${RsvpFormFieldNames.GuestsAttending}.${guest.id}`}
-                  onChange={(e) => {
+                  value={guest.id}
+                  onYes={(e) =>
                     updateFormData((draft) => {
-                      if (e.target.value == 'true') {
-                        draft.guestsAttending.push(guest.id);
-                      } else {
-                        draft.guestsAttending = draft.guestsAttending.filter(
-                          (guestId) => guestId !== guest.id
-                        );
-                      }
-                    });
-                  }}
+                      draft.guestsAttending.push(Number(e.target.value));
+                    })
+                  }
+                  onNo={(e) =>
+                    updateFormData((draft) => {
+                      draft.guestsAttending = draft.guestsAttending.filter(
+                        (guestId) => guestId !== Number(e.target.value)
+                      );
+                    })
+                  }
                   label={guest.firstName}
                   trueLabel={
                     {
