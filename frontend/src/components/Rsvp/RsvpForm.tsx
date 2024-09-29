@@ -15,7 +15,7 @@ enum RsvpFormFieldNames {
 
 interface RsvpFormData {
   [RsvpFormFieldNames.GuestsAttending]: number[];
-  [RsvpFormFieldNames.RequireAccommodation]: boolean | null;
+  [RsvpFormFieldNames.RequireAccommodation]?: boolean;
   [RsvpFormFieldNames.AccommodationPreference]?:
     | 'tent'
     | 'hotel'
@@ -31,7 +31,7 @@ const RsvpForm = () => {
 
   const [formData, updateFormData] = useImmer<RsvpFormData>({
     guestsAttending: household?.guests.map((guest) => guest.id) || [],
-    requireAccommodation: null,
+    requireAccommodation: undefined,
     accommodationPreference: undefined,
     dietaryRequirements: '',
     comments: '',

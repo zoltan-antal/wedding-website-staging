@@ -1,5 +1,5 @@
 interface RadioCheckboxProps {
-  checked: boolean | null;
+  checked?: boolean;
   name: string;
   value?: string | number;
   onYes: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -27,7 +27,7 @@ const RadioCheckbox = ({
           type="radio"
           name={name}
           value={value}
-          checked={checked === null ? false : checked}
+          checked={checked === undefined ? false : checked}
           onChange={onYes}
         />
         {trueLabel}
@@ -37,7 +37,7 @@ const RadioCheckbox = ({
           type="radio"
           name={name}
           value={value}
-          checked={checked === null ? false : !checked}
+          checked={checked === undefined ? false : !checked}
           onChange={onNo}
         />
         {falseLabel}
