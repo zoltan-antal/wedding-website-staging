@@ -7,10 +7,12 @@ import RadioCheckbox from './RadioCheckbox';
 
 enum RsvpFormFieldNames {
   GuestsAttending = 'guestsAttending',
+  DietaryRequirements = 'dietaryRequirements',
 }
 
 interface RsvpFormData {
   [RsvpFormFieldNames.GuestsAttending]: number[];
+  [RsvpFormFieldNames.DietaryRequirements]: string;
 }
 
 const RsvpForm = () => {
@@ -19,8 +21,8 @@ const RsvpForm = () => {
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
   const [formData, updateFormData] = useImmer<RsvpFormData>({
-    [RsvpFormFieldNames.GuestsAttending]:
-      household?.guests.map((guest) => guest.id) || [],
+    guestsAttending: household?.guests.map((guest) => guest.id) || [],
+    dietaryRequirements: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,6 +94,34 @@ const RsvpForm = () => {
               ></RadioCheckbox>
             ))}
           </fieldset>
+          {!!formData.guestsAttending.length && (
+            <>
+              <label>
+                {
+                  {
+                    English: `Do ${
+                      household.guests.length > 1 ? 'any of ' : ''
+                    }you have any allergies or dietary requirements that we should be aware of?`,
+                    Hungarian: `Vam ${
+                      household.guests.length > 1
+                        ? 'bármelyikőtöknek valamilyen allergiája vagy különleges étrendi követelménye'
+                        : 'valamilyen allergiád vagy különleges étrendi követelményed'
+                    }, amiről tudnunk kell?`,
+                  }[language]
+                }
+                <input
+                  type="textarea"
+                  name={RsvpFormFieldNames.DietaryRequirements}
+                  value={formData.dietaryRequirements}
+                  onChange={(e) => {
+                    updateFormData((draft) => {
+                      draft.dietaryRequirements = e.target.value;
+                    });
+                  }}
+                />
+              </label>
+            </>
+          )}
           {!formData.guestsAttending.length && (
             <p>
               {
