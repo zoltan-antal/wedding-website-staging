@@ -11,6 +11,7 @@ enum RsvpFormFieldNames {
   RequireAccommodation = 'requireAccommodation',
   AccommodationPreference = 'accommodationPreference',
   WillingToShareTent = 'willingToShareTent',
+  RequireTransport = 'requireTransport',
   DietaryRequirements = 'dietaryRequirements',
   Comments = 'comments',
 }
@@ -23,6 +24,7 @@ interface RsvpFormData {
     | 'hotel'
     | 'no preference';
   [RsvpFormFieldNames.WillingToShareTent]?: boolean;
+  [RsvpFormFieldNames.RequireTransport]?: boolean;
   [RsvpFormFieldNames.DietaryRequirements]: string;
   [RsvpFormFieldNames.Comments]: string;
 }
@@ -41,6 +43,7 @@ const RsvpForm = () => {
     requireAccommodation: undefined,
     accommodationPreference: undefined,
     willingToShareTent: undefined,
+    requireTransport: undefined,
     dietaryRequirements: '',
     comments: '',
   });
@@ -158,6 +161,7 @@ const RsvpForm = () => {
                       draft.requireAccommodation = false;
                       draft.accommodationPreference = undefined;
                       draft.willingToShareTent = undefined;
+                      draft.requireTransport = undefined;
                     })
                   }
                   label={
@@ -267,6 +271,51 @@ const RsvpForm = () => {
                       }
                     ></RadioCheckbox>
                   )}
+                <RadioCheckbox
+                  checked={formData.requireTransport}
+                  name={RsvpFormFieldNames.RequireTransport}
+                  onYes={() =>
+                    updateFormData((draft) => {
+                      draft.requireTransport = true;
+                    })
+                  }
+                  onNo={() =>
+                    updateFormData((draft) => {
+                      draft.requireTransport = false;
+                    })
+                  }
+                  label={
+                    {
+                      English:
+                        'Are you planning on making your own way to the venue or will you require transport?\nWe will be providing transport between Budapest and the venue.\nFree parking is available at the venue.',
+                      Hungarian: `Egyedül ${
+                        numberOfAttendingGuests > 1 ? 'terveztek' : 'tervezel'
+                      } eljutni a helyszínre, vagy ${
+                        numberOfAttendingGuests > 1
+                          ? 'szükségetek'
+                          : 'szükséged'
+                      } lesz utaztatásra?\nA helyszínen ingyenes parkolás lehetséges.\nBudapest és a helyszín között tudjuk biztosítani az utazást.`,
+                    }[language]
+                  }
+                  trueLabel={
+                    {
+                      English: 'Require transport',
+                      Hungarian: `Szállítást ${
+                        numberOfAttendingGuests > 1
+                          ? 'igényelnénk'
+                          : 'igényelnék'
+                      }`,
+                    }[language]
+                  }
+                  falseLabel={
+                    {
+                      English: 'Making my own way',
+                      Hungarian: `Külön ${
+                        numberOfAttendingGuests > 1 ? 'jövünk' : 'jövök'
+                      }`,
+                    }[language]
+                  }
+                ></RadioCheckbox>
                 <label>
                   {
                     {
