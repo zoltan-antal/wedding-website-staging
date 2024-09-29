@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useOutletContext, useLocation } from 'react-router-dom';
 import { Context } from '../../types/context';
 import guestService from '../../services/guest';
@@ -12,7 +12,8 @@ const Login = () => {
   const [step, setStep] = useState<
     'enter-name' | 'enter-password' | 'create-password' | 'set-email'
   >('enter-name');
-  const { language, setGuest, setHousehold } = useOutletContext<Context>();
+  const { language, guest, setGuest, setHousehold } =
+    useOutletContext<Context>();
 
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
@@ -21,6 +22,13 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+
+  useEffect(() => {
+    if (guest) {
+      navigate('/');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleNameEntered = (
     firstName: string,
