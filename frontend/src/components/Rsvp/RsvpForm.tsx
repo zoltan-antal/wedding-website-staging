@@ -9,6 +9,7 @@ enum RsvpFormFieldNames {
   GuestsAttending = 'guestsAttending',
   RequireAccommodation = 'requireAccommodation',
   AccommodationPreference = 'accommodationPreference',
+  WillingToShareTent = 'willingToShareTent',
   DietaryRequirements = 'dietaryRequirements',
   Comments = 'comments',
 }
@@ -20,6 +21,7 @@ interface RsvpFormData {
     | 'tent'
     | 'hotel'
     | 'no preference';
+  [RsvpFormFieldNames.WillingToShareTent]?: boolean;
   [RsvpFormFieldNames.DietaryRequirements]: string;
   [RsvpFormFieldNames.Comments]: string;
 }
@@ -37,6 +39,7 @@ const RsvpForm = () => {
       : {},
     requireAccommodation: undefined,
     accommodationPreference: undefined,
+    willingToShareTent: undefined,
     dietaryRequirements: '',
     comments: '',
   });
@@ -58,6 +61,14 @@ const RsvpForm = () => {
       Object.values(formData.guestsAttending).filter((val) => !!val).length
     );
   }, [formData.guestsAttending]);
+
+  useEffect(() => {
+    if (numberOfAttendingGuests !== 2) {
+      updateFormData((draft) => {
+        draft.willingToShareTent = undefined;
+      });
+    }
+  }, [numberOfAttendingGuests, updateFormData]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -145,6 +156,7 @@ const RsvpForm = () => {
                     updateFormData((draft) => {
                       draft.requireAccommodation = false;
                       draft.accommodationPreference = undefined;
+                      draft.willingToShareTent = undefined;
                     })
                   }
                   label={
@@ -169,7 +181,7 @@ const RsvpForm = () => {
                     }[language]
                   }
                 ></RadioCheckbox>
-                {household.special && formData.requireAccommodation && (
+                {formData.requireAccommodation && household.special && (
                   <fieldset>
                     <legend>
                       {
@@ -248,6 +260,45 @@ const RsvpForm = () => {
                     </label>
                   </fieldset>
                 )}
+                {formData.requireAccommodation &&
+                  household.special === false &&
+                  household.type === 'couple' &&
+                  numberOfAttendingGuests === 2 && (
+                    <RadioCheckbox
+                      checked={formData.willingToShareTent}
+                      name={RsvpFormFieldNames.WillingToShareTent}
+                      onYes={() =>
+                        updateFormData((draft) => {
+                          draft.willingToShareTent = true;
+                        })
+                      }
+                      onNo={() =>
+                        updateFormData((draft) => {
+                          draft.willingToShareTent = false;
+                        })
+                      }
+                      label={
+                        {
+                          English:
+                            'Would you be willing to share a tent with another couple?',
+                          Hungarian:
+                            'Vállalnátok, hogy egy sátorban legyetek egy másik párral?',
+                        }[language]
+                      }
+                      trueLabel={
+                        {
+                          English: 'Yes',
+                          Hungarian: 'Igen',
+                        }[language]
+                      }
+                      falseLabel={
+                        {
+                          English: 'Rather not',
+                          Hungarian: 'Inkább nem',
+                        }[language]
+                      }
+                    ></RadioCheckbox>
+                  )}
                 <label>
                   {
                     {
