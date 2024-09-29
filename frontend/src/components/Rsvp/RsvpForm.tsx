@@ -7,12 +7,14 @@ import RadioCheckbox from './RadioCheckbox';
 
 enum RsvpFormFieldNames {
   GuestsAttending = 'guestsAttending',
+  RequireAccommodation = 'requireAccommodation',
   DietaryRequirements = 'dietaryRequirements',
   Comments = 'comments',
 }
 
 interface RsvpFormData {
   [RsvpFormFieldNames.GuestsAttending]: number[];
+  [RsvpFormFieldNames.RequireAccommodation]: boolean | null;
   [RsvpFormFieldNames.DietaryRequirements]: string;
   [RsvpFormFieldNames.Comments]: string;
 }
@@ -24,6 +26,7 @@ const RsvpForm = () => {
 
   const [formData, updateFormData] = useImmer<RsvpFormData>({
     guestsAttending: household?.guests.map((guest) => guest.id) || [],
+    requireAccommodation: null,
     dietaryRequirements: '',
     comments: '',
   });
@@ -98,6 +101,40 @@ const RsvpForm = () => {
           </fieldset>
           {!!formData.guestsAttending.length && (
             <>
+              <RadioCheckbox
+                checked={formData.requireAccommodation}
+                name={RsvpFormFieldNames.RequireAccommodation}
+                onYes={() =>
+                  updateFormData((draft) => {
+                    draft.requireAccommodation = true;
+                  })
+                }
+                onNo={() =>
+                  updateFormData((draft) => {
+                    draft.requireAccommodation = false;
+                  })
+                }
+                label={
+                  {
+                    English: 'Do you require accommodation for Saturday night?',
+                    Hungarian: `${
+                      household.guests.length > 1 ? 'Igényeltek' : 'Igényelsz'
+                    } szállást szombat éjszakára?`,
+                  }[language]
+                }
+                trueLabel={
+                  {
+                    English: 'Yes',
+                    Hungarian: 'Igen',
+                  }[language]
+                }
+                falseLabel={
+                  {
+                    English: 'No',
+                    Hungarian: 'Nem',
+                  }[language]
+                }
+              ></RadioCheckbox>
               <label>
                 {
                   {
