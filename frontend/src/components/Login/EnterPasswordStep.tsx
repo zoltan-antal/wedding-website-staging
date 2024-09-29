@@ -6,13 +6,13 @@ import authService from '../../services/auth';
 interface EnterPasswordStepProps {
   firstName: string;
   lastName: string;
-  onLogin: () => void;
+  onNext: () => void;
 }
 
 const EnterPasswordStep = ({
   firstName,
   lastName,
-  onLogin,
+  onNext,
 }: EnterPasswordStepProps) => {
   const { language } = useOutletContext<Context>();
 
@@ -42,7 +42,7 @@ const EnterPasswordStep = ({
       setErrorMessage('');
       setLoginSuccess(true);
       setTimeout(() => {
-        onLogin();
+        onNext();
       }, 1000);
     } catch (error) {
       setErrorMessage(

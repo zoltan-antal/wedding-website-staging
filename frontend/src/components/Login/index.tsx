@@ -6,19 +6,21 @@ import householdService from '../../services/household';
 import EnterNameStep from './EnterNameStep';
 import EnterPasswordStep from './EnterPasswordStep';
 import CreatePasswordStep from './CreatePasswordStep';
+import SetEmailStep from './SetEmailStep';
 
 const Login = () => {
   const [step, setStep] = useState<
-    'enter-name' | 'enter-password' | 'create-password'
+    'enter-name' | 'enter-password' | 'create-password' | 'set-email'
   >('enter-name');
   const { language, setGuest, setHousehold } = useOutletContext<Context>();
 
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const navigate = useNavigate();
 
-  const handleNext = (
+  const handleNameEntered = (
     firstName: string,
     lastName: string,
     hasPassword: boolean
@@ -30,6 +32,11 @@ const Login = () => {
     } else {
       setStep('create-password');
     }
+  };
+
+  const handlePasswordCreated = (password: string) => {
+    setPassword(password);
+    setStep('set-email');
   };
 
   const handleLogin = async () => {
@@ -50,19 +57,27 @@ const Login = () => {
           }[language]
         }
       </h1>
-      {step === 'enter-name' && <EnterNameStep onNext={handleNext} />}
+      {step === 'enter-name' && <EnterNameStep onNext={handleNameEntered} />}
       {step === 'enter-password' && (
         <EnterPasswordStep
           firstName={firstName}
           lastName={lastName}
-          onLogin={handleLogin}
+          onNext={handleLogin}
         />
       )}
       {step === 'create-password' && (
         <CreatePasswordStep
           firstName={firstName}
           lastName={lastName}
-          onLogin={handleLogin}
+          onNext={handlePasswordCreated}
+        />
+      )}
+      {step === 'set-email' && (
+        <SetEmailStep
+          firstName={firstName}
+          lastName={lastName}
+          password={password}
+          onNext={handleLogin}
         />
       )}
     </main>

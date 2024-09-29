@@ -2,18 +2,17 @@ import { useState, useEffect, useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import guestService from '../../services/guest';
-import authService from '../../services/auth';
 
 interface CreatePasswordStepProps {
   firstName: string;
   lastName: string;
-  onLogin: () => void;
+  onNext: (password: string) => void;
 }
 
 const CreatePasswordStep = ({
   firstName,
   lastName,
-  onLogin,
+  onNext,
 }: CreatePasswordStepProps) => {
   const { language } = useOutletContext<Context>();
 
@@ -24,7 +23,6 @@ const CreatePasswordStep = ({
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [passwordCreationSuccess, setPasswordCreationSuccess] =
     useState<boolean>(false);
-  const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
 
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
@@ -58,16 +56,9 @@ const CreatePasswordStep = ({
     setErrorMessage('');
     await guestService.createPassword(firstName, lastName, password);
     setPasswordCreationSuccess(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    await authService.login({
-      firstName,
-      lastName,
-      password,
-    });
-    setLoginSuccess(true);
     setTimeout(() => {
-      onLogin();
-    }, 1000);
+      onNext(password);
+    }, 1500);
   };
 
   return (
@@ -126,7 +117,7 @@ const CreatePasswordStep = ({
           <p>{errorMessage}</p>
         </form>
       )}
-      {passwordCreationSuccess && !loginSuccess && (
+      {passwordCreationSuccess && (
         <>
           <h2>
             {
@@ -136,25 +127,7 @@ const CreatePasswordStep = ({
               }[language]
             }
           </h2>
-          <h2>
-            {
-              {
-                English: 'Logging you in...',
-                Hungarian: 'Bejelentkezés...',
-              }[language]
-            }
-          </h2>
         </>
-      )}
-      {loginSuccess && (
-        <h2>
-          {
-            {
-              English: 'Login successful!',
-              Hungarian: 'Sikeres bejelentkezés!',
-            }[language]
-          }
-        </h2>
       )}
     </>
   );
