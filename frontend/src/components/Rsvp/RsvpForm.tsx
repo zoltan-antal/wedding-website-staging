@@ -426,7 +426,6 @@ const RsvpForm = () => {
                     }[language]
                   }
                 ></RadioCheckbox>
-
                 <label>
                   {
                     {
@@ -436,11 +435,11 @@ const RsvpForm = () => {
                   }
                   <input
                     type="textarea"
-                    name={RsvpFormFieldNames.DietaryRequirements}
-                    value={formData.dietaryRequirements}
+                    name={RsvpFormFieldNames.Comments}
+                    value={formData.comments}
                     onChange={(e) => {
                       updateFormData((draft) => {
-                        draft.dietaryRequirements = e.target.value;
+                        draft.comments = e.target.value;
                       });
                     }}
                   />
