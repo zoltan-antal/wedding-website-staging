@@ -1,4 +1,4 @@
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import './index.css';
 import Nav from './Nav';
 import { Language } from '../../types/language';
@@ -22,6 +22,8 @@ const Header = ({
   setHousehold,
 }: HeaderProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
 
   return (
     <header>
@@ -96,7 +98,12 @@ const Header = ({
         {!guest && (
           <button
             onClick={() => {
-              navigate('/login');
+              if (location.pathname === '/login') {
+                return navigate(
+                  `/login?redirectTo=${queryParams.get('redirectTo')}`
+                );
+              }
+              return navigate(`/login?redirectTo=${location.pathname}`);
             }}
           >
             {

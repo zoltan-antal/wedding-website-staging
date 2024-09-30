@@ -4,19 +4,26 @@ import { Context } from '../../types/context';
 import RsvpForm from './RsvpForm';
 
 const Rsvp = () => {
-  const { guest, household } = useOutletContext<Context>();
+  const { guest, household, language } = useOutletContext<Context>();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!guest || !household) {
-      navigate('/');
+      navigate('/login?redirectTo=/rsvp');
     }
   }, [guest, household, navigate]);
 
   return (
     <main>
-      <h1>RSVP</h1>
+      <h1>
+        {
+          {
+            English: 'RSVP',
+            Hungarian: 'Visszajelzés',
+          }[language]
+        }
+      </h1>
       <RsvpForm></RsvpForm>
     </main>
   );

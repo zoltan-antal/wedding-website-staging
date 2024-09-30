@@ -95,7 +95,7 @@ const Nav = ({ language }: NavProps) => {
             {
               {
                 English: 'RSVP',
-                Hungarian: 'Visszaigazolás',
+                Hungarian: 'Visszajelzés',
               }[language]
             }
           </NavLink>
