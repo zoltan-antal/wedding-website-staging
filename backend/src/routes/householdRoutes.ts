@@ -12,6 +12,4 @@ householdRoutes.get('/me', authenticateJwt, (req, res, next) => {
   householdController.me(req, res).catch(next);
 });
 
-householdRoutes;
-
 export default householdRoutes;
