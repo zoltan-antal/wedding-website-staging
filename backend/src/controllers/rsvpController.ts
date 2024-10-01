@@ -4,6 +4,7 @@ import path from 'path';
 import { Resend } from 'resend';
 import { GuestAttributes } from '../models/guests';
 import guestService from '../services/guestService';
+import rsvpService from '../services/rsvpService';
 import { RESEND_API_KEY, RESEND_EMAIL, INTERNAL_EMAIL } from '../utils/config';
 
 enum RsvpFormFieldNames {
@@ -113,6 +114,12 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
     console.error(error);
     emailError = error as Error;
   }
+
+  await rsvpService.createRsvp({
+    id: undefined,
+    guestId: guest.id,
+    householdId: guest.householdId,
+  });
 
   if (!saveError && !emailError) {
     return res
