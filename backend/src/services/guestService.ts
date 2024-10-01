@@ -25,4 +25,9 @@ const getGuestByName = async ({ firstName, lastName }: FullName) => {
   return guest;
 };
 
-export default { getGuestByName };
+const getGuest = async (id: number) => {
+  const guest = await Guest.findByPk(id);
+  return guest;
+};
+
+export default { getGuestByName, getGuest };
