@@ -46,6 +46,7 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
   let saveError: Error | null = null;
   let emailError: Error | null = null;
 
+  // CSV
   try {
     let guestsAttendingFlattened;
     try {
@@ -91,6 +92,7 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
     saveError = error as Error;
   }
 
+  // BACKUP EMAIL
   try {
     const formDataBeautified = JSON.stringify(
       {
@@ -115,6 +117,7 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
     emailError = error as Error;
   }
 
+  // DATABASE
   await rsvpService.createRsvp({
     id: undefined,
     guestId: guest.id,
