@@ -72,7 +72,7 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
   }
   fs.appendFileSync(csvFilePath, `${csvLine}\n`, 'utf8');
 
-  res.send(200);
+  return res.status(200).json({ message: 'Successfully saved RSVP form data' });
 };
 
 export default {
