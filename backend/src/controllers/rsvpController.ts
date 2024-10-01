@@ -4,7 +4,7 @@ import path from 'path';
 import { Resend } from 'resend';
 import { GuestAttributes } from '../models/guests';
 import guestService from '../services/guestService';
-import { RESEND_API_KEY } from '../utils/config';
+import { RESEND_API_KEY, RESEND_EMAIL, INTERNAL_EMAIL } from '../utils/config';
 
 enum RsvpFormFieldNames {
   GuestsAttending = 'guestsAttending',
@@ -104,8 +104,8 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
 
     const resend = new Resend(RESEND_API_KEY);
     await resend.emails.send({
-      from: 'noreply@auto.ellazoltan.com',
-      to: 'info@ellazoltan.com',
+      from: RESEND_EMAIL,
+      to: INTERNAL_EMAIL,
       subject: `RSVP form submitted by ${guest.lastName}, ${guest.firstName}`,
       html: emailBody,
     });
