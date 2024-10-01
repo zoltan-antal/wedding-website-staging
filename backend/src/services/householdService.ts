@@ -1,8 +1,9 @@
-import { Guest, Household } from '../models';
+import { Household, Guest, Rsvp } from '../models';
 import { HouseholdAttributes } from '../models/households';
 
-type HouseholdWithGuests = Household & {
+type HouseholdWithGuestsAndRsvps = Household & {
   guests: { id: number; firstName: string; lastName: string }[];
+  rsvps: { id: number; createdAt: string; guestId: number }[];
 };
 
 const getAllHouseholds = async (): Promise<HouseholdAttributes[]> => {
@@ -11,18 +12,23 @@ const getAllHouseholds = async (): Promise<HouseholdAttributes[]> => {
 
 const getHousehold = async (
   householdId: number
-): Promise<HouseholdWithGuests | null> => {
-  const householdWithGuests = await Household.findByPk(householdId, {
+): Promise<HouseholdWithGuestsAndRsvps | null> => {
+  const householdWithGuestsAndRsvps = await Household.findByPk(householdId, {
     include: [
       {
         model: Guest,
         as: 'guests',
         attributes: ['id', 'firstName', 'lastName'],
       },
+      {
+        model: Rsvp,
+        as: 'rsvps',
+        attributes: ['id', 'createdAt', 'guestId'],
+      },
     ],
   });
 
-  return householdWithGuests as HouseholdWithGuests | null;
+  return householdWithGuestsAndRsvps as HouseholdWithGuestsAndRsvps | null;
 };
 
 export default {

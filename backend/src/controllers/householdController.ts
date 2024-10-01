@@ -28,6 +28,7 @@ const me = async (req: Request, res: Response) => {
     type: household.type,
     special: household.special,
     guests: household.guests,
+    rsvps: household.rsvps,
   });
 };
 
