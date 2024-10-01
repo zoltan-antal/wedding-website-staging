@@ -46,14 +46,22 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
   let emailError: Error | null = null;
 
   try {
-    const guestsAttendingFlattened = await Promise.all(
-      Object.entries(formData.guestsAttending).map(
-        async ([guestId, isComing]) => {
-          const guest = await guestService.getGuest(Number(guestId));
-          return `${guest?.firstName}:${isComing}`;
-        }
-      )
-    );
+    let guestsAttendingFlattened;
+    try {
+      guestsAttendingFlattened = await Promise.all(
+        Object.entries(formData.guestsAttending).map(
+          async ([guestId, isComing]) => {
+            const guest = await guestService.getGuest(Number(guestId));
+            return `${guest?.firstName}:${isComing}`;
+          }
+        )
+      );
+    } catch (error) {
+      guestsAttendingFlattened = Object.entries(formData.guestsAttending).map(
+        ([guestId, isComing]) => `${guestId}:${isComing}`
+      );
+    }
+
     const guestsAttendingFlattenedJoined = guestsAttendingFlattened.join(',');
     const csvLine = `"${guest.lastName},${
       guest.firstName
