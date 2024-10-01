@@ -1,37 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
-// import axios from 'axios';
 import { useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
+import rsvpService from '../../services/rsvp';
 import RadioCheckbox from './RadioCheckbox';
 import RadioGroup from './RadioGroup';
-
-enum RsvpFormFieldNames {
-  GuestsAttending = 'guestsAttending',
-  RequireAccommodation = 'requireAccommodation',
-  AccommodationPreference = 'accommodationPreference',
-  WillingToShareTent = 'willingToShareTent',
-  RequireTransport = 'requireTransport',
-  DietaryRequirements = 'dietaryRequirements',
-  InterestedInMeetAndGreet = 'interestedInMeetAndGreet',
-  InterestedInPostWeddingWindDown = 'interestedInPostWeddingWindDown',
-  Comments = 'comments',
-}
-
-interface RsvpFormData {
-  [RsvpFormFieldNames.GuestsAttending]: { [key: number]: boolean | undefined };
-  [RsvpFormFieldNames.RequireAccommodation]?: boolean;
-  [RsvpFormFieldNames.AccommodationPreference]?:
-    | 'tent'
-    | 'hotel'
-    | 'no preference';
-  [RsvpFormFieldNames.WillingToShareTent]?: boolean;
-  [RsvpFormFieldNames.RequireTransport]?: boolean;
-  [RsvpFormFieldNames.DietaryRequirements]: string;
-  [RsvpFormFieldNames.InterestedInMeetAndGreet]?: boolean;
-  [RsvpFormFieldNames.InterestedInPostWeddingWindDown]?: boolean;
-  [RsvpFormFieldNames.Comments]: string;
-}
+import { RsvpFormFieldNames } from '../../types/rsvp';
+import { RsvpFormData } from '../../types/rsvp';
 
 const RsvpForm = () => {
   const { language, household } = useOutletContext<Context>();
@@ -99,6 +74,7 @@ const RsvpForm = () => {
     e.preventDefault();
     try {
       setButtonDisabled(true);
+      await rsvpService.submitRsvp(formData);
     } catch (error) {
       setButtonDisabled(false);
     }
