@@ -77,7 +77,10 @@ const AlreadySubmitted = () => {
         {
           {
             English: 'If something has changed, please contact us',
-            Hungarian: 'Ha valami változott, kérjük lépj velünk kapcsolatba',
+            Hungarian: `Ha valami változott, kérjük, ${(() => {
+              if (!household) return 'lépj';
+              return household.guests.length > 1 ? 'lépjetek' : 'lépj';
+            })()} velünk kapcsolatba`,
           }[language]
         }
         {':'}
