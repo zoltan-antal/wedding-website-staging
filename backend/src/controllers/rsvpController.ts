@@ -276,19 +276,19 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
   if (!saveError && !emailError) {
     return res.status(200).json({
       message: 'Successfully saved & backup emailed RSVP form data',
-      rsvps: { rsvpSubmissions },
+      rsvps: rsvpSubmissions,
     });
   } else if (saveError && !emailError) {
     return res.status(200).json({
       message: 'Successfully backup emailed RSVP form data, but saving failed',
       error: saveError.message,
-      rsvps: { rsvpSubmissions },
+      rsvps: rsvpSubmissions,
     });
   } else if (emailError && !saveError) {
     return res.status(200).json({
       message: 'Successfully saved RSVP form data, but backup emailing failed',
       error: emailError.message,
-      rsvps: { rsvpSubmissions },
+      rsvps: rsvpSubmissions,
     });
   } else {
     return res.status(500).json({
