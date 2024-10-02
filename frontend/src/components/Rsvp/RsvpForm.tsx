@@ -109,6 +109,7 @@ const RsvpForm = () => {
                   Hungarian: 'Ki jön?',
                 }[language]
               }
+              <span>*</span>
             </legend>
             {household.guests
               .toSorted((a, b) => {
@@ -151,6 +152,7 @@ const RsvpForm = () => {
                       Hungarian: 'Nem tudok jönni',
                     }[language]
                   }
+                  required={true}
                 ></RadioCheckbox>
               ))}
           </fieldset>
@@ -193,6 +195,8 @@ const RsvpForm = () => {
                       Hungarian: 'Nem',
                     }[language]
                   }
+                  required={true}
+                  markedRequired={true}
                 ></RadioCheckbox>
                 {formData.requireAccommodation && household.special && (
                   <RadioGroup
@@ -238,6 +242,8 @@ const RsvpForm = () => {
                           .value as RsvpFormData[RsvpFormFieldNames.AccommodationPreference];
                       });
                     }}
+                    required={true}
+                    markedRequired={true}
                   ></RadioGroup>
                 )}
                 {formData.requireAccommodation &&
@@ -277,6 +283,8 @@ const RsvpForm = () => {
                           Hungarian: 'Inkább nem',
                         }[language]
                       }
+                      required={true}
+                      markedRequired={true}
                     ></RadioCheckbox>
                   )}
                 <RadioCheckbox
@@ -323,6 +331,8 @@ const RsvpForm = () => {
                       }`,
                     }[language]
                   }
+                  required={true}
+                  markedRequired={true}
                 ></RadioCheckbox>
                 <label>
                   {
@@ -380,6 +390,8 @@ const RsvpForm = () => {
                       Hungarian: 'Nem',
                     }[language]
                   }
+                  required={true}
+                  markedRequired={true}
                 ></RadioCheckbox>
                 <RadioCheckbox
                   checked={formData.interestedInPostWeddingWindDown}
@@ -415,6 +427,8 @@ const RsvpForm = () => {
                       Hungarian: 'Nem',
                     }[language]
                   }
+                  required={true}
+                  markedRequired={true}
                 ></RadioCheckbox>
                 <label>
                   {
@@ -473,6 +487,8 @@ const RsvpForm = () => {
                 Hungarian: 'Nem',
               }[language]
             }
+            required={true}
+            markedRequired={true}
           ></RadioCheckbox>
           <button type="submit" disabled={buttonDisabled}>
             {' '}

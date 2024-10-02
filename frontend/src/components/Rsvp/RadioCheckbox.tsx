@@ -9,6 +9,8 @@ interface RadioCheckboxProps {
   label: string;
   trueLabel: string;
   falseLabel: string;
+  required?: boolean;
+  markedRequired?: boolean;
 }
 
 const RadioCheckbox = ({
@@ -20,14 +22,17 @@ const RadioCheckbox = ({
   label,
   trueLabel,
   falseLabel,
+  required,
+  markedRequired,
 }: RadioCheckboxProps) => {
   return (
     <fieldset>
       <legend>
-        {label.split('\n').map((line, index) => (
+        {label.split('\n').map((line, index, array) => (
           <React.Fragment key={index}>
             {line}
-            {index < label.length - 1 && <br />}
+            {index === 0 && markedRequired && <span>*</span>}
+            {index < array.length - 1 && <br />}
           </React.Fragment>
         ))}
       </legend>
@@ -38,6 +43,7 @@ const RadioCheckbox = ({
           value={value}
           checked={checked === undefined ? false : checked}
           onChange={onYes}
+          required={!!required}
         />
         {trueLabel}
       </label>
@@ -48,6 +54,7 @@ const RadioCheckbox = ({
           value={value}
           checked={checked === undefined ? false : !checked}
           onChange={onNo}
+          required={!!required}
         />
         {falseLabel}
       </label>

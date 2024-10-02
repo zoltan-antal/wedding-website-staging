@@ -5,16 +5,26 @@ interface RadioGroup {
   label: string;
   entries: { checked?: boolean; value?: string | number; label: string }[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
+  markedRequired?: boolean;
 }
 
-const RadioGroup = ({ name, onChange, label, entries }: RadioGroup) => {
+const RadioGroup = ({
+  name,
+  onChange,
+  label,
+  entries,
+  required,
+  markedRequired,
+}: RadioGroup) => {
   return (
     <fieldset>
       <legend>
-        {label.split('\n').map((line, index) => (
+        {label.split('\n').map((line, index, array) => (
           <React.Fragment key={index}>
             {line}
-            {index < label.length - 1 && <br />}
+            {index === 0 && markedRequired && <span>*</span>}
+            {index < array.length - 1 && <br />}
           </React.Fragment>
         ))}
       </legend>
@@ -26,6 +36,7 @@ const RadioGroup = ({ name, onChange, label, entries }: RadioGroup) => {
             value={entry.value}
             checked={entry.checked === undefined ? false : entry.checked}
             onChange={onChange}
+            required={!!required}
           />
           {entry.label}
         </label>
