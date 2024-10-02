@@ -75,7 +75,7 @@ const RsvpForm = () => {
     e.preventDefault();
     try {
       setButtonDisabled(true);
-      await rsvpService.submitRsvp(formData, emailCopy);
+      await rsvpService.submitRsvp(formData, emailCopy, language);
     } catch (error) {
       setButtonDisabled(false);
     }
