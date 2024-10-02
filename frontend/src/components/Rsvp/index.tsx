@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import RsvpForm from './RsvpForm';
+import AlreadySubmitted from './AlreadySubmitted';
 
 const Rsvp = () => {
   const { guest, household, language } = useOutletContext<Context>();
@@ -24,7 +25,8 @@ const Rsvp = () => {
           }[language]
         }
       </h1>
-      <RsvpForm></RsvpForm>
+      {!!household?.rsvps.length && <AlreadySubmitted></AlreadySubmitted>}
+      {!household?.rsvps.length && <RsvpForm></RsvpForm>}
     </main>
   );
 };

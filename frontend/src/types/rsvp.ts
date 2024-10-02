@@ -24,3 +24,9 @@ export type RsvpFormData = {
   [RsvpFormFieldNames.InterestedInPostWeddingWindDown]?: boolean;
   [RsvpFormFieldNames.Comments]: string;
 };
+
+export type RsvpSubmission = {
+  id: number;
+  createdAt: string;
+  guestId: number;
+};
