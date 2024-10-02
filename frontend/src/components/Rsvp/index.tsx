@@ -6,6 +6,8 @@ import AlreadySubmitted from './AlreadySubmitted';
 
 const Rsvp = () => {
   const { guest, household, language } = useOutletContext<Context>();
+  const currentDate = new Date();
+  const deadlineDate = new Date('2025-01-16T00:00:00.000Z');
 
   const navigate = useNavigate();
 
@@ -25,8 +27,20 @@ const Rsvp = () => {
           }[language]
         }
       </h1>
+      {!household?.rsvps.length && currentDate < deadlineDate && (
+        <RsvpForm></RsvpForm>
+      )}
       {!!household?.rsvps.length && <AlreadySubmitted></AlreadySubmitted>}
-      {!household?.rsvps.length && <RsvpForm></RsvpForm>}
+      {!household?.rsvps.length && currentDate > deadlineDate && (
+        <h2>
+          {
+            {
+              English: 'The RSVP deadline has passed',
+              Hungarian: 'A visszajelzési határidő lejárt',
+            }[language]
+          }
+        </h2>
+      )}
     </main>
   );
 };
