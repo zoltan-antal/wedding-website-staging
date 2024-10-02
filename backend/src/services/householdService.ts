@@ -28,7 +28,7 @@ const getHousehold = async (
     ],
   });
 
-  return householdWithGuestsAndRsvps as HouseholdWithGuestsAndRsvps | null;
+  return householdWithGuestsAndRsvps as HouseholdWithGuestsAndRsvps;
 };
 
 export default {
