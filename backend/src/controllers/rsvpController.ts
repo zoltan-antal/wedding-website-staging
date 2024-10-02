@@ -35,11 +35,15 @@ interface RsvpFormData {
 }
 
 interface RsvpSubmissionRequest extends Request {
-  body: RsvpFormData;
+  body: {
+    formData: RsvpFormData;
+    emailCopy: boolean;
+    language: 'English' | 'Hungarian';
+  };
 }
 
 const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
-  const formData = req.body;
+  const { formData, emailCopy, language } = req.body;
   const guest = req.user as GuestAttributes;
   const dateTime = new Date();
 
@@ -123,6 +127,32 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
     guestId: guest.id,
     householdId: guest.householdId,
   });
+
+  // EMAIL COPY
+  if (emailCopy) {
+    try {
+      const formDataBeautified = JSON.stringify(formData, null, 4);
+      const emailBody = `<h1>${
+        {
+          English: 'RSVP form successfully submitted!',
+          Hungarian: 'Visszajelzési űrlap sikeresen elküldve!',
+        }[language]
+      }</h1><pre>${formDataBeautified}</pre>`;
+
+      const resend = new Resend(RESEND_API_KEY);
+      await resend.emails.send({
+        from: RESEND_EMAIL,
+        to: guest.email,
+        subject: {
+          English: 'Ella & Zoltan wedding RSVP',
+          Hungarian: 'Ella és Zoltán esküvői visszajelzés',
+        }[language],
+        html: emailBody,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   if (!saveError && !emailError) {
     return res
