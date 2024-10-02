@@ -25,6 +25,7 @@ const RsvpForm = () => {
     requireTransport: undefined,
     dietaryRequirements: '',
     comments: '',
+    responseCopy: true,
   });
 
   const [numberOfAttendingGuests, setNumberOfAttendingGuests] = useState(0);
@@ -436,6 +437,38 @@ const RsvpForm = () => {
               }
             </p>
           )}
+          <RadioCheckbox
+            checked={formData.responseCopy}
+            name={RsvpFormFieldNames.ResponseCopy}
+            onYes={() =>
+              updateFormData((draft) => {
+                draft.responseCopy = true;
+              })
+            }
+            onNo={() =>
+              updateFormData((draft) => {
+                draft.responseCopy = false;
+              })
+            }
+            label={
+              {
+                English: 'Send me an email copy of my responses',
+                Hungarian: 'Kérek e-mailben másolatot a kitöltött űrlapról',
+              }[language]
+            }
+            trueLabel={
+              {
+                English: 'Yes',
+                Hungarian: 'Igen',
+              }[language]
+            }
+            falseLabel={
+              {
+                English: 'No',
+                Hungarian: 'Nem',
+              }[language]
+            }
+          ></RadioCheckbox>
           <button type="submit" disabled={buttonDisabled}>
             {' '}
             {
