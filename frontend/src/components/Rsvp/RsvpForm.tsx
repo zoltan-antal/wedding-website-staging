@@ -100,10 +100,7 @@ const RsvpForm = () => {
   return (
     <>
       {!submissionSuccess && household && (
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: 'flex', flexDirection: 'column' }}
-        >
+        <form onSubmit={handleSubmit}>
           <fieldset>
             <legend>
               {
