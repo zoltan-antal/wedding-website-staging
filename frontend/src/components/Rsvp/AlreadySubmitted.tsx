@@ -76,10 +76,11 @@ const AlreadySubmitted = () => {
       <h3>
         {
           {
-            English: "If there's been a change in your, please contact us:",
-            Hungarian: 'TODO',
+            English: 'If something has changed, please contact us',
+            Hungarian: 'Ha valami változott, kérjük lépj velünk kapcsolatba',
           }[language]
         }
+        {':'}
       </h3>
       <NavLink to="/contact">
         {
