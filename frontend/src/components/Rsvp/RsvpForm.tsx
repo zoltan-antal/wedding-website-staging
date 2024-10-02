@@ -100,406 +100,421 @@ const RsvpForm = () => {
   return (
     <>
       {!submissionSuccess && household && (
-        <form onSubmit={handleSubmit}>
-          <fieldset>
-            <legend>
+        <>
+          <h3>
+            {
               {
+                English: 'Please fill it out by 15th January 2025.',
+                Hungarian: `Kérjük, 2025. január 15-ig ${
+                  household.guests.length > 1 ? 'töltsétek' : 'töltsd'
+                } ki!`,
+              }[language]
+            }
+          </h3>
+          <form onSubmit={handleSubmit}>
+            <fieldset>
+              <legend>
                 {
-                  English: 'Who will be attending?',
-                  Hungarian: 'Ki jön?',
-                }[language]
-              }
-              <span>*</span>
-            </legend>
-            {household.guests
-              .toSorted((a, b) => {
-                const nameA = a.firstName.toLowerCase();
-                const nameB = b.firstName.toLowerCase();
+                  {
+                    English: 'Who will be attending?',
+                    Hungarian: 'Ki jön?',
+                  }[language]
+                }
+                <span>*</span>
+              </legend>
+              {household.guests
+                .toSorted((a, b) => {
+                  const nameA = a.firstName.toLowerCase();
+                  const nameB = b.firstName.toLowerCase();
 
-                if (nameA < nameB) return -1;
-                if (nameA > nameB) return 1;
-                return 0;
-              })
-              .map((guest) => (
-                <RadioCheckbox
-                  key={guest.id}
-                  checked={
-                    formData.guestsAttending === undefined
-                      ? undefined
-                      : formData.guestsAttending[guest.id]
-                  }
-                  name={`${RsvpFormFieldNames.GuestsAttending}.${guest.id}`}
-                  onYes={() =>
-                    updateFormData((draft) => {
-                      draft.guestsAttending![guest.id] = true;
-                    })
-                  }
-                  onNo={() =>
-                    updateFormData((draft) => {
-                      draft.guestsAttending![guest.id] = false;
-                    })
-                  }
-                  label={guest.firstName}
-                  trueLabel={
-                    {
-                      English: "I'll be there",
-                      Hungarian: 'Ott leszek',
-                    }[language]
-                  }
-                  falseLabel={
-                    {
-                      English: "I can't make it",
-                      Hungarian: 'Nem tudok jönni',
-                    }[language]
-                  }
-                  required={true}
-                ></RadioCheckbox>
-              ))}
-          </fieldset>
-          {Object.values(formData.guestsAttending).every(
-            (val) => val !== undefined
-          ) &&
-            Object.values(formData.guestsAttending).some((val) => !!val) && (
-              <>
-                <RadioCheckbox
-                  checked={formData.requireAccommodation}
-                  name={RsvpFormFieldNames.RequireAccommodation}
-                  onYes={() =>
-                    updateFormData((draft) => {
-                      draft.requireAccommodation = true;
-                    })
-                  }
-                  onNo={() =>
-                    updateFormData((draft) => {
-                      draft.requireAccommodation = false;
-                    })
-                  }
-                  label={
-                    {
-                      English:
-                        'Do you require accommodation for Saturday night?',
-                      Hungarian: `${
-                        numberOfAttendingGuests > 1 ? 'Igényeltek' : 'Igényelsz'
-                      } szállást szombat éjszakára?`,
-                    }[language]
-                  }
-                  trueLabel={
-                    {
-                      English: 'Yes',
-                      Hungarian: 'Igen',
-                    }[language]
-                  }
-                  falseLabel={
-                    {
-                      English: 'No',
-                      Hungarian: 'Nem',
-                    }[language]
-                  }
-                  required={true}
-                  markedRequired={true}
-                ></RadioCheckbox>
-                {formData.requireAccommodation && household.special && (
-                  <RadioGroup
-                    name={RsvpFormFieldNames.AccommodationPreference}
+                  if (nameA < nameB) return -1;
+                  if (nameA > nameB) return 1;
+                  return 0;
+                })
+                .map((guest) => (
+                  <RadioCheckbox
+                    key={guest.id}
+                    checked={
+                      formData.guestsAttending === undefined
+                        ? undefined
+                        : formData.guestsAttending[guest.id]
+                    }
+                    name={`${RsvpFormFieldNames.GuestsAttending}.${guest.id}`}
+                    onYes={() =>
+                      updateFormData((draft) => {
+                        draft.guestsAttending![guest.id] = true;
+                      })
+                    }
+                    onNo={() =>
+                      updateFormData((draft) => {
+                        draft.guestsAttending![guest.id] = false;
+                      })
+                    }
+                    label={guest.firstName}
+                    trueLabel={
+                      {
+                        English: "I'll be there",
+                        Hungarian: 'Ott leszek',
+                      }[language]
+                    }
+                    falseLabel={
+                      {
+                        English: "I can't make it",
+                        Hungarian: 'Nem tudok jönni',
+                      }[language]
+                    }
+                    required={true}
+                  ></RadioCheckbox>
+                ))}
+            </fieldset>
+            {Object.values(formData.guestsAttending).every(
+              (val) => val !== undefined
+            ) &&
+              Object.values(formData.guestsAttending).some((val) => !!val) && (
+                <>
+                  <RadioCheckbox
+                    checked={formData.requireAccommodation}
+                    name={RsvpFormFieldNames.RequireAccommodation}
+                    onYes={() =>
+                      updateFormData((draft) => {
+                        draft.requireAccommodation = true;
+                      })
+                    }
+                    onNo={() =>
+                      updateFormData((draft) => {
+                        draft.requireAccommodation = false;
+                      })
+                    }
                     label={
                       {
                         English:
-                          'Would you like to stay at the venue in a glamping tent or in a hotel in the nearby town of Vác?\nTransport will be provided to the hotel during the course of the evening.',
-                        Hungarian:
-                          'A helyszínen szeretnél aludni glamping sátorban vagy egy közeli hotelben Vácon?\nBiztosítjuk az utazást a hotelbe az este folyamán.',
+                          'Do you require accommodation for Saturday night?',
+                        Hungarian: `${
+                          numberOfAttendingGuests > 1
+                            ? 'Igényeltek'
+                            : 'Igényelsz'
+                        } szállást szombat éjszakára?`,
                       }[language]
                     }
-                    entries={[
+                    trueLabel={
                       {
-                        checked: formData.accommodationPreference === 'tent',
-                        value: 'tent',
-                        label: {
-                          English: 'At the venue',
-                          Hungarian: 'A helyszínen',
-                        }[language],
-                      },
+                        English: 'Yes',
+                        Hungarian: 'Igen',
+                      }[language]
+                    }
+                    falseLabel={
                       {
-                        checked: formData.accommodationPreference === 'hotel',
-                        value: 'hotel',
-                        label: {
-                          English: 'In a hotel',
-                          Hungarian: 'Hotelben',
-                        }[language],
-                      },
-                      {
-                        checked:
-                          formData.accommodationPreference === 'no preference',
-                        value: 'no preference',
-                        label: {
-                          English: 'No preference',
-                          Hungarian: 'Mindegy',
-                        }[language],
-                      },
-                    ]}
-                    onChange={(e) => {
-                      updateFormData((draft) => {
-                        draft.accommodationPreference = e.target
-                          .value as RsvpFormData[RsvpFormFieldNames.AccommodationPreference];
-                      });
-                    }}
+                        English: 'No',
+                        Hungarian: 'Nem',
+                      }[language]
+                    }
                     required={true}
                     markedRequired={true}
-                  ></RadioGroup>
-                )}
-                {formData.requireAccommodation &&
-                  household.special === false &&
-                  household.type === 'couple' &&
-                  numberOfAttendingGuests === 2 && (
-                    <RadioCheckbox
-                      checked={formData.willingToShareTent}
-                      name={RsvpFormFieldNames.WillingToShareTent}
-                      onYes={() =>
-                        updateFormData((draft) => {
-                          draft.willingToShareTent = true;
-                        })
-                      }
-                      onNo={() =>
-                        updateFormData((draft) => {
-                          draft.willingToShareTent = false;
-                        })
-                      }
+                  ></RadioCheckbox>
+                  {formData.requireAccommodation && household.special && (
+                    <RadioGroup
+                      name={RsvpFormFieldNames.AccommodationPreference}
                       label={
                         {
                           English:
-                            'Would you be willing to share a tent with another couple?',
+                            'Would you like to stay at the venue in a glamping tent or in a hotel in the nearby town of Vác?\nTransport will be provided to the hotel during the course of the evening.',
                           Hungarian:
-                            'Vállalnátok, hogy egy sátorban legyetek egy másik párral?',
+                            'A helyszínen szeretnél aludni glamping sátorban vagy egy közeli hotelben Vácon?\nBiztosítjuk az utazást a hotelbe az este folyamán.',
                         }[language]
                       }
-                      trueLabel={
+                      entries={[
                         {
-                          English: 'Yes',
-                          Hungarian: 'Igen',
-                        }[language]
-                      }
-                      falseLabel={
+                          checked: formData.accommodationPreference === 'tent',
+                          value: 'tent',
+                          label: {
+                            English: 'At the venue',
+                            Hungarian: 'A helyszínen',
+                          }[language],
+                        },
                         {
-                          English: 'Rather not',
-                          Hungarian: 'Inkább nem',
-                        }[language]
-                      }
+                          checked: formData.accommodationPreference === 'hotel',
+                          value: 'hotel',
+                          label: {
+                            English: 'In a hotel',
+                            Hungarian: 'Hotelben',
+                          }[language],
+                        },
+                        {
+                          checked:
+                            formData.accommodationPreference ===
+                            'no preference',
+                          value: 'no preference',
+                          label: {
+                            English: 'No preference',
+                            Hungarian: 'Mindegy',
+                          }[language],
+                        },
+                      ]}
+                      onChange={(e) => {
+                        updateFormData((draft) => {
+                          draft.accommodationPreference = e.target
+                            .value as RsvpFormData[RsvpFormFieldNames.AccommodationPreference];
+                        });
+                      }}
                       required={true}
                       markedRequired={true}
-                    ></RadioCheckbox>
+                    ></RadioGroup>
                   )}
-                <RadioCheckbox
-                  checked={formData.requireTransport}
-                  name={RsvpFormFieldNames.RequireTransport}
-                  onYes={() =>
-                    updateFormData((draft) => {
-                      draft.requireTransport = true;
-                    })
-                  }
-                  onNo={() =>
-                    updateFormData((draft) => {
-                      draft.requireTransport = false;
-                    })
-                  }
-                  label={
-                    {
-                      English:
-                        'Are you planning on making your own way to the venue or will you require transport?\nWe will be providing transport between Budapest and the venue.\nFree parking is available at the venue.',
-                      Hungarian: `Egyedül ${
-                        numberOfAttendingGuests > 1 ? 'terveztek' : 'tervezel'
-                      } eljutni a helyszínre, vagy ${
-                        numberOfAttendingGuests > 1
-                          ? 'szükségetek'
-                          : 'szükséged'
-                      } lesz utaztatásra?\nA helyszínen ingyenes parkolás lehetséges.\nBudapest és a helyszín között tudjuk biztosítani az utazást.`,
-                    }[language]
-                  }
-                  trueLabel={
-                    {
-                      English: 'Require transport',
-                      Hungarian: `Szállítást ${
-                        numberOfAttendingGuests > 1
-                          ? 'igényelnénk'
-                          : 'igényelnék'
-                      }`,
-                    }[language]
-                  }
-                  falseLabel={
-                    {
-                      English: 'Making my own way',
-                      Hungarian: `Külön ${
-                        numberOfAttendingGuests > 1 ? 'jövünk' : 'jövök'
-                      }`,
-                    }[language]
-                  }
-                  required={true}
-                  markedRequired={true}
-                ></RadioCheckbox>
-                <label>
-                  {
-                    {
-                      English:
-                        'Are there any allergies or dietary requirements that we should be aware of?',
-                      Hungarian:
-                        'Bármilyen allergia vagy különleges étrendi követelmény, amiről tudnunk kell?',
-                    }[language]
-                  }
-                  <input
-                    type="textarea"
-                    name={RsvpFormFieldNames.DietaryRequirements}
-                    value={formData.dietaryRequirements}
-                    onChange={(e) => {
+                  {formData.requireAccommodation &&
+                    household.special === false &&
+                    household.type === 'couple' &&
+                    numberOfAttendingGuests === 2 && (
+                      <RadioCheckbox
+                        checked={formData.willingToShareTent}
+                        name={RsvpFormFieldNames.WillingToShareTent}
+                        onYes={() =>
+                          updateFormData((draft) => {
+                            draft.willingToShareTent = true;
+                          })
+                        }
+                        onNo={() =>
+                          updateFormData((draft) => {
+                            draft.willingToShareTent = false;
+                          })
+                        }
+                        label={
+                          {
+                            English:
+                              'Would you be willing to share a tent with another couple?',
+                            Hungarian:
+                              'Vállalnátok, hogy egy sátorban legyetek egy másik párral?',
+                          }[language]
+                        }
+                        trueLabel={
+                          {
+                            English: 'Yes',
+                            Hungarian: 'Igen',
+                          }[language]
+                        }
+                        falseLabel={
+                          {
+                            English: 'Rather not',
+                            Hungarian: 'Inkább nem',
+                          }[language]
+                        }
+                        required={true}
+                        markedRequired={true}
+                      ></RadioCheckbox>
+                    )}
+                  <RadioCheckbox
+                    checked={formData.requireTransport}
+                    name={RsvpFormFieldNames.RequireTransport}
+                    onYes={() =>
                       updateFormData((draft) => {
-                        draft.dietaryRequirements = e.target.value;
-                      });
-                    }}
-                  />
-                </label>
-                <RadioCheckbox
-                  checked={formData.interestedInMeetAndGreet}
-                  name={RsvpFormFieldNames.InterestedInMeetAndGreet}
-                  onYes={() =>
-                    updateFormData((draft) => {
-                      draft.interestedInMeetAndGreet = true;
-                    })
-                  }
-                  onNo={() =>
-                    updateFormData((draft) => {
-                      draft.interestedInMeetAndGreet = false;
-                    })
-                  }
-                  label={
-                    {
-                      English:
-                        "Would you be interested in coming to a meet & greet the day before the wedding?\nIt'd be a chance to meet others who are coming to the wedding before the big day. It will most likely be held in Budapest.",
-                      Hungarian: `Érdekelne egy "meet & greet" találkozó az esküvő előtti napon?\nEz egy lehetőség lenne arra, hogy ${
-                        numberOfAttendingGuests > 1
-                          ? 'megismerjétek'
-                          : 'megismerd'
-                      } a többi vendéget, aki az esküvőre jön. Ez valószínűleg Budapesten történne.`,
-                    }[language]
-                  }
-                  trueLabel={
-                    {
-                      English: 'Yes',
-                      Hungarian: 'Igen',
-                    }[language]
-                  }
-                  falseLabel={
-                    {
-                      English: 'No',
-                      Hungarian: 'Nem',
-                    }[language]
-                  }
-                  required={true}
-                  markedRequired={true}
-                ></RadioCheckbox>
-                <RadioCheckbox
-                  checked={formData.interestedInPostWeddingWindDown}
-                  name={RsvpFormFieldNames.InterestedInPostWeddingWindDown}
-                  onYes={() =>
-                    updateFormData((draft) => {
-                      draft.interestedInPostWeddingWindDown = true;
-                    })
-                  }
-                  onNo={() =>
-                    updateFormData((draft) => {
-                      draft.interestedInPostWeddingWindDown = false;
-                    })
-                  }
-                  label={
-                    {
-                      English:
-                        'Would you be interested in joining us on a post-wedding trip down to Lake Balaton?\nThink chilling by (or swimming in) the lake, BBQ and other fun things. We will take the train down from Budapest on Monday and stay overnight, heading back Tuesday afternoon or evening.\nDetails will depend on interest.',
-                      Hungarian: `Lenne ${
-                        numberOfAttendingGuests > 1 ? 'kedvetek' : 'kedved'
-                      } csatlakozni hozzánk egy esküvői utáni kiruccanásra a Balatonon?\nStrandolásra, sütögetésre és hasonló programokra gondoltunk. Hétfőn mennénk le vonattal, egy éjszakát ott töltenénk, és kedd délután vagy este jönnénk vissza.\nTovábbi részletek az érdeklődés függvényében.`,
-                    }[language]
-                  }
-                  trueLabel={
-                    {
-                      English: 'Yes',
-                      Hungarian: 'Igen',
-                    }[language]
-                  }
-                  falseLabel={
-                    {
-                      English: 'No',
-                      Hungarian: 'Nem',
-                    }[language]
-                  }
-                  required={true}
-                  markedRequired={true}
-                ></RadioCheckbox>
-                <label>
-                  {
-                    {
-                      English: `Is there anything else you'd like to add?`,
-                      Hungarian: 'Van bármi más, amiről tudnunk kell?',
-                    }[language]
-                  }
-                  <input
-                    type="textarea"
-                    name={RsvpFormFieldNames.Comments}
-                    value={formData.comments}
-                    onChange={(e) => {
+                        draft.requireTransport = true;
+                      })
+                    }
+                    onNo={() =>
                       updateFormData((draft) => {
-                        draft.comments = e.target.value;
-                      });
-                    }}
-                  />
-                </label>
-              </>
-            )}
-          {Object.values(formData.guestsAttending).every(
-            (val) => val === false
-          ) && (
-            <p>
-              {
+                        draft.requireTransport = false;
+                      })
+                    }
+                    label={
+                      {
+                        English:
+                          'Are you planning on making your own way to the venue or will you require transport?\nWe will be providing transport between Budapest and the venue.\nFree parking is available at the venue.',
+                        Hungarian: `Egyedül ${
+                          numberOfAttendingGuests > 1 ? 'terveztek' : 'tervezel'
+                        } eljutni a helyszínre, vagy ${
+                          numberOfAttendingGuests > 1
+                            ? 'szükségetek'
+                            : 'szükséged'
+                        } lesz utaztatásra?\nA helyszínen ingyenes parkolás lehetséges.\nBudapest és a helyszín között tudjuk biztosítani az utazást.`,
+                      }[language]
+                    }
+                    trueLabel={
+                      {
+                        English: 'Require transport',
+                        Hungarian: `Szállítást ${
+                          numberOfAttendingGuests > 1
+                            ? 'igényelnénk'
+                            : 'igényelnék'
+                        }`,
+                      }[language]
+                    }
+                    falseLabel={
+                      {
+                        English: 'Making my own way',
+                        Hungarian: `Külön ${
+                          numberOfAttendingGuests > 1 ? 'jövünk' : 'jövök'
+                        }`,
+                      }[language]
+                    }
+                    required={true}
+                    markedRequired={true}
+                  ></RadioCheckbox>
+                  <label>
+                    {
+                      {
+                        English:
+                          'Are there any allergies or dietary requirements that we should be aware of?',
+                        Hungarian:
+                          'Bármilyen allergia vagy különleges étrendi követelmény, amiről tudnunk kell?',
+                      }[language]
+                    }
+                    <input
+                      type="textarea"
+                      name={RsvpFormFieldNames.DietaryRequirements}
+                      value={formData.dietaryRequirements}
+                      onChange={(e) => {
+                        updateFormData((draft) => {
+                          draft.dietaryRequirements = e.target.value;
+                        });
+                      }}
+                    />
+                  </label>
+                  <RadioCheckbox
+                    checked={formData.interestedInMeetAndGreet}
+                    name={RsvpFormFieldNames.InterestedInMeetAndGreet}
+                    onYes={() =>
+                      updateFormData((draft) => {
+                        draft.interestedInMeetAndGreet = true;
+                      })
+                    }
+                    onNo={() =>
+                      updateFormData((draft) => {
+                        draft.interestedInMeetAndGreet = false;
+                      })
+                    }
+                    label={
+                      {
+                        English:
+                          "Would you be interested in coming to a meet & greet the day before the wedding?\nIt'd be a chance to meet others who are coming to the wedding before the big day. It will most likely be held in Budapest.",
+                        Hungarian: `Érdekelne egy "meet & greet" találkozó az esküvő előtti napon?\nEz egy lehetőség lenne arra, hogy ${
+                          numberOfAttendingGuests > 1
+                            ? 'megismerjétek'
+                            : 'megismerd'
+                        } a többi vendéget, aki az esküvőre jön. Ez valószínűleg Budapesten történne.`,
+                      }[language]
+                    }
+                    trueLabel={
+                      {
+                        English: 'Yes',
+                        Hungarian: 'Igen',
+                      }[language]
+                    }
+                    falseLabel={
+                      {
+                        English: 'No',
+                        Hungarian: 'Nem',
+                      }[language]
+                    }
+                    required={true}
+                    markedRequired={true}
+                  ></RadioCheckbox>
+                  <RadioCheckbox
+                    checked={formData.interestedInPostWeddingWindDown}
+                    name={RsvpFormFieldNames.InterestedInPostWeddingWindDown}
+                    onYes={() =>
+                      updateFormData((draft) => {
+                        draft.interestedInPostWeddingWindDown = true;
+                      })
+                    }
+                    onNo={() =>
+                      updateFormData((draft) => {
+                        draft.interestedInPostWeddingWindDown = false;
+                      })
+                    }
+                    label={
+                      {
+                        English:
+                          'Would you be interested in joining us on a post-wedding trip down to Lake Balaton?\nThink chilling by (or swimming in) the lake, BBQ and other fun things. We will take the train down from Budapest on Monday and stay overnight, heading back Tuesday afternoon or evening.\nDetails will depend on interest.',
+                        Hungarian: `Lenne ${
+                          numberOfAttendingGuests > 1 ? 'kedvetek' : 'kedved'
+                        } csatlakozni hozzánk egy esküvői utáni kiruccanásra a Balatonon?\nStrandolásra, sütögetésre és hasonló programokra gondoltunk. Hétfőn mennénk le vonattal, egy éjszakát ott töltenénk, és kedd délután vagy este jönnénk vissza.\nTovábbi részletek az érdeklődés függvényében.`,
+                      }[language]
+                    }
+                    trueLabel={
+                      {
+                        English: 'Yes',
+                        Hungarian: 'Igen',
+                      }[language]
+                    }
+                    falseLabel={
+                      {
+                        English: 'No',
+                        Hungarian: 'Nem',
+                      }[language]
+                    }
+                    required={true}
+                    markedRequired={true}
+                  ></RadioCheckbox>
+                  <label>
+                    {
+                      {
+                        English: `Is there anything else you'd like to add?`,
+                        Hungarian: 'Van bármi más, amiről tudnunk kell?',
+                      }[language]
+                    }
+                    <input
+                      type="textarea"
+                      name={RsvpFormFieldNames.Comments}
+                      value={formData.comments}
+                      onChange={(e) => {
+                        updateFormData((draft) => {
+                          draft.comments = e.target.value;
+                        });
+                      }}
+                    />
+                  </label>
+                </>
+              )}
+            {Object.values(formData.guestsAttending).every(
+              (val) => val === false
+            ) && (
+              <p>
                 {
-                  English: "We'll miss you!",
-                  Hungarian: `Hiányozni ${
-                    household.guests.length > 1 ? 'fogtok' : 'fogsz'
-                  }!`,
+                  {
+                    English: "We'll miss you!",
+                    Hungarian: `Hiányozni ${
+                      household.guests.length > 1 ? 'fogtok' : 'fogsz'
+                    }!`,
+                  }[language]
+                }
+              </p>
+            )}
+            <RadioCheckbox
+              checked={emailCopy}
+              name={'emailCopy'}
+              onYes={() => setEmailCopy(true)}
+              onNo={() => setEmailCopy(false)}
+              label={
+                {
+                  English: 'Send me an email copy of my responses',
+                  Hungarian: 'Kérek e-mailben másolatot a kitöltött űrlapról',
                 }[language]
               }
-            </p>
-          )}
-          <RadioCheckbox
-            checked={emailCopy}
-            name={'emailCopy'}
-            onYes={() => setEmailCopy(true)}
-            onNo={() => setEmailCopy(false)}
-            label={
+              trueLabel={
+                {
+                  English: 'Yes',
+                  Hungarian: 'Igen',
+                }[language]
+              }
+              falseLabel={
+                {
+                  English: 'No',
+                  Hungarian: 'Nem',
+                }[language]
+              }
+              required={true}
+              markedRequired={true}
+            ></RadioCheckbox>
+            <button type="submit" disabled={buttonDisabled}>
+              {' '}
               {
-                English: 'Send me an email copy of my responses',
-                Hungarian: 'Kérek e-mailben másolatot a kitöltött űrlapról',
-              }[language]
-            }
-            trueLabel={
-              {
-                English: 'Yes',
-                Hungarian: 'Igen',
-              }[language]
-            }
-            falseLabel={
-              {
-                English: 'No',
-                Hungarian: 'Nem',
-              }[language]
-            }
-            required={true}
-            markedRequired={true}
-          ></RadioCheckbox>
-          <button type="submit" disabled={buttonDisabled}>
-            {' '}
-            {
-              {
-                English: 'Submit',
-                Hungarian: 'Elküldés',
-              }[language]
-            }
-          </button>
-        </form>
+                {
+                  English: 'Submit',
+                  Hungarian: 'Elküldés',
+                }[language]
+              }
+            </button>
+          </form>
+        </>
       )}
       {submissionSuccess && (
         <h2>
