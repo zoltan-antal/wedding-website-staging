@@ -131,13 +131,128 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
   // EMAIL COPY
   if (emailCopy) {
     try {
-      const formDataBeautified = JSON.stringify(formData, null, 4);
-      const emailBody = `<h1>${
+      const guestsAttendingArray = await Promise.all(
+        Object.entries(formData.guestsAttending).map(
+          async ([guestId, isComing]) => {
+            const guest = await guestService.getGuest(Number(guestId));
+            return [guest?.firstName, isComing];
+          }
+        )
+      );
+
+      const booleanToText = (isTrue: boolean) => {
+        return isTrue
+          ? { English: 'yes', Hungarian: 'igen' }[language]
+          : { English: 'no', Hungarian: 'nem' }[language];
+      };
+      const accommodationPreferenceToText = (
+        preference: RsvpFormData[RsvpFormFieldNames.AccommodationPreference]
+      ) => {
+        if (preference === 'tent') {
+          return { English: 'tent', Hungarian: 'sátor' }[language];
+        } else if (preference === 'hotel') {
+          return { English: 'hotel', Hungarian: 'hotel' }[language];
+        } else if (preference === 'no preference') {
+          return { English: 'no preference', Hungarian: 'mindegy' }[language];
+        } else {
+          return '';
+        }
+      };
+
+      const emailBody = `${
         {
           English: 'RSVP form successfully submitted!',
           Hungarian: 'Visszajelzési űrlap sikeresen elküldve!',
         }[language]
-      }</h1><pre>${formDataBeautified}</pre>`;
+      }\n\n${
+        {
+          English: 'Guests',
+          Hungarian: 'Vendégek',
+        }[language]
+      }\n${guestsAttendingArray
+        .map(
+          ([guest, isComing]) =>
+            `${guest}: ${
+              isComing ? '' : { English: 'not', Hungarian: 'nem' }[language]
+            } ${{ English: 'coming', Hungarian: 'jön' }[language]}`
+        )
+        .join('\n')}\n\n${
+        formData.requireAccommodation !== undefined
+          ? `${
+              {
+                English: 'Require accommodation',
+                Hungarian: 'Szállás igény',
+              }[language]
+            }: ${booleanToText(formData.requireAccommodation)}\n`
+          : ''
+      }${
+        formData.accommodationPreference !== undefined
+          ? `${
+              {
+                English: 'Accommodation preference',
+                Hungarian: 'Szállás preferencia',
+              }[language]
+            }: ${accommodationPreferenceToText(
+              formData.accommodationPreference
+            )}\n`
+          : ''
+      }${
+        formData.willingToShareTent !== undefined
+          ? `${
+              {
+                English: 'Willing to share tent',
+                Hungarian: 'Sátor esetleges megosztása',
+              }[language]
+            }: ${booleanToText(formData.willingToShareTent)}\n`
+          : ''
+      }${
+        formData.requireTransport !== undefined
+          ? `${
+              {
+                English: 'Require transport',
+                Hungarian: 'Utaztatás igény',
+              }[language]
+            }: ${booleanToText(formData.requireTransport)}\n`
+          : ''
+      }${
+        formData.requireTransport !== undefined
+          ? `${
+              {
+                English: 'Dietary requirements',
+                Hungarian: 'Allergia / különleges étrend',
+              }[language]
+            }: ${
+              formData.dietaryRequirements ? formData.dietaryRequirements : '-'
+            }\n`
+          : ''
+      }${
+        formData.interestedInMeetAndGreet !== undefined
+          ? `${
+              {
+                English: 'Interested in meet & greet',
+                Hungarian: 'Meet & greet érdeklődés',
+              }[language]
+            }: ${booleanToText(formData.interestedInMeetAndGreet)}\n`
+          : ''
+      }${
+        formData.interestedInMeetAndGreet !== undefined
+          ? `${
+              {
+                English: 'Interested in post-wedding trip',
+                Hungarian: 'Esküvő utáni kiruccanás érdeklődés',
+              }[language]
+            }: ${booleanToText(formData.interestedInMeetAndGreet)}\n`
+          : ''
+      }${
+        formData.requireTransport !== undefined
+          ? `${
+              {
+                English: 'Comments',
+                Hungarian: 'Megjegyzés',
+              }[language]
+            }: ${formData.comments ? formData.comments : '-'}\n`
+          : ''
+      }`;
 
       const resend = new Resend(RESEND_API_KEY);
       await resend.emails.send({
@@ -147,7 +262,7 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
           English: 'Ella & Zoltan wedding RSVP',
           Hungarian: 'Ella és Zoltán esküvői visszajelzés',
         }[language],
-        html: emailBody,
+        text: emailBody,
       });
     } catch (error) {
       console.error(error);
