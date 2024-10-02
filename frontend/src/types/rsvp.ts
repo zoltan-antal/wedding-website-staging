@@ -8,7 +8,6 @@ export enum RsvpFormFieldNames {
   InterestedInMeetAndGreet = 'interestedInMeetAndGreet',
   InterestedInPostWeddingWindDown = 'interestedInPostWeddingWindDown',
   Comments = 'comments',
-  EmailCopy = 'emailCopy',
 }
 
 export type RsvpFormData = {
@@ -24,5 +23,4 @@ export type RsvpFormData = {
   [RsvpFormFieldNames.InterestedInMeetAndGreet]?: boolean;
   [RsvpFormFieldNames.InterestedInPostWeddingWindDown]?: boolean;
   [RsvpFormFieldNames.Comments]: string;
-  [RsvpFormFieldNames.EmailCopy]: boolean;
 };

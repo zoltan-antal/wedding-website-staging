@@ -25,8 +25,8 @@ const RsvpForm = () => {
     requireTransport: undefined,
     dietaryRequirements: '',
     comments: '',
-    emailCopy: true,
   });
+  const [emailCopy, setEmailCopy] = useState<boolean>(true);
 
   const [numberOfAttendingGuests, setNumberOfAttendingGuests] = useState(0);
 
@@ -75,7 +75,7 @@ const RsvpForm = () => {
     e.preventDefault();
     try {
       setButtonDisabled(true);
-      await rsvpService.submitRsvp(formData);
+      await rsvpService.submitRsvp(formData, emailCopy);
     } catch (error) {
       setButtonDisabled(false);
     }
@@ -438,18 +438,10 @@ const RsvpForm = () => {
             </p>
           )}
           <RadioCheckbox
-            checked={formData.emailCopy}
-            name={RsvpFormFieldNames.EmailCopy}
-            onYes={() =>
-              updateFormData((draft) => {
-                draft.emailCopy = true;
-              })
-            }
-            onNo={() =>
-              updateFormData((draft) => {
-                draft.emailCopy = false;
-              })
-            }
+            checked={emailCopy}
+            name={'emailCopy'}
+            onYes={() => setEmailCopy(true)}
+            onNo={() => setEmailCopy(false)}
             label={
               {
                 English: 'Send me an email copy of my responses',
