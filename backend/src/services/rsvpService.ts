@@ -6,4 +6,9 @@ const createRsvp = async ({ guestId, householdId }: RsvpCreationAttributes) => {
   return rsvp;
 };
 
-export default { createRsvp };
+const findRsvpsByHouseholdId = async (householdId: number) => {
+  const rsvps = await Rsvp.findAll({ where: { householdId: householdId } });
+  return rsvps;
+};
+
+export default { createRsvp, findRsvpsByHouseholdId };
