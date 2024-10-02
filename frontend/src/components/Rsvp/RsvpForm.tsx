@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
-import { useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import rsvpService from '../../services/rsvp';
+import householdService from '../../services/household';
 import RadioCheckbox from './RadioCheckbox';
 import RadioGroup from './RadioGroup';
 import { RsvpFormFieldNames } from '../../types/rsvp';
 import { RsvpFormData } from '../../types/rsvp';
 
 const RsvpForm = () => {
-  const { language, household } = useOutletContext<Context>();
+  const { language, household, setHousehold } = useOutletContext<Context>();
+
+  const navigate = useNavigate();
 
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+  const [submissionSuccess, setSubmissionSuccess] = useState<boolean>(false);
 
   const [formData, updateFormData] = useImmer<RsvpFormData>({
     guestsAttending: household
@@ -76,6 +80,13 @@ const RsvpForm = () => {
     try {
       setButtonDisabled(true);
       await rsvpService.submitRsvp(formData, emailCopy, language);
+      setSubmissionSuccess(true);
+      const updatedHousehold = await householdService.me();
+
+      setTimeout(() => {
+        setHousehold(updatedHousehold);
+        navigate('/');
+      }, 1500);
     } catch (error) {
       setButtonDisabled(false);
     }
@@ -83,7 +94,7 @@ const RsvpForm = () => {
 
   return (
     <>
-      {household && (
+      {!submissionSuccess && household && (
         <form
           onSubmit={handleSubmit}
           style={{ display: 'flex', flexDirection: 'column' }}
@@ -471,6 +482,16 @@ const RsvpForm = () => {
             }
           </button>
         </form>
+      )}
+      {submissionSuccess && (
+        <h2>
+          {
+            {
+              English: 'Form successfully sent!',
+              Hungarian: 'Űrlap sikeresen elküldve!',
+            }[language]
+          }
+        </h2>
       )}
     </>
   );
