@@ -25,7 +25,7 @@ const RsvpForm = () => {
     requireTransport: undefined,
     dietaryRequirements: '',
     comments: '',
-    responseCopy: true,
+    emailCopy: true,
   });
 
   const [numberOfAttendingGuests, setNumberOfAttendingGuests] = useState(0);
@@ -438,16 +438,16 @@ const RsvpForm = () => {
             </p>
           )}
           <RadioCheckbox
-            checked={formData.responseCopy}
-            name={RsvpFormFieldNames.ResponseCopy}
+            checked={formData.emailCopy}
+            name={RsvpFormFieldNames.EmailCopy}
             onYes={() =>
               updateFormData((draft) => {
-                draft.responseCopy = true;
+                draft.emailCopy = true;
               })
             }
             onNo={() =>
               updateFormData((draft) => {
-                draft.responseCopy = false;
+                draft.emailCopy = false;
               })
             }
             label={
