@@ -4,7 +4,7 @@ header {
   grid-template-rows: auto auto;
   grid-template-areas:
     "language title account-buttons"
-    ". nav .";
+    "nav nav nav";
   justify-content: space-between;
 
   .title {
