@@ -145,9 +145,9 @@ const Faq = () => {
           {
             {
               English:
-                'Dinner will be buffet-style with lots of different options (mainly continental and Mediterranean dishes). There will also be nibbles before and after the ceremony, as well as a midnight meal, a Hungarian tradition!',
+                'Dinner will be buffet-style with lots of different options (mainly continental and Mediterranean dishes). There will also be nibbles before and after the ceremony, as well as a midnight meal, a Hungarian tradition! You can indicate dietary requirements on the RSVP form.',
               Hungarian:
-                'A vacsora svédasztalos lesz, sokféle választási lehetőséggel (főként kontinentális és mediterrán ételekkel). A ceremónia előtt és után is lesz harapnivaló, valamint lesz éjféli menü is.',
+                'A vacsora svédasztalos lesz, sokféle választási lehetőséggel (főként kontinentális és mediterrán ételekkel). A ceremónia előtt és után is lesz harapnivaló, valamint lesz éjféli menü is. Speciális étrendi igényt a visszajelzési űrlapon tudtok jelezni.',
             }[language]
           }
         </p>
