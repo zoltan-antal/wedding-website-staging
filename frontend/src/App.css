@@ -52,9 +52,11 @@ a,
 label,
 td,
 th,
-caption {
+caption,
+button {
   color: var(--text);
-  background-color: var(--background);
+  /* background-color: var(--background); */
+  background-color: transparent;
 }
 
 a {
@@ -71,6 +73,13 @@ button {
   }
 }
 
+body {
+  background-image: url("assets/images/background.jpg");
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: top left;
+}
+
 html {
   font-size: 16px;
   height: 100vh;
@@ -80,7 +89,7 @@ html {
 #root {
   height: 100vh;
   height: 100dvh;
-  background-color: var(--background);
+  /* background-color: var(--background); */
 
   display: flex;
   flex-direction: column;

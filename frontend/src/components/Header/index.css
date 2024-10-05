@@ -42,7 +42,7 @@ header {
 
     button,
     a {
-      background-color: var(--background);
+      /* background-color: var(--background); */
       border: none;
       font-size: 1rem;
       text-transform: uppercase;
