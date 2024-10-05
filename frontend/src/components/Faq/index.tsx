@@ -1,4 +1,4 @@
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, NavLink } from 'react-router-dom';
 import { Context } from '../../types/context';
 import './index.css';
 
@@ -15,24 +15,7 @@ const Faq = () => {
           }[language]
         }
       </h1>
-      {/* <div className="item">
-        <h2>
-          {
-            {
-              English: "",
-              Hungarian: '',
-            }[language]
-          }
-        </h2>
-        <p>
-          {
-            {
-              English: "",
-              Hungarian: '',
-            }[language]
-          }
-        </p>
-      </div> */}
+
       <div className="item">
         <h2>
           {
@@ -168,6 +151,80 @@ const Faq = () => {
                 "There will be an open bar throughout the day, with a selection of soft drinks, beer & wine. Please don't bring your own drinks.",
               Hungarian:
                 'Korlátlan italfogyasztást biztosítunk a nap során, üdítőitalok, sör és bor választékával. Kérjük, ne hozz magaddal saját italt.',
+            }[language]
+          }
+        </p>
+      </div>
+      <div className="item">
+        <h2>
+          {
+            {
+              English: 'Can I take photos during the day?',
+              Hungarian: 'Szabad fényképezni?',
+            }[language]
+          }
+        </h2>
+        <p>
+          {
+            {
+              English:
+                'We would absolutely love to see our wedding through your eyes and any moments you capture! However, please put your phones/cameras away for the ceremony. Please also refrain from sharing any photos on social media until the day after the wedding. As we will have a professional photographer and videographer, please be aware that the event will be recorded.',
+              Hungarian:
+                'Szívesen megnézzük az általatok megörökített pillanatokat is az esküvőnkről! Kérjük azonban, hogy a szertartás idejére tegyétek el a telefonjaikat/kameráitokat. Kérjük, hogy az esküvőt követő napig ne osszátok meg képeiteket közösségi médiában. Mivel profi fotós és videós lesz jelen, az eseményt rögzítésre fog kerülni.',
+            }[language]
+          }
+        </p>
+      </div>
+      <div className="item">
+        <h2>
+          {
+            {
+              English: 'What language will the day be in?',
+              Hungarian: 'Milyen nyelven lesz az esküvő?',
+            }[language]
+          }
+        </h2>
+        <p>
+          {
+            {
+              English:
+                "English and Hungarian aren't the most mutually intelligible languages, so we understand the potential apprehension! We will do all we can to ensure that everyone understands what's going on, and we'll also make sure that people who can speak both languages are known to you.",
+              Hungarian:
+                'Mindent megteszünk annak az érdekében, hogy mindenki mindent értsen.',
+            }[language]
+          }
+        </p>
+      </div>
+      <div className="item">
+        <h2>
+          {
+            {
+              English: "I have a question that't not been covered here.",
+              Hungarian: 'Más kérdésem van',
+            }[language]
+          }
+        </h2>
+        <p>
+          {
+            {
+              English:
+                "Each page of the website includes further information on specific aspects. If your question still hasn't been answered, please ",
+              Hungarian:
+                'A weboldal aloldalai részletes információkkal szolgálnak az egyes szempontokról. Ha ennek ellenére továbbra is megválaszolatlan a kérdésed, kérjük ',
+            }[language]
+          }
+          <NavLink to="/contact">
+            {
+              {
+                English: 'contact us',
+                Hungarian: 'vedd fel velünk a kapcsolatot',
+              }[language]
+            }
+          </NavLink>
+          {
+            {
+              English: " and we'll get back to you shortly.",
+              Hungarian: ', és rövid időn belül válaszolunk.',
             }[language]
           }
         </p>
