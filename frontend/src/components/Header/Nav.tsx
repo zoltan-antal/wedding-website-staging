@@ -21,10 +21,10 @@ const Nav = ({ language }: NavProps) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/location">
+          <NavLink to="/venue">
             {
               {
-                English: 'Location',
+                English: 'Venue',
                 Hungarian: 'Helyszín',
               }[language]
             }
