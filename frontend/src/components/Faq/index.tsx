@@ -199,6 +199,26 @@ const Faq = () => {
         <h2>
           {
             {
+              English: 'Do you have a gift registry?',
+              Hungarian: 'Milyen ajándékot hozzak?',
+            }[language]
+          }
+        </h2>
+        <p>
+          {
+            {
+              English:
+                "Thank you for considering getting us a gift! We're working on a list, and will notify everyone when it's available.",
+              Hungarian:
+                'Köszönjük, hogy gondolkodol ajándékon. Dolgozunk egy ajándéklistán, és mindenkit értesítünk majd, amint kész van.',
+            }[language]
+          }
+        </p>
+      </div>
+      <div className="item">
+        <h2>
+          {
+            {
               English: "I have a question that't not been covered here.",
               Hungarian: 'Más kérdésem van',
             }[language]
