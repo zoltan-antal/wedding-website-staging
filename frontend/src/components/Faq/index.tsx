@@ -151,7 +151,7 @@ const Faq = () => {
                   English:
                     'You can indicate dietary requirements on the RSVP form.',
                   Hungarian:
-                    'Speciális étrendi igényt a visszajelzési űrlapon tudtok jelezni.',
+                    'Speciális étkezési igényt a visszajelzési űrlapon tudtok jelezni.',
                 }[language]
               }
             </p>
@@ -173,7 +173,7 @@ const Faq = () => {
                   English:
                     "There will be an open bar throughout the day, with a selection of soft drinks, beer & wine. Please don't bring your own drinks.",
                   Hungarian:
-                    'Korlátlan italfogyasztást biztosítunk a nap során, üdítőitalok, sör és bor választékával. Kérjük, ne hozz magaddal saját italt.',
+                    'Korlátlan italfogyasztást biztosítunk a nap során, üdítőitalok, sör és bor választékával. Kérjük, ne hozzatok magatokkal saját italt.',
                 }[language]
               }
             </p>
@@ -259,7 +259,7 @@ const Faq = () => {
           <h2>
             {
               {
-                English: "I have a question that't not been covered here.",
+                English: "I have a question that's not been covered here.",
                 Hungarian: 'Más kérdésem van',
               }[language]
             }
