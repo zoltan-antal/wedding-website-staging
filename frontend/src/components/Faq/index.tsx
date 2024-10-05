@@ -51,7 +51,7 @@ const Faq = () => {
               English:
                 "Due to the nature of the venue, we're unfortunately unable to accommodate children. However, they're more than welcome to join us at Balaton for the post-wedding wind-down. Thank you for your understanding.",
               Hungarian:
-                'A helyszín jellegéből adódóan sajnos nem tudunk gyermekeket fogadni. Ugyanakkor szívesen látjuk őket az esküvő utáni Balatoni lazításon. Köszönjük a megértést.',
+                'A helyszín jellegéből adódóan sajnos nem tudunk gyerekeket fogadni. Ugyanakkor szívesen látjuk őket az esküvő utáni Balatoni lazításon. Köszönjük a megértést.',
             }[language]
           }
         </p>
