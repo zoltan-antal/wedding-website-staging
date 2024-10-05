@@ -2,6 +2,7 @@ import { createHashRouter } from 'react-router-dom';
 import App from '../App';
 import Home from '../components/Home';
 import Venue from '../components/Venue';
+import Accommodation from '../components/Accommodation';
 import Travel from '../components/Travel';
 import Schedule from '../components/Schedule';
 import DressCode from '../components/DressCode';
@@ -24,6 +25,7 @@ const router = createHashRouter(
       children: [
         { index: true, element: <Home /> },
         { path: 'venue', element: <Venue /> },
+        { path: 'accommodation', element: <Accommodation /> },
         { path: 'travel', element: <Travel /> },
         { path: 'schedule', element: <Schedule /> },
         { path: 'dress-code', element: <DressCode /> },
