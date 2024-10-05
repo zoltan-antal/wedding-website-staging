@@ -354,7 +354,7 @@ const RsvpForm = () => {
                         English:
                           'Are there any allergies or dietary requirements that we should be aware of?',
                         Hungarian:
-                          'Bármilyen allergia vagy különleges étrendi követelmény, amiről tudnunk kell?',
+                          'Bármilyen allergia vagy speciális étkezési igény, amiről tudnunk kell?',
                       }[language]
                     }
                     <input
