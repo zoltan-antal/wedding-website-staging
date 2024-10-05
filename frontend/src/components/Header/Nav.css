@@ -16,7 +16,11 @@ nav {
     list-style-type: none;
     text-transform: uppercase;
 
-    & .active {
+    a {
+      text-decoration: none;
+    }
+
+    .active {
       text-decoration: underline;
       color: red;
     }

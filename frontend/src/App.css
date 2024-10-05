@@ -57,6 +57,10 @@ caption {
   background-color: var(--background);
 }
 
+a {
+  text-decoration: underline;
+}
+
 button {
   &:hover {
     cursor: pointer;
