@@ -19,7 +19,7 @@ const Faq = () => {
         <h2>
           {
             {
-              English: '',
+              English: "",
               Hungarian: '',
             }[language]
           }
@@ -27,7 +27,7 @@ const Faq = () => {
         <p>
           {
             {
-              English: '',
+              English: "",
               Hungarian: '',
             }[language]
           }
@@ -128,6 +128,46 @@ const Faq = () => {
                 'In case of bad weather, we will move the ceremony inside.',
               Hungarian:
                 'Rossz idő esetén a ceremónia beltéren lesz megtartva.',
+            }[language]
+          }
+        </p>
+      </div>
+      <div className="item">
+        <h2>
+          {
+            {
+              English: 'What kind of food will be served?',
+              Hungarian: 'Milyen ételek lesznek?',
+            }[language]
+          }
+        </h2>
+        <p>
+          {
+            {
+              English:
+                'Dinner will be buffet-style with lots of different options (mainly continental and Mediterranean dishes). There will also be nibbles before and after the ceremony, as well as a midnight meal, a Hungarian tradition!',
+              Hungarian:
+                'A vacsora svédasztalos lesz, sokféle választási lehetőséggel (főként kontinentális és mediterrán ételekkel). A ceremónia előtt és után is lesz harapnivaló, valamint lesz éjféli menü is.',
+            }[language]
+          }
+        </p>
+      </div>
+      <div className="item">
+        <h2>
+          {
+            {
+              English: 'What about drinks?',
+              Hungarian: 'Mi a helyzet az italokkal?',
+            }[language]
+          }
+        </h2>
+        <p>
+          {
+            {
+              English:
+                "There will be an open bar throughout the day, with a selection of soft drinks, beer & wine. Please don't bring your own drinks.",
+              Hungarian:
+                'Korlátlan italfogyasztást biztosítunk a nap során, üdítőitalok, sör és bor választékával. Kérjük, ne hozz magaddal saját italt.',
             }[language]
           }
         </p>
