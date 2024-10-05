@@ -60,12 +60,22 @@ const Nav = ({ language }: NavProps) => {
             }
           </NavLink>
         </li>
-        <li>
+        <li style={{ display: 'none' }}>
           <NavLink to="/registry">
             {
               {
                 English: 'Registry',
                 Hungarian: 'Ajándéklista',
+              }[language]
+            }
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/post-wedding">
+            {
+              {
+                English: 'Post-wedding',
+                Hungarian: 'Esküvő után',
               }[language]
             }
           </NavLink>
