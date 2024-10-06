@@ -3,6 +3,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import RsvpForm from './RsvpForm';
 import AlreadySubmitted from './AlreadySubmitted';
+import './index.css';
 
 const Rsvp = () => {
   const { guest, household, language } = useOutletContext<Context>();
@@ -18,7 +19,7 @@ const Rsvp = () => {
   }, [guest, household, navigate]);
 
   return (
-    <main>
+    <main id="rsvp-page">
       <h1>
         {
           {

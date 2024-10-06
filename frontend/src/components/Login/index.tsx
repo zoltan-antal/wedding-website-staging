@@ -59,7 +59,7 @@ const Login = () => {
   };
 
   return (
-    <main>
+    <main id="login-page">
       <h1>
         {
           {

@@ -1,0 +1,41 @@
+main#rsvp-page {
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 25px;
+
+      min-width: 900px;
+      max-width: 900px;
+
+      fieldset {
+        border: none;
+      }
+
+      >fieldset>legend::first-line,
+      >label {
+        font-weight: bold;
+      }
+
+      input[type="radio"],
+      textarea {
+        margin-top: 5px;
+      }
+
+      label:has(textarea) {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+      }
+    }
+  }
+}

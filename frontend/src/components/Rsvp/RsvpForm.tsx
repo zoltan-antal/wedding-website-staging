@@ -5,6 +5,7 @@ import { Context } from '../../types/context';
 import rsvpService from '../../services/rsvp';
 import RadioCheckbox from './RadioCheckbox';
 import RadioGroup from './RadioGroup';
+import AutoResizeTextarea from './AutoResizeTextarea';
 import { RsvpFormFieldNames } from '../../types/rsvp';
 import { RsvpFormData } from '../../types/rsvp';
 import { Household } from '../../types/household';
@@ -100,11 +101,11 @@ const RsvpForm = () => {
   return (
     <>
       {!submissionSuccess && household && (
-        <>
+        <div className="form-wrapper">
           <h3>
             {
               {
-                English: 'Please fill it out by 15th January 2025.',
+                English: 'Please fill out by 15th January 2025.',
                 Hungarian: `Kérjük, 2025. január 15-ig ${
                   household.guests.length > 1 ? 'töltsétek' : 'töltsd'
                 } ki!`,
@@ -357,8 +358,7 @@ const RsvpForm = () => {
                           'Bármilyen allergia vagy speciális étkezési igény, amiről tudnunk kell?',
                       }[language]
                     }
-                    <input
-                      type="textarea"
+                    <AutoResizeTextarea
                       name={RsvpFormFieldNames.DietaryRequirements}
                       value={formData.dietaryRequirements}
                       onChange={(e) => {
@@ -366,7 +366,7 @@ const RsvpForm = () => {
                           draft.dietaryRequirements = e.target.value;
                         });
                       }}
-                    />
+                    ></AutoResizeTextarea>
                   </label>
                   <RadioCheckbox
                     checked={formData.interestedInMeetAndGreet}
@@ -451,8 +451,7 @@ const RsvpForm = () => {
                         Hungarian: 'Van bármi más, amiről tudnunk kell?',
                       }[language]
                     }
-                    <input
-                      type="textarea"
+                    <AutoResizeTextarea
                       name={RsvpFormFieldNames.Comments}
                       value={formData.comments}
                       onChange={(e) => {
@@ -460,7 +459,7 @@ const RsvpForm = () => {
                           draft.comments = e.target.value;
                         });
                       }}
-                    />
+                    ></AutoResizeTextarea>
                   </label>
                 </>
               )}
@@ -514,7 +513,7 @@ const RsvpForm = () => {
               }
             </button>
           </form>
-        </>
+        </div>
       )}
       {submissionSuccess && (
         <h2>

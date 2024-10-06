@@ -99,8 +99,16 @@ html {
   /* overflow-y: scroll; */
   /* overflow-x: hidden; */
 
-  --background: white;
   --text: black;
+  --green: #025839;
+  --darkgreen: #01452c;
+  --button-background: var(--green);
+  --button-background-hover: var(--darkgreen);
+  --button-background-disabled: grey;
+  --radio: var(--green);
+  --input-border: grey;
+  --input-border-focus: black;
+
 
   main {
     flex-grow: 1;
@@ -115,6 +123,65 @@ html {
     h1 {
       font-size: 2.4rem;
       margin: 20px 0 20px;
+    }
+
+    form {
+      font-size: 1.05rem;
+
+      input[type="text"],
+      textarea {
+        border-radius: 2px;
+        border: 1px solid var(--input-border);
+        font-size: 1.05rem;
+        padding: 5px;
+
+        &:focus {
+          outline: 1px solid var(--input-border-focus);
+        }
+
+        &.auto-resize {
+          resize: none;
+          overflow: hidden;
+        }
+      }
+
+      input[type="password"] {
+        letter-spacing: 2px;
+      }
+
+      fieldset:has(> label > input[type="radio"]) {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+      }
+
+      input[type="radio"] {
+        accent-color: var(--radio);
+        margin-right: 4px;
+
+        &:focus,
+        &:checked,
+        &:hover {
+          accent-color: var(--radio);
+        }
+      }
+
+      button {
+        border: none;
+        border-radius: 2px;
+        background-color: var(--button-background);
+        color: white;
+        font-size: 1.15rem;
+        padding: 7px;
+
+        &:hover {
+          background-color: var(--button-background-hover);
+        }
+
+        &:disabled {
+          background-color: var(--button-background-disabled);
+        }
+      }
     }
   }
 }
