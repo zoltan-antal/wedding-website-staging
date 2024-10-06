@@ -8,4 +8,6 @@ export type Context = {
   setGuest: React.Dispatch<React.SetStateAction<Guest | null>>;
   household: Household | null;
   setHousehold: React.Dispatch<React.SetStateAction<Household | null>>;
+  mainRef: React.MutableRefObject<HTMLElement | null>;
+  navWidth: number;
 };

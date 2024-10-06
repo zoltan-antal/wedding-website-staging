@@ -4,11 +4,12 @@ import { Language } from '../../types/language';
 
 interface NavProps {
   language: Language;
+  navRef: React.MutableRefObject<HTMLElement | null>;
 }
 
-const Nav = ({ language }: NavProps) => {
+const Nav = ({ language, navRef }: NavProps) => {
   return (
-    <nav>
+    <nav ref={navRef}>
       <ul>
         <li>
           <NavLink to="/">

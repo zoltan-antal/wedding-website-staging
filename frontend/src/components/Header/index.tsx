@@ -12,6 +12,7 @@ interface HeaderProps {
   guest: Guest | null;
   setGuest: React.Dispatch<React.SetStateAction<Guest | null>>;
   setHousehold: React.Dispatch<React.SetStateAction<Household | null>>;
+  navRef: React.MutableRefObject<HTMLElement | null>;
 }
 
 const Header = ({
@@ -20,6 +21,7 @@ const Header = ({
   guest,
   setGuest,
   setHousehold,
+  navRef,
 }: HeaderProps) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,7 +46,7 @@ const Header = ({
           }
         </h2>
       </div>
-      <Nav language={language}></Nav>
+      <Nav language={language} navRef={navRef}></Nav>
       <div className="language">
         {language === 'English' && (
           <button

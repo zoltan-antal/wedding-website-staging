@@ -2,7 +2,7 @@ import './App.css';
 import { Outlet } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Language } from './types/language';
 import { Guest } from './types/guest';
 import { Household } from './types/household';
@@ -22,6 +22,7 @@ function App() {
   );
   const [guest, setGuest] = useState<Guest | null>(null);
   const [household, setHousehold] = useState<Household | null>(null);
+
   useEffect(() => {
     const getAuthStatus = async () => {
       try {
@@ -61,6 +62,23 @@ function App() {
     fetchData();
   }, []);
 
+  const navRef = useRef<HTMLElement | null>(null);
+  const mainRef = useRef<HTMLElement | null>(null);
+  const [navWidth, setNavWidth] = useState<number>(0);
+  useEffect(() => {
+    const adjustMainWidth = () => {
+      if (navRef.current && mainRef.current) {
+        setNavWidth(navRef.current.offsetWidth);
+      }
+    };
+
+    adjustMainWidth();
+    window.addEventListener('resize', adjustMainWidth);
+    return () => {
+      window.removeEventListener('resize', adjustMainWidth);
+    };
+  }, []);
+
   return (
     <>
       <Header
@@ -69,6 +87,7 @@ function App() {
         guest={guest}
         setGuest={setGuest}
         setHousehold={setHousehold}
+        navRef={navRef}
       ></Header>
       <Outlet
         context={
@@ -78,6 +97,8 @@ function App() {
             setGuest,
             household,
             setHousehold,
+            mainRef,
+            navWidth,
           } satisfies Context
         }
       />

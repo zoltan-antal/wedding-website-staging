@@ -1,0 +1,87 @@
+main#home-page {
+  align-self: center;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "countdown countdown rsvp rsvp"
+    "countdown countdown faq faq"
+    "venue accommodation travel schedule";
+  align-items: stretch;
+  align-content: center;
+  justify-items: stretch;
+  justify-content: center;
+
+  /* INTERNAL GRIDLINES START */
+  --gap: 2px;
+  --line-offset: calc(var(--gap) / 2);
+  --line-thickness: 1px;
+  --line-color: black;
+  overflow: hidden;
+  gap: var(--gap);
+  /* INTERNAL GRIDLINES END */
+
+  #countdown {
+    grid-area: countdown;
+  }
+
+  #rsvp {
+    grid-area: rsvp;
+  }
+
+  #faq {
+    grid-area: faq;
+  }
+
+  #venue {
+    grid-area: venue;
+  }
+
+  #accommodation {
+    grid-area: accommodation;
+  }
+
+  #travel {
+    grid-area: travel;
+  }
+
+  #schedule {
+    grid-area: schedule;
+  }
+
+  >div {
+    /* INTERNAL GRIDLINES START */
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: var(--line-color);
+      z-index: 1;
+    }
+
+    &::after {
+      inline-size: 100vw;
+      block-size: var(--line-thickness);
+      inset-inline-start: 0;
+      inset-block-start: calc(var(--line-offset) * -1);
+    }
+
+    &::before {
+      inline-size: var(--line-thickness);
+      /* block-size: 100vh; */
+      block-size: calc(100% + var(--gap));
+      inset-block-start: 0;
+      inset-inline-start: calc(var(--line-offset) * -1);
+    }
+
+    /* INTERNAL GRIDLINES END */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

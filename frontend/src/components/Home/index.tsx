@@ -1,14 +1,19 @@
 import { useState, useEffect } from 'react';
 import { fromZonedTime } from 'date-fns-tz';
+import { useOutletContext } from 'react-router-dom';
+import { Context } from '../../types/context';
+import './index.css';
+
+interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  difference: number;
+}
 
 const Home = () => {
-  interface TimeLeft {
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
-    difference: number;
-  }
+  const { mainRef, navWidth } = useOutletContext<Context>();
 
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
 
@@ -21,29 +26,37 @@ const Home = () => {
   }, []);
 
   return (
-    <main>
-      {timeLeft.difference > 0 ? (
-        <div id="countdown">
-          <div id="days">
-            <p>{timeLeft.days}</p>
-            <p>Days</p>
+    <main ref={mainRef} style={{ width: `${navWidth}px` }} id="home-page">
+      <div id="countdown">
+        {timeLeft.difference > 0 ? (
+          <div id="countdown">
+            <div id="days">
+              <p>{timeLeft.days}</p>
+              <p>Days</p>
+            </div>
+            <div id="hours">
+              <p>{timeLeft.hours}</p>
+              <p>Hours</p>
+            </div>
+            <div id="minutes">
+              <p>{timeLeft.minutes}</p>
+              <p>Minutes</p>
+            </div>
+            <div id="seconds">
+              <p>{timeLeft.seconds}</p>
+              <p>Seconds</p>
+            </div>
           </div>
-          <div id="hours">
-            <p>{timeLeft.hours}</p>
-            <p>Hours</p>
-          </div>
-          <div id="minutes">
-            <p>{timeLeft.minutes}</p>
-            <p>Minutes</p>
-          </div>
-          <div id="seconds">
-            <p>{timeLeft.seconds}</p>
-            <p>Seconds</p>
-          </div>
-        </div>
-      ) : (
-        <p>🎉</p>
-      )}
+        ) : (
+          <p>🎉</p>
+        )}
+      </div>
+      <div id="rsvp">RSVP</div>
+      <div id="faq">FAQ</div>
+      <div id="venue">VENUE</div>
+      <div id="accommodation">ACCOMMODATION</div>
+      <div id="travel">TRAVEL</div>
+      <div id="schedule">SCHEDULE</div>
     </main>
   );
 };
