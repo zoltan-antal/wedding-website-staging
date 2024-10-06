@@ -129,6 +129,7 @@ html {
       font-size: 1.05rem;
 
       input[type="text"],
+      input[type="password"],
       textarea {
         border-radius: 2px;
         border: 1px solid var(--input-border);
