@@ -12,7 +12,7 @@ import Faq from '../components/Faq';
 import Contact from '../components/Contact';
 import Rsvp from '../components/Rsvp';
 import Login from '../components/Login';
-import ResetPassword from '../components/Login/ResetPasword';
+import ResetPassword from '../components/Login/ResetPassword';
 import NotFound from './NotFound';
 import Account from '../components/Account';
 import ChangePassword from '../components/Account/ChangePassword';
