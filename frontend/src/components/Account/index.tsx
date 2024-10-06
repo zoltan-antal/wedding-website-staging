@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
+import './index.css';
 
 const Account = () => {
   const { language, guest } = useOutletContext<Context>();
@@ -15,7 +16,7 @@ const Account = () => {
   }, [guest, navigate]);
 
   return (
-    <main>
+    <main className="account-page">
       <h1>
         {
           {
@@ -25,7 +26,6 @@ const Account = () => {
         }
       </h1>
       <h2>
-        {' '}
         {
           {
             English: 'Settings',

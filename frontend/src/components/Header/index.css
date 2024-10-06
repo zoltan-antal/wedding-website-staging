@@ -42,10 +42,10 @@ header {
 
     button,
     a {
-      /* background-color: var(--background); */
       border: none;
       font-size: 1rem;
       text-transform: uppercase;
+      text-decoration: none;
     }
   }
 
