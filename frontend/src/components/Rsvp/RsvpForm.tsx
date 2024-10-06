@@ -102,7 +102,7 @@ const RsvpForm = () => {
     <>
       {!submissionSuccess && household && (
         <div className="form-wrapper">
-          <h3>
+          <h2>
             {
               {
                 English: 'Please fill out by 15th January 2025.',
@@ -111,7 +111,7 @@ const RsvpForm = () => {
                 } ki!`,
               }[language]
             }
-          </h3>
+          </h2>
           <form onSubmit={handleSubmit}>
             <fieldset>
               <legend>
