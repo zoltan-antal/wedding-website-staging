@@ -9,9 +9,9 @@ main#home-page {
     "countdown countdown faq faq"
     "venue accommodation travel schedule";
   align-items: stretch;
-  align-content: center;
+  align-content: flex-start;
   justify-items: stretch;
-  justify-content: center;
+  justify-content: stretch;
 
   /* INTERNAL GRIDLINES START */
   --gap: 2px;
@@ -20,38 +20,8 @@ main#home-page {
   --line-color: black;
   overflow: hidden;
   gap: var(--gap);
-  /* INTERNAL GRIDLINES END */
-
-  #countdown {
-    grid-area: countdown;
-  }
-
-  #rsvp {
-    grid-area: rsvp;
-  }
-
-  #faq {
-    grid-area: faq;
-  }
-
-  #venue {
-    grid-area: venue;
-  }
-
-  #accommodation {
-    grid-area: accommodation;
-  }
-
-  #travel {
-    grid-area: travel;
-  }
-
-  #schedule {
-    grid-area: schedule;
-  }
 
   >div {
-    /* INTERNAL GRIDLINES START */
     position: relative;
 
     &::before,
@@ -76,12 +46,84 @@ main#home-page {
       inset-block-start: 0;
       inset-inline-start: calc(var(--line-offset) * -1);
     }
+  }
 
-    /* INTERNAL GRIDLINES END */
+  /* INTERNAL GRIDLINES END */
 
+  >div {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+  }
+
+  >div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    p,
+    a {
+      font-size: 1.1rem;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    a {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+  }
+
+  #countdown {
+    grid-area: countdown;
+
+    .number {
+      font-size: 1.45rem;
+      font-weight: bold;
+      color: var(--green);
+    }
+
+    h2 {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    p#and {
+      font-size: 1rem;
+    }
+  }
+
+  #rsvp {
+    grid-area: rsvp;
+  }
+
+  #faq {
+    grid-area: faq;
+  }
+
+  #venue {
+    grid-area: venue;
+  }
+
+  #accommodation {
+    grid-area: accommodation;
+  }
+
+  #travel {
+    grid-area: travel;
+  }
+
+  #schedule {
+    grid-area: schedule;
   }
 }

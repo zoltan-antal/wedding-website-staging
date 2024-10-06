@@ -1,80 +1,102 @@
-import { useState, useEffect } from 'react';
-import { fromZonedTime } from 'date-fns-tz';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, NavLink } from 'react-router-dom';
 import { Context } from '../../types/context';
+import Countdown from './Countdown';
 import './index.css';
 
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  difference: number;
-}
-
 const Home = () => {
-  const { mainRef, navWidth } = useOutletContext<Context>();
-
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
+  const { language, mainRef, navWidth } = useOutletContext<Context>();
 
   return (
     <main ref={mainRef} style={{ width: `${navWidth}px` }} id="home-page">
-      <div id="countdown">
-        {timeLeft.difference > 0 ? (
-          <div id="countdown">
-            <div id="days">
-              <p>{timeLeft.days}</p>
-              <p>Days</p>
-            </div>
-            <div id="hours">
-              <p>{timeLeft.hours}</p>
-              <p>Hours</p>
-            </div>
-            <div id="minutes">
-              <p>{timeLeft.minutes}</p>
-              <p>Minutes</p>
-            </div>
-            <div id="seconds">
-              <p>{timeLeft.seconds}</p>
-              <p>Seconds</p>
-            </div>
-          </div>
-        ) : (
-          <p>🎉</p>
-        )}
+      <Countdown></Countdown>
+      <div id="rsvp">
+        <p>
+          {
+            {
+              English: "Let us know if you're coming!",
+              Hungarian: 'Reméljük, el tudsz jönni!',
+            }[language]
+          }
+          <br />
+          {
+            {
+              English: 'Please',
+              Hungarian: 'Kérjük,',
+            }[language]
+          }
+        </p>
+        <NavLink to={'/rsvp'}>
+          {{ English: 'RSVP', Hungarian: 'Jelezz vissza' }[language]}
+        </NavLink>
+        <p>
+          {{ English: 'by 15th January', Hungarian: 'január 15-ig' }[language]}
+        </p>
       </div>
-      <div id="rsvp">RSVP</div>
-      <div id="faq">FAQ</div>
-      <div id="venue">VENUE</div>
-      <div id="accommodation">ACCOMMODATION</div>
-      <div id="travel">TRAVEL</div>
-      <div id="schedule">SCHEDULE</div>
+      <div id="faq">
+        <p>
+          {{ English: 'Have questions?', Hungarian: 'Kérdésed van?' }[language]}
+          <br />
+          {{ English: 'Check out our', Hungarian: 'Tekintsd meg' }[language]}
+        </p>
+        <NavLink to={'/faq'}>
+          {{ English: 'FAQ', Hungarian: 'gyakran ismételt kérdések' }[language]}
+        </NavLink>
+        <p>{{ English: 'page', Hungarian: 'oldalunkat' }[language]}</p>
+      </div>
+      <div id="venue">
+        <p>
+          {
+            {
+              English: 'Get a sneak peek of our beautiful',
+              Hungarian: 'Érdekel, hol lesz az esküvő?',
+            }[language]
+          }
+        </p>
+        <NavLink to={'/venue'}>
+          {{ English: 'Venue', Hungarian: 'Helyszín' }[language]}
+        </NavLink>
+      </div>
+      <div id="accommodation">
+        <p>
+          {
+            {
+              English: "Find out about where you'll be staying:",
+              Hungarian: 'Tekintsd meg, hol lehet aludni:',
+            }[language]
+          }
+        </p>
+        <NavLink to={'/accommodation'}>
+          {{ English: 'Accommodation', Hungarian: 'Szállás' }[language]}
+        </NavLink>
+      </div>
+      <div id="travel">
+        <p>
+          {
+            {
+              English: 'All you need to know about getting here:',
+              Hungarian: 'Minden, amit az idejutásról tudnod kell:',
+            }[language]
+          }
+        </p>
+        <NavLink to={'/travel'}>
+          {{ English: 'Travel', Hungarian: 'Érkezés' }[language]}
+        </NavLink>
+      </div>
+      <div id="schedule">
+        <p>
+          {
+            {
+              English: 'For a rundown of the days, check out the',
+              Hungarian: 'Nézd meg a pontos menetrendet:',
+            }[language]
+          }
+        </p>
+        <NavLink to={'/schedule'}>
+          {{ English: 'Schedule', Hungarian: 'Program' }[language]}
+        </NavLink>
+      </div>
     </main>
   );
-};
-
-const targetDateTime = fromZonedTime('2025-07-19T14:00:00', 'Europe/Budapest');
-const calculateTimeLeft = () => {
-  const target = new Date(targetDateTime).getTime();
-  const now = new Date().getTime();
-  const difference = target - now;
-
-  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
-  const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-  return { days, hours, minutes, seconds, difference };
 };
 
 export default Home;

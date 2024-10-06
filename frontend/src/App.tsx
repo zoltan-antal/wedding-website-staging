@@ -77,7 +77,7 @@ function App() {
     return () => {
       window.removeEventListener('resize', adjustMainWidth);
     };
-  }, []);
+  }, [language]);
 
   return (
     <>
