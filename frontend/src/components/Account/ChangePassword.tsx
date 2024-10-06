@@ -37,8 +37,8 @@ const ChangePassword = () => {
       if (newPassword !== confirmPassword) {
         setErrorMessage(
           {
-            English: 'Passwords do not match.',
-            Hungarian: 'A jelszavak nem egyeznek.',
+            English: 'Passwords do not match',
+            Hungarian: 'A jelszavak nem egyeznek',
           }[language]
         );
         return;
@@ -46,8 +46,8 @@ const ChangePassword = () => {
       if (newPassword === currentPassword) {
         setErrorMessage(
           {
-            English: "New password can't be the same as current password.",
-            Hungarian: 'Az új jelszó nem egyezhet meg a jelenlegivel.',
+            English: "New password can't be the same as current password",
+            Hungarian: 'Az új jelszó nem egyezhet meg a jelenlegivel',
           }[language]
         );
         return;
@@ -55,9 +55,9 @@ const ChangePassword = () => {
       if (newPassword.length < 6) {
         setErrorMessage(
           {
-            English: 'New password must be at least 6 characters long.',
+            English: 'New password must be at least 6 characters long',
             Hungarian:
-              'Az új jelszónak minimum 6 karakter hosszúnak kell lennie.',
+              'Az új jelszónak minimum 6 karakter hosszúnak kell lennie',
           }[language]
         );
         return;
@@ -77,8 +77,8 @@ const ChangePassword = () => {
     } catch (error) {
       setErrorMessage(
         {
-          English: 'Invalid current password.',
-          Hungarian: 'Helytelen jelenlegi jelszó.',
+          English: 'Invalid current password',
+          Hungarian: 'Helytelen jelenlegi jelszó',
         }[language]
       );
       setButtonDisabled(false);
@@ -86,7 +86,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <main>
+    <main id="change-password-page">
       <h1>
         {
           {
@@ -95,7 +95,7 @@ const ChangePassword = () => {
           }[language]
         }
       </h1>
-      <>
+      <div className="form-wrapper">
         {!passwordChangeSuccess && (
           <form onSubmit={handleChangePassword}>
             <label>
@@ -105,7 +105,6 @@ const ChangePassword = () => {
                   Hungarian: 'Jelenlegi jelszó',
                 }[language]
               }
-              {':'}
               <input
                 ref={currentPasswordInputRef}
                 type="password"
@@ -121,7 +120,6 @@ const ChangePassword = () => {
                   Hungarian: 'Új jelszó',
                 }[language]
               }
-              {':'}
               <input
                 type="password"
                 autoComplete="new-password"
@@ -136,7 +134,6 @@ const ChangePassword = () => {
                   Hungarian: 'Új jelszó újra',
                 }[language]
               }
-              {':'}
               <input
                 type="password"
                 autoComplete="new-password"
@@ -145,7 +142,6 @@ const ChangePassword = () => {
               />
             </label>
             <button type="submit" disabled={buttonDisabled}>
-              {' '}
               {
                 {
                   English: 'Change password',
@@ -166,7 +162,7 @@ const ChangePassword = () => {
             }
           </h2>
         )}
-      </>
+      </div>
     </main>
   );
 };
