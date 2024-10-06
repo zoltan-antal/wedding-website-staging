@@ -117,7 +117,7 @@ const Faq = () => {
               {
                 {
                   English:
-                    'In case of bad weather, we will move the ceremony inside.',
+                    "In case of bad weather, we'll move the ceremony inside.",
                   Hungarian:
                     'Rossz idő esetén a ceremónia beltéren lesz megtartva.',
                 }[language]
@@ -203,7 +203,7 @@ const Faq = () => {
               {
                 {
                   English:
-                    'As we will have a professional photographer and videographer, please be aware that the event will be recorded.',
+                    "As we'll have a professional photographer and videographer, please be aware that the event will be recorded.",
                   Hungarian:
                     'Mivel profi fotós és videós lesz jelen, az eseményt rögzítésre fog kerülni.',
                 }[language]
@@ -225,7 +225,7 @@ const Faq = () => {
               {
                 {
                   English:
-                    "English and Hungarian aren't the most mutually intelligible languages, so we understand the potential apprehension! We will do all we can to ensure that everyone understands what's going on, and we'll also make sure that people who can speak both languages are known to you.",
+                    "English and Hungarian aren't the most mutually intelligible languages, so we understand the potential apprehension! We'll do all we can to ensure that everyone understands what's going on, and we'll also make sure that people who can speak both languages are known to you.",
                   Hungarian:
                     'Mindent megteszünk annak az érdekében, hogy mindenki mindent értsen.',
                 }[language]
