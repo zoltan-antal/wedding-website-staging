@@ -37,8 +37,8 @@ const CreatePasswordStep = ({
     if (password !== confirmPassword) {
       setErrorMessage(
         {
-          English: 'Passwords do not match.',
-          Hungarian: 'A jelszavak nem egyeznek.',
+          English: 'Passwords do not match',
+          Hungarian: 'A jelszavak nem egyeznek',
         }[language]
       );
       return;
@@ -46,8 +46,8 @@ const CreatePasswordStep = ({
     if (password.length < 6) {
       setErrorMessage(
         {
-          English: 'Password must be at least 6 characters long.',
-          Hungarian: 'A jelszónak minimum 6 karakter hosszúnak kell lennie.',
+          English: 'Password must be at least 6 characters long',
+          Hungarian: 'A jelszónak minimum 6 karakter hosszúnak kell lennie',
         }[language]
       );
       return;
@@ -114,7 +114,7 @@ const CreatePasswordStep = ({
               }[language]
             }
           </button>
-          <p>{errorMessage}</p>
+          <p className="error">{errorMessage}</p>
         </form>
       )}
       {passwordCreationSuccess && (

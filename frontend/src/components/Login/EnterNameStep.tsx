@@ -38,8 +38,8 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
     } catch (error) {
       setErrorMessage(
         {
-          English: 'Guest not found.',
-          Hungarian: 'Vendég nem található.',
+          English: 'Guest not found',
+          Hungarian: 'Vendég nem található',
         }[language]
       );
       setButtonDisabled(false);
@@ -54,7 +54,6 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
           Hungarian: 'Keresztnév',
         }[language]
       }
-      {':'}
       <input
         ref={firstNameInputRef}
         type="text"
@@ -69,7 +68,6 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
           Hungarian: 'Vezetéknév',
         }[language]
       }
-      {':'}
       <input
         ref={lastNameInputRef}
         type="text"
@@ -90,7 +88,7 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
           }[language]
         }
       </button>
-      <p>{errorMessage}</p>
+      <p className="error">{errorMessage}</p>
     </form>
   );
 };

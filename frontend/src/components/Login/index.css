@@ -1,0 +1,82 @@
+main {
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      min-width: 400px;
+      gap: 20px;
+
+      label {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 6px;
+
+        font-size: 1.05rem;
+        font-weight: bold;
+
+        input {
+          border-radius: 2px;
+          border: 1px solid grey;
+          padding: 8px;
+          font-size: 1.05rem;
+
+          &:focus {
+            outline: 1px solid black;
+          }
+
+
+          &[type="password"] {
+            letter-spacing: 2px;
+          }
+        }
+      }
+
+      button {
+        border: none;
+        border-radius: 2px;
+        background-color: #025839;
+        color: white;
+        font-size: 1.15rem;
+        padding: 7px;
+
+        &:hover {
+          background-color: #01452c;
+        }
+
+        &:disabled {
+          background-color: grey;
+        }
+      }
+
+      .error {
+        margin-top: -10px;
+      }
+    }
+
+    p,
+    a {
+      font-size: 1.05rem;
+    }
+
+    .forgot-password {
+      align-self: flex-end;
+    }
+
+    form:has(.error:not(:empty))+a {
+      margin-top: -20px;
+    }
+  }
+
+  h2 {
+    text-align: center;
+  }
+}

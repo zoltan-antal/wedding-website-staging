@@ -7,6 +7,7 @@ import EnterNameStep from './EnterNameStep';
 import EnterPasswordStep from './EnterPasswordStep';
 import CreatePasswordStep from './CreatePasswordStep';
 import SetEmailStep from './SetEmailStep';
+import './index.css';
 
 const Login = () => {
   const [step, setStep] = useState<
@@ -67,29 +68,31 @@ const Login = () => {
           }[language]
         }
       </h1>
-      {step === 'enter-name' && <EnterNameStep onNext={handleNameEntered} />}
-      {step === 'enter-password' && (
-        <EnterPasswordStep
-          firstName={firstName}
-          lastName={lastName}
-          onNext={handleLogin}
-        />
-      )}
-      {step === 'create-password' && (
-        <CreatePasswordStep
-          firstName={firstName}
-          lastName={lastName}
-          onNext={handlePasswordCreated}
-        />
-      )}
-      {step === 'set-email' && (
-        <SetEmailStep
-          firstName={firstName}
-          lastName={lastName}
-          password={password}
-          onNext={handleLogin}
-        />
-      )}
+      <div className="form-wrapper">
+        {step === 'enter-name' && <EnterNameStep onNext={handleNameEntered} />}
+        {step === 'enter-password' && (
+          <EnterPasswordStep
+            firstName={firstName}
+            lastName={lastName}
+            onNext={handleLogin}
+          />
+        )}
+        {step === 'create-password' && (
+          <CreatePasswordStep
+            firstName={firstName}
+            lastName={lastName}
+            onNext={handlePasswordCreated}
+          />
+        )}
+        {step === 'set-email' && (
+          <SetEmailStep
+            firstName={firstName}
+            lastName={lastName}
+            password={password}
+            onNext={handleLogin}
+          />
+        )}
+      </div>
     </main>
   );
 };

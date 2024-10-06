@@ -41,8 +41,8 @@ const SetEmailStep = ({
     if (email !== confirmEmail) {
       setErrorMessage(
         {
-          English: 'Email addresses do not match.',
-          Hungarian: 'Az e-mail címek nem egyeznek.',
+          English: 'Email addresses do not match',
+          Hungarian: 'Az e-mail címek nem egyeznek',
         }[language]
       );
       return;
@@ -50,8 +50,8 @@ const SetEmailStep = ({
     if (!emailInputRef.current!.validity.valid) {
       setErrorMessage(
         {
-          English: 'The provided email address is invalid.',
-          Hungarian: 'A megadott e-mail cím érvénytelen.',
+          English: 'The provided email address is invalid',
+          Hungarian: 'A megadott e-mail cím érvénytelen',
         }[language]
       );
       return;
@@ -126,7 +126,7 @@ const SetEmailStep = ({
               }[language]
             }
           </button>
-          <p>{errorMessage}</p>
+          <p className="error">{errorMessage}</p>
         </form>
       )}
       {emailSettingSuccess && !loginSuccess && (

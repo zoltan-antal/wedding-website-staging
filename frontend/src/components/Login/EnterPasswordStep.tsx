@@ -47,8 +47,8 @@ const EnterPasswordStep = ({
     } catch (error) {
       setErrorMessage(
         {
-          English: 'Invalid password.',
-          Hungarian: 'Helytelen jelszó.',
+          English: 'Invalid password',
+          Hungarian: 'Helytelen jelszó',
         }[language]
       );
       setButtonDisabled(false);
@@ -85,9 +85,9 @@ const EnterPasswordStep = ({
                 }[language]
               }
             </button>
-            <p>{errorMessage}</p>
+            <p className="error">{errorMessage}</p>
           </form>
-          <NavLink to="/reset-password">
+          <NavLink to="/reset-password" className="forgot-password">
             {
               {
                 English: 'Forgot password?',
