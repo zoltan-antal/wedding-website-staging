@@ -22,7 +22,8 @@ nav {
 
     .active {
       text-decoration: underline;
-      color: red;
+      color: var(--green);
+      font-weight: bold;
     }
   }
 }
