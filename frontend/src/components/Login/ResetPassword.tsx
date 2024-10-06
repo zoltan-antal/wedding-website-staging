@@ -6,7 +6,7 @@ const ResetPassword = () => {
   const { language } = useOutletContext<Context>();
 
   return (
-    <main>
+    <main id="reset-password-page">
       <h1>
         {
           {
