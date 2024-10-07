@@ -1,10 +1,13 @@
-.items {
-  gap: 10px;
-  max-width: 70vw;
-  columns: 2;
+main#faq-page {
+  align-self: center;
+
+  .items {
+    gap: 10px;
+    columns: 2;
+    column-gap: 32px;
+  }
 
   .item {
-    width: 90%;
     break-inside: avoid;
     margin: 0 auto 20px;
 
@@ -24,5 +27,9 @@
       align-items: center;
       gap: 2px;
     }
+  }
+
+  #other-question {
+    margin-top: 15px;
   }
 }

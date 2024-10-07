@@ -3,10 +3,10 @@ import { Context } from '../../types/context';
 import './index.css';
 
 const Faq = () => {
-  const { language } = useOutletContext<Context>();
+  const { language, mainRef, navWidth } = useOutletContext<Context>();
 
   return (
-    <main>
+    <main ref={mainRef} style={{ width: `${navWidth}px` }} id="faq-page">
       <h1>
         {
           {
@@ -55,6 +55,83 @@ const Faq = () => {
                     "Due to the nature of the venue, we're unfortunately unable to accommodate children. However, they're more than welcome to join us at Balaton for the post-wedding wind-down. Thank you for your understanding.",
                   Hungarian:
                     'A helyszín jellegéből adódóan sajnos nem tudunk gyerekeket fogadni. Ugyanakkor szívesen látjuk őket az esküvő utáni Balatoni lazításon. Köszönjük a megértést.',
+                }[language]
+              }
+            </p>
+          </div>
+        </div>
+        <div className="item">
+          <h2>
+            {
+              {
+                English: 'What kind of food will be served?',
+                Hungarian: 'Milyen ételek lesznek?',
+              }[language]
+            }
+          </h2>
+          <div className="answer">
+            <p>
+              {
+                {
+                  English:
+                    'Dinner will be buffet-style with lots of different options (mainly continental and Mediterranean dishes). There will also be nibbles before and after the ceremony, as well as a midnight meal, a Hungarian tradition!',
+                  Hungarian:
+                    'A vacsora svédasztalos lesz, sokféle választási lehetőséggel (főként kontinentális és mediterrán ételekkel). A ceremónia előtt és után is lesz harapnivaló, valamint lesz éjféli menü is.',
+                }[language]
+              }
+            </p>
+            <p>
+              {
+                {
+                  English:
+                    'You can indicate dietary requirements on the RSVP form.',
+                  Hungarian:
+                    'Speciális étkezési igényt a visszajelzési űrlapon tudtok jelezni.',
+                }[language]
+              }
+            </p>
+          </div>
+        </div>
+        <div className="item">
+          <h2>
+            {
+              {
+                English: 'What about drinks?',
+                Hungarian: 'Mi a helyzet az italokkal?',
+              }[language]
+            }
+          </h2>
+          <div className="answer">
+            <p>
+              {
+                {
+                  English:
+                    "There will be an open bar throughout the day, with a selection of soft drinks, beer & wine. Please don't bring your own drinks.",
+                  Hungarian:
+                    'Korlátlan italfogyasztást biztosítunk a nap során, üdítőitalok, sör és bor választékával. Kérjük, ne hozzatok magatokkal saját italt.',
+                }[language]
+              }
+            </p>
+          </div>
+        </div>
+
+        <div className="item">
+          <h2>
+            {
+              {
+                English: 'What language will the day be in?',
+                Hungarian: 'Milyen nyelven lesz az esküvő?',
+              }[language]
+            }
+          </h2>
+          <div className="answer">
+            <p>
+              {
+                {
+                  English:
+                    "Both English and Hungarian. We'll do all we can to ensure that everyone understands what's going on, and we'll also make sure that people who can speak both languages are known to you.",
+                  Hungarian:
+                    'Magyarul és angolul. Mindent megteszünk annak az érdekében, hogy mindenki mindent értsen.',
                 }[language]
               }
             </p>
@@ -129,60 +206,6 @@ const Faq = () => {
           <h2>
             {
               {
-                English: 'What kind of food will be served?',
-                Hungarian: 'Milyen ételek lesznek?',
-              }[language]
-            }
-          </h2>
-          <div className="answer">
-            <p>
-              {
-                {
-                  English:
-                    'Dinner will be buffet-style with lots of different options (mainly continental and Mediterranean dishes). There will also be nibbles before and after the ceremony, as well as a midnight meal, a Hungarian tradition!',
-                  Hungarian:
-                    'A vacsora svédasztalos lesz, sokféle választási lehetőséggel (főként kontinentális és mediterrán ételekkel). A ceremónia előtt és után is lesz harapnivaló, valamint lesz éjféli menü is.',
-                }[language]
-              }
-            </p>
-            <p>
-              {
-                {
-                  English:
-                    'You can indicate dietary requirements on the RSVP form.',
-                  Hungarian:
-                    'Speciális étkezési igényt a visszajelzési űrlapon tudtok jelezni.',
-                }[language]
-              }
-            </p>
-          </div>
-        </div>
-        <div className="item">
-          <h2>
-            {
-              {
-                English: 'What about drinks?',
-                Hungarian: 'Mi a helyzet az italokkal?',
-              }[language]
-            }
-          </h2>
-          <div className="answer">
-            <p>
-              {
-                {
-                  English:
-                    "There will be an open bar throughout the day, with a selection of soft drinks, beer & wine. Please don't bring your own drinks.",
-                  Hungarian:
-                    'Korlátlan italfogyasztást biztosítunk a nap során, üdítőitalok, sör és bor választékával. Kérjük, ne hozzatok magatokkal saját italt.',
-                }[language]
-              }
-            </p>
-          </div>
-        </div>
-        <div className="item">
-          <h2>
-            {
-              {
                 English: 'Can I take photos during the day?',
                 Hungarian: 'Szabad fényképezni?',
               }[language]
@@ -193,9 +216,9 @@ const Faq = () => {
               {
                 {
                   English:
-                    'We would absolutely love to see our wedding through your eyes and any moments you capture! However, please put your phones & cameras away for the ceremony. Please also refrain from sharing any photos on social media until the day after the wedding.',
+                    'We would absolutely love to see our wedding through your eyes and any moments you capture! However, please put your phones & cameras away for the ceremony.',
                   Hungarian:
-                    'Szívesen megnézzük az általatok megörökített pillanatokat is az esküvőnkről! Kérjük azonban, hogy a szertartás idejére tegyétek el a telefonjaikat és kameráitokat. Kérjük, hogy az esküvőt követő napig ne osszátok meg képeiteket közösségi médiában.',
+                    'Szívesen megnézzük az általatok megörökített pillanatokat is az esküvőnkről! Kérjük azonban, hogy a szertartás idejére tegyétek el a telefonjaikat és kameráitokat.',
                 }[language]
               }
             </p>
@@ -206,28 +229,6 @@ const Faq = () => {
                     "As we'll have a professional photographer and videographer, please be aware that the event will be recorded.",
                   Hungarian:
                     'Mivel profi fotós és videós lesz jelen, az eseményt rögzítésre fog kerülni.',
-                }[language]
-              }
-            </p>
-          </div>
-        </div>
-        <div className="item">
-          <h2>
-            {
-              {
-                English: 'What language will the day be in?',
-                Hungarian: 'Milyen nyelven lesz az esküvő?',
-              }[language]
-            }
-          </h2>
-          <div className="answer">
-            <p>
-              {
-                {
-                  English:
-                    "English and Hungarian aren't the most mutually intelligible languages, so we understand the potential apprehension! We'll do all we can to ensure that everyone understands what's going on, and we'll also make sure that people who can speak both languages are known to you.",
-                  Hungarian:
-                    'Mindent megteszünk annak az érdekében, hogy mindenki mindent értsen.',
                 }[language]
               }
             </p>
@@ -255,51 +256,50 @@ const Faq = () => {
             </p>
           </div>
         </div>
-        <div className="item">
-          <h2>
+      </div>
+      <div className="item" id="other-question">
+        <h2>
+          {
+            {
+              English: "I have a question that's not been covered here.",
+              Hungarian: 'Más kérdésem van',
+            }[language]
+          }
+        </h2>
+        <div className="answer">
+          <p>
             {
               {
-                English: "I have a question that's not been covered here.",
-                Hungarian: 'Más kérdésem van',
+                English:
+                  'Each page of the website includes further information on specific aspects.',
+                Hungarian:
+                  'A weboldal aloldalai részletes információkkal szolgálnak az egyes szempontokról.',
               }[language]
             }
-          </h2>
-          <div className="answer">
-            <p>
+          </p>
+          <p>
+            {
+              {
+                English: "If your question still hasn't been answered, please ",
+                Hungarian:
+                  'Ha ennek ellenére továbbra is megválaszolatlan a kérdésed, kérjük ',
+              }[language]
+            }
+            <NavLink to="/contact">
               {
                 {
-                  English:
-                    'Each page of the website includes further information on specific aspects.',
-                  Hungarian:
-                    'A weboldal aloldalai részletes információkkal szolgálnak az egyes szempontokról.',
+                  English: 'contact us',
+                  Hungarian: 'vedd fel velünk a kapcsolatot',
                 }[language]
               }
-            </p>
-            <p>
+            </NavLink>
+            {
               {
-                {
-                  English:
-                    "If your question still hasn't been answered, please ",
-                  Hungarian:
-                    'Ha ennek ellenére továbbra is megválaszolatlan a kérdésed, kérjük ',
-                }[language]
-              }
-              <NavLink to="/contact">
-                {
-                  {
-                    English: 'contact us',
-                    Hungarian: 'vedd fel velünk a kapcsolatot',
-                  }[language]
-                }
-              </NavLink>
-              {
-                {
-                  English: " and we'll get back to you shortly.",
-                  Hungarian: ', és rövid időn belül válaszolunk.',
-                }[language]
-              }
-            </p>
-          </div>
+                English: " and we'll get back to you shortly.",
+                Hungarian: ', és rövid időn belül válaszolunk.',
+              }[language]
+            }
+          </p>
         </div>
       </div>
     </main>
