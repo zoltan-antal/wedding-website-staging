@@ -1,6 +1,4 @@
 main#faq-page {
-  align-self: center;
-
   .items {
     gap: 10px;
     columns: 2;

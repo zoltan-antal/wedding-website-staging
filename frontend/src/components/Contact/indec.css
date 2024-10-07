@@ -1,0 +1,27 @@
+main#contact-page {
+
+  >div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+
+    max-width: 900px;
+
+    p,
+    a {
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    a {
+      font-weight: bold;
+
+      &#email {
+        font-size: 1.3rem;
+        font-weight: normal;
+      }
+    }
+  }
+}
