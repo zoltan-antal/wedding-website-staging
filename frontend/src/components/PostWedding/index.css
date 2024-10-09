@@ -1,0 +1,45 @@
+main#post-wedding-page {
+  >div {
+    grid-template-areas: 'photo-promenade photo-promenade intro'
+      'beach photo-beach photo-beach'
+      'photo-bob photo-bob bob'
+      'logistics photo-town photo-town'
+      'photo-cover photo-cover photo-cover';
+
+    #intro {
+      grid-area: intro;
+    }
+
+    #beach {
+      grid-area: beach;
+    }
+
+    #bob {
+      grid-area: bob;
+    }
+
+    #logistics {
+      grid-area: logistics;
+    }
+
+    #photo-promenade {
+      grid-area: photo-promenade;
+    }
+
+    #photo-beach {
+      grid-area: photo-beach;
+    }
+
+    #photo-bob {
+      grid-area: photo-bob;
+    }
+
+    #photo-town {
+      grid-area: photo-town;
+    }
+
+    #photo-cover {
+      grid-area: photo-cover;
+    }
+  }
+}

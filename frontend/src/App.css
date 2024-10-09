@@ -198,11 +198,19 @@ html {
         column-gap: 45px;
         row-gap: 60px;
 
-        p {
+        .section {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: stretch;
+          gap: 20px;
+
           font-size: 1.2rem;
 
-          &:nth-last-of-type(2n) {
-            text-align: right;
+          &:nth-of-type(2n) {
+            p {
+              text-align: right;
+            }
           }
         }
 

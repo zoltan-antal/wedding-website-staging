@@ -26,43 +26,49 @@ const Accommodation = () => {
     >
       <h1>{{ English: 'Accommodation', Hungarian: 'Szállás' }[language]}</h1>
       <div>
-        <p id="tent-intro">
-          {
-            {
-              English:
-                "Társa Pagony's on-site accommodation features a collection of glamping tents just a stone's throw away from the party. There's an illuminated gravel path leading to the tents from the Barn.",
-              Hungarian: '',
-            }[language]
-          }
-        </p>
-        <p id="tent-info">
-          {
-            {
-              English:
-                "The tents are fully kitted out with proper mattresses and bed linen, towels, rugs, power sockets and heaters. You'll also be provided an amenity kit for showering. We recommend you bring flip-flops or similar for trips to the bathroom.",
-              Hungarian: '',
-            }[language]
-          }
-        </p>
-        {household?.special && (
-          <p id="hotel">
-            <strong>
-              {
-                {
-                  English: 'Would you rather stay in a hotel?',
-                  Hungarian: '',
-                }[language]
-              }
-            </strong>
-            <br />
+        <div className="section" id="tent-intro">
+          <p>
             {
               {
                 English:
-                  "As the number of tents are limited, you'll also be offered the choice on the RSVP form to stay in a hotel in the nearby town of Vác (a 15-minute drive away). We'll have a shuttle running back to the hotel every hour on Saturday night. The choice of hotel will depend on guest numbers (details to follow after the RSVP deadline).",
+                  "Társa Pagony's on-site accommodation features a collection of glamping tents just a stone's throw away from the party. There's an illuminated gravel path leading to the tents from the Barn.",
                 Hungarian: '',
               }[language]
             }
           </p>
+        </div>
+        <div className="section" id="tent-info">
+          <p>
+            {
+              {
+                English:
+                  "The tents are fully kitted out with proper mattresses and bed linen, towels, rugs, power sockets and heaters. You'll also be provided an amenity kit for showering. We recommend you bring flip-flops or similar for trips to the bathroom.",
+                Hungarian: '',
+              }[language]
+            }
+          </p>
+        </div>
+        {household?.special && (
+          <div className="section" id="hotel">
+            <p>
+              <strong>
+                {
+                  {
+                    English: 'Would you rather stay in a hotel?',
+                    Hungarian: '',
+                  }[language]
+                }
+              </strong>
+              <br />
+              {
+                {
+                  English:
+                    "As the number of tents are limited, you'll also be offered the choice on the RSVP form to stay in a hotel in the nearby town of Vác (a 15-minute drive away). We'll have a shuttle running back to the hotel every hour on Saturday night. The choice of hotel will depend on guest numbers (details to follow after the RSVP deadline).",
+                  Hungarian: '',
+                }[language]
+              }
+            </p>
+          </div>
         )}
         <img src={tentOutside} id="photo-tent-outside" />
         <img src={tentInside} id="photo-tent-inside" />
