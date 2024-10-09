@@ -1,0 +1,55 @@
+main#accommodation-page {
+  >div {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 'photo-tent-outside photo-tent-outside tent-intro'
+      'tent-info photo-tent-inside photo-tent-inside'
+      'photo-town photo-town hotel';
+
+    justify-items: center;
+    align-items: center;
+    column-gap: 45px;
+    row-gap: 60px;
+
+    p {
+      font-size: 1.2rem;
+
+      &:nth-last-of-type(2n) {
+        text-align: right;
+      }
+    }
+
+    img {
+      width: auto;
+      width: 100%;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      border-radius: 2px;
+    }
+
+    #tent-intro {
+      grid-area: tent-intro;
+    }
+
+    #tent-info {
+      grid-area: tent-info;
+    }
+
+    #hotel {
+      grid-area: hotel;
+    }
+
+    #photo-tent-outside {
+      grid-area: photo-tent-outside;
+    }
+
+    #photo-tent-inside {
+      grid-area: photo-tent-inside;
+    }
+
+    #photo-town {
+      grid-area: photo-town;
+    }
+
+  }
+}
