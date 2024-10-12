@@ -1,0 +1,52 @@
+main#dress-code-page {
+
+  >div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+
+    width: 100%;
+
+    #genders {
+      align-self: stretch;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 80px;
+
+      .gender {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 8px;
+          width: 100%;
+
+          list-style-position: outside;
+          padding-left: 40px;
+        }
+
+        iframe {
+          flex-grow: 1;
+
+          border: none;
+          width: 99.9%;
+          height: 600px;
+        }
+      }
+    }
+  }
+}
