@@ -21,7 +21,8 @@ const DressCode = () => {
             {
               English:
                 "We would like you to dress up but also be comfortable, so here's some tips and inspiration.",
-              Hungarian: '',
+              Hungarian:
+                'Szeretnénk ha elegánsan, de mégis kényelmesen öltöznétek, ezért íme néhány tipp és némi inspiráció.',
             }[language]
           }
         </p>
@@ -35,18 +36,52 @@ const DressCode = () => {
                 }[language]
               }
             </h2>
-            <h3>Dress code: cocktail attire</h3>
+            <h3>
+              {
+                {
+                  English: 'Dress code: cocktail attire',
+                  Hungarian: 'Dress code: koktélruha',
+                }[language]
+              }
+            </h3>
             <ul>
               <li>
-                Even though most of the inspiration pictures are dresses, feel
-                free to wear trousers or a jumpsuit.
+                {
+                  {
+                    English:
+                      'Even though most of the inspiration pictures are dresses, feel free to wear trousers or a jumpsuit.',
+                    Hungarian:
+                      'Bár az inspirációs képek nagy része ruha, nyugodtan viselhetsz nadrágot vagy overált.',
+                  }[language]
+                }
               </li>
               <li>
-                Due to the nature of the venue (gravel and grass), we recommend
-                flat-soled shoes, or a wedge or platform if opting for heels.
+                {
+                  {
+                    English:
+                      'Due to the nature of the venue (gravel and grass), we recommend flat-soled shoes, or a wedge or platform if opting for heels.',
+                    Hungarian:
+                      'A helyszín jellegéből adódóan (kavics és fű) lapos- vagy telitalpú cipő viselését javasoljuk.',
+                  }[language]
+                }
               </li>
-              <li>No white or black dresses etc. please.</li>
-              <li>No jeans, trainers or T-shirts please.</li>
+              <li>
+                {
+                  {
+                    English: 'No white or black dresses etc. please.',
+                    Hungarian: 'Kérjük, ne legyen fehér vagy fekete a ruhád.',
+                  }[language]
+                }
+              </li>
+              <li>
+                {
+                  {
+                    English: 'No jeans, trainers or T-shirts please.',
+                    Hungarian:
+                      'Kérjük, ne jöjj farmerben, sportcipőben vagy pólóban.',
+                  }[language]
+                }
+              </li>
             </ul>
             <iframe src="https://petracoding.github.io/pinterest/board.html?link=bacon4120/wedding-dress-code-inspiration-ladies/&hideHeader=1&transparent=1"></iframe>
           </div>
@@ -59,26 +94,65 @@ const DressCode = () => {
                 }[language]
               }
             </h2>
-            <h3>Dress code: suit</h3>
+            <h3>
+              {
+                {
+                  English: 'Dress code: suit',
+                  Hungarian: 'Dress code: öltöny',
+                }[language]
+              }
+            </h3>
             <ul>
+              {language === 'English' && (
+                <li>
+                  The formality we're envisioning ranges from business casual to
+                  business formal.
+                </li>
+              )}
               <li>
-                The formality we're envisioning ranges from business casual to
-                business formal.
+                {
+                  {
+                    English:
+                      "Even though we've said 'suit', an odd jacket/trouser combination is perfectly fine.",
+                    Hungarian:
+                      'Noha azt írtuk, "öltöny", eltérő zakó-nadrág párosítás is teljesen megfelelő.',
+                  }[language]
+                }
+              </li>
+              {language === 'English' && (
+                <li>
+                  As it's likely to be warm, you might want to opt for
+                  lightweight fabrics.
+                </li>
+              )}
+              <li>
+                {
+                  {
+                    English:
+                      'Ties are optional. If you do wear one, feel free to take it off, if it gets too hot.',
+                    Hungarian:
+                      'A nyakkendő opcionális. Ha abban jössz, nyugodtan vedd le, ha túl meleg van.',
+                  }[language]
+                }
               </li>
               <li>
-                Even though we've said 'suit', an odd jacket/trouser combination
-                is perfectly fine.
+                {
+                  {
+                    English: 'No black suits or ties please.',
+                    Hungarian:
+                      'Kérjük, ne legyen fekete az öltöny és a nyakkendő.',
+                  }[language]
+                }
               </li>
               <li>
-                As it's likely to be warm, you might want to opt for lightweight
-                fabrics.
+                {
+                  {
+                    English: 'No jeans, trainers or T-shirts please.',
+                    Hungarian:
+                      'Kérjük, ne jöjj farmerben, sportcipőben vagy pólóban.',
+                  }[language]
+                }
               </li>
-              <li>
-                Ties are optional. If you do wear one, feel free to take it off
-                if it gets too hot.
-              </li>
-              <li>No black suits or ties please.</li>
-              <li>No jeans, trainers or T-shirts please.</li>
             </ul>
             <iframe src="https://petracoding.github.io/pinterest/board.html?link=bacon4120/wedding-dress-code-inspiration-gents/&hideHeader=1&transparent=1"></iframe>
           </div>
