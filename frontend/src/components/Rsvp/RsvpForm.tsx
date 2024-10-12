@@ -385,7 +385,7 @@ const RsvpForm = () => {
                       {
                         English:
                           "Would you be interested in coming to a meet & greet the day before the wedding?\nIt'd be a chance to meet others who are coming to the wedding before the big day. It will most likely be held in Budapest.",
-                        Hungarian: `Érdekelne egy "meet & greet" találkozó az esküvő előtti napon?\nEz egy lehetőség lenne arra, hogy ${
+                        Hungarian: `Érdekelne egy ismerkedős délután az esküvő előtti napon?\nEz egy lehetőség lenne arra, hogy kicsit ${
                           numberOfAttendingGuests > 1
                             ? 'megismerjétek'
                             : 'megismerd'
