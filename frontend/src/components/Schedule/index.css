@@ -1,0 +1,103 @@
+main#schedule-page {
+  p.remark {
+    font-size: 1.2rem;
+  }
+
+  .timeline {
+    position: relative;
+    margin: 30px auto;
+    width: 100%;
+    font-size: 1.05rem;
+
+    &::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+
+      width: 2px;
+      background-color: black;
+    }
+
+    .day-section {
+      margin-bottom: 60px;
+
+      &:first-of-type {
+        margin-top: 10px;
+      }
+
+      .day-title {
+        position: relative;
+        width: 45%;
+
+        font-size: 1.4rem;
+      }
+
+      .timeline-item {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        margin: 20px 0;
+
+        .time-label {
+          position: relative;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 1;
+          white-space: nowrap;
+
+          background-color: transparent;
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 125%;
+
+            background-color: rgb(247, 243, 239);
+            z-index: -1;
+          }
+        }
+
+        .timeline-content {
+          position: relative;
+          width: 45%;
+        }
+      }
+
+      &:nth-of-type(2n) {
+        .day-title {
+          text-align: left;
+          left: 55%;
+        }
+
+        .timeline-content {
+          text-align: left;
+          left: 0%;
+        }
+      }
+
+      &:nth-of-type(2n + 1) {
+
+        .day-title {
+          text-align: right;
+          right: 0%;
+        }
+
+        .timeline-content {
+          text-align: right;
+          right: 55%;
+        }
+      }
+    }
+  }
+}
