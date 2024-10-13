@@ -6,7 +6,7 @@ const BACKEND_URL = (() => {
     case 'production': {
       const url = window.location.origin;
       const [protocol, rest] = url.split('//');
-      return `${protocol}//api.${rest}`;
+      return `${protocol}//api.${rest.replace('staging.', '')}`;
     }
   }
 })();
