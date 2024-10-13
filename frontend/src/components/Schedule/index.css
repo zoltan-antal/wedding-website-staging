@@ -53,6 +53,7 @@ main#schedule-page {
           white-space: nowrap;
 
           background-color: transparent;
+          margin-top: 2px;
 
           &::before {
             content: '';
