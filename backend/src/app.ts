@@ -6,7 +6,7 @@ import router from './routes';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import configurePassport from './utils/passport';
-import { FRONTEND_URL } from './utils/config';
+import { FRONTEND_URL, FRONTEND_STAGING_URL } from './utils/config';
 
 const app = express();
 
@@ -20,9 +20,18 @@ switch (app.get('env')) {
     );
     break;
 
-  case 'production':
-    app.use(cors({ origin: FRONTEND_URL, credentials: true }));
+  case 'production': {
+    const allowedOrigins = [];
+    if (FRONTEND_URL) {
+      allowedOrigins.push(FRONTEND_URL);
+    }
+    if (FRONTEND_STAGING_URL) {
+      allowedOrigins.push(FRONTEND_STAGING_URL);
+    }
+
+    app.use(cors({ origin: allowedOrigins, credentials: true }));
     break;
+  }
 }
 
 app.use(express.json());
