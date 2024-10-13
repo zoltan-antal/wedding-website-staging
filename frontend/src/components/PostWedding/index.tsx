@@ -31,7 +31,7 @@ const PostWedding = () => {
               {
                 {
                   English: 'Where are we going?',
-                  Hungarian: '',
+                  Hungarian: 'Hová megyünk?',
                 }[language]
               }
             </strong>
@@ -40,7 +40,8 @@ const PostWedding = () => {
               {
                 English:
                   "We're going to Lake Balaton: a popular summer destination for both Hungarians and tourists alike. We're going to base ourselves in the lakeside town of Balatonfüred.",
-                Hungarian: '',
+                Hungarian:
+                  'A Balatonra megyünk, egészen pontosan az északi part egyik legnagyobb városába, Balatonfüredre.',
               }[language]
             }
             <br />
@@ -59,7 +60,7 @@ const PostWedding = () => {
               {
                 {
                   English: 'What will we be doing?',
-                  Hungarian: '',
+                  Hungarian: 'Mi lesz a program?',
                 }[language]
               }
             </strong>
@@ -67,7 +68,7 @@ const PostWedding = () => {
             {
               {
                 English: "We'll spend a lot of time chilling at the lake:",
-                Hungarian: '',
+                Hungarian: 'Sok időt tervezünk a tóparton tölteni:',
               }[language]
             }
             <br />
@@ -75,7 +76,8 @@ const PostWedding = () => {
               {
                 English:
                   'picnicking, playing games, swimming & doing other water activities, or just relaxing and chatting!',
-                Hungarian: '',
+                Hungarian:
+                  'piknikezés, játékok, fürdés, vagy csak szimplán pihenés és beszélgetés.',
               }[language]
             }
             <br />
@@ -83,7 +85,8 @@ const PostWedding = () => {
               {
                 English:
                   "We're also planning to have a campfire cookout or BBQ in the evening.",
-                Hungarian: '',
+                Hungarian:
+                  'Estére tervezünk egy sütögetést vagy grillezést is.',
               }[language]
             }
           </p>
@@ -94,7 +97,8 @@ const PostWedding = () => {
               {
                 English:
                   "Another activity we're hoping to do is going to a mountain rail course, which is great fun!",
-                Hungarian: '',
+                Hungarian:
+                  'Ezen kívül még reméljük, hogy sikerül a közeli bobpályára is eljutnunk.',
               }[language]
             }
           </p>
@@ -105,7 +109,7 @@ const PostWedding = () => {
               {
                 {
                   English: 'How will we get there?',
-                  Hungarian: '',
+                  Hungarian: 'Hogyan jutunk le a Balatonra?',
                 }[language]
               }
             </strong>
@@ -113,7 +117,7 @@ const PostWedding = () => {
             {
               {
                 English: "We're going to take the train from Budapest.",
-                Hungarian: '',
+                Hungarian: 'Vonattal megyünk majd Budapestről.',
               }[language]
             }
           </p>
@@ -122,7 +126,7 @@ const PostWedding = () => {
               {
                 {
                   English: 'When are we going?',
-                  Hungarian: '',
+                  Hungarian: 'Mikor megyünk?',
                 }[language]
               }
             </strong>
@@ -130,8 +134,9 @@ const PostWedding = () => {
             {
               {
                 English:
-                  "We'll plan to leave for Balaton on Monday morning and come back Tuesday afternoon or evening, staying for one night.",
-                Hungarian: '',
+                  "We're planning to leave for Balaton on Monday morning and come back Tuesday afternoon or evening, staying for one night.",
+                Hungarian:
+                  'Hétfő reggel tervezünk lemenni, és, egy éjszaka ottalvás után, kedd délután vagy este visszajönni Budapestre.',
               }[language]
             }
           </p>
@@ -140,7 +145,7 @@ const PostWedding = () => {
         <img src={beach} id="photo-beach" />
         <img src={bob} id="photo-bob" />
         <img src={town} id="photo-town" />
-        <img src={cover} id="photo-cover" />
+        {language === 'English' && <img src={cover} id="photo-cover" />}
       </div>
     </main>
   );
