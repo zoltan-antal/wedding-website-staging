@@ -1,7 +1,6 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import { useEffect, useState, useRef } from 'react';
 import { Language } from './types/language';
 import { Guest } from './types/guest';
@@ -22,6 +21,12 @@ function App() {
   );
   const [guest, setGuest] = useState<Guest | null>(null);
   const [household, setHousehold] = useState<Household | null>(null);
+
+  const mobileView =
+    /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  const [menuOpen, setMenuOpen] = useState<boolean>(!mobileView ? true : false);
 
   useEffect(() => {
     const getAuthStatus = async () => {
@@ -82,6 +87,9 @@ function App() {
   return (
     <>
       <Header
+        mobileView={mobileView}
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
         language={language}
         setLanguage={setLanguage}
         guest={guest}
@@ -89,20 +97,22 @@ function App() {
         setHousehold={setHousehold}
         navRef={navRef}
       ></Header>
-      <Outlet
-        context={
-          {
-            language,
-            guest,
-            setGuest,
-            household,
-            setHousehold,
-            mainRef,
-            navWidth,
-          } satisfies Context
-        }
-      />
-      <Footer></Footer>
+      {!menuOpen && (
+        <Outlet
+          context={
+            {
+              mobileView,
+              language,
+              guest,
+              setGuest,
+              household,
+              setHousehold,
+              mainRef,
+              navWidth,
+            } satisfies Context
+          }
+        />
+      )}
     </>
   );
 }

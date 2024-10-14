@@ -1,16 +1,49 @@
-import './Nav.css';
 import { NavLink } from 'react-router-dom';
 import { Language } from '../../types/language';
+import { Guest } from '../../types/guest';
+import { Household } from '../../types/household';
+import AccountButtons from './AccountButtons';
+import LanguageButton from './LanguageButton';
+import './Nav.css';
 
 interface NavProps {
+  mobileView: boolean;
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   language: Language;
+  setLanguage: React.Dispatch<React.SetStateAction<Language>>;
+  guest: Guest | null;
+  setGuest: React.Dispatch<React.SetStateAction<Guest | null>>;
+  setHousehold: React.Dispatch<React.SetStateAction<Household | null>>;
   navRef: React.MutableRefObject<HTMLElement | null>;
 }
 
-const Nav = ({ language, navRef }: NavProps) => {
+const Nav = ({
+  mobileView,
+  menuOpen,
+  setMenuOpen,
+  language,
+  setLanguage,
+  guest,
+  setGuest,
+  setHousehold,
+  navRef,
+}: NavProps) => {
+  const handleMenuClick = (e: React.MouseEvent<HTMLUListElement>) => {
+    if (!mobileView) {
+      return;
+    }
+
+    const target = e.target as HTMLElement;
+    const link = target.closest('a') || target.closest('button');
+    if (link) {
+      setMenuOpen(false);
+    }
+  };
+
   return (
-    <nav ref={navRef}>
-      <ul>
+    <nav ref={navRef} className={menuOpen ? 'open' : 'closed'}>
+      <ul className="nav-links" onClick={handleMenuClick}>
         <li>
           <NavLink to="/">
             {
@@ -122,6 +155,18 @@ const Nav = ({ language, navRef }: NavProps) => {
           </NavLink>
         </li>
       </ul>
+      <AccountButtons
+        language={language}
+        guest={guest}
+        setGuest={setGuest}
+        setHousehold={setHousehold}
+        onClick={handleMenuClick}
+      />
+      <LanguageButton
+        language={language}
+        setLanguage={setLanguage}
+        onClick={handleMenuClick}
+      />
     </nav>
   );
 };

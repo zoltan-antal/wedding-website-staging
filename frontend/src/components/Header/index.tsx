@@ -1,12 +1,16 @@
-import { useNavigate, NavLink, useLocation } from 'react-router-dom';
-import './index.css';
-import Nav from './Nav';
 import { Language } from '../../types/language';
 import { Guest } from '../../types/guest';
 import { Household } from '../../types/household';
-import authService from '../../services/auth';
+import menuIcon from '../../assets/images/icons/menu.svg';
+import Nav from './Nav';
+import AccountButtons from './AccountButtons';
+import LanguageButton from './LanguageButton';
+import './index.css';
 
 interface HeaderProps {
+  mobileView: boolean;
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   language: Language;
   setLanguage: React.Dispatch<React.SetStateAction<Language>>;
   guest: Guest | null;
@@ -16,6 +20,9 @@ interface HeaderProps {
 }
 
 const Header = ({
+  mobileView,
+  menuOpen,
+  setMenuOpen,
   language,
   setLanguage,
   guest,
@@ -23,13 +30,14 @@ const Header = ({
   setHousehold,
   navRef,
 }: HeaderProps) => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
     <header>
       <div className="title">
+        <button className="menu-button" onClick={toggleMenu}>
+          <img src={menuIcon} />
+        </button>
         <h1 className="names">
           Ella{' '}
           <span className="ampersand">
@@ -46,77 +54,24 @@ const Header = ({
           }
         </h2>
       </div>
-      <Nav language={language} navRef={navRef}></Nav>
-      <div className="language">
-        {language === 'English' && (
-          <button
-            onClick={() => {
-              setLanguage('Hungarian');
-              localStorage.setItem('EllaZoltanLanguage', 'Hungarian');
-            }}
-          >
-            magyar
-          </button>
-        )}
-        {language === 'Hungarian' && (
-          <button
-            onClick={() => {
-              setLanguage('English');
-              localStorage.setItem('EllaZoltanLanguage', 'English');
-            }}
-          >
-            English
-          </button>
-        )}
-      </div>
-      <div className="account-buttons">
-        {guest && (
-          <>
-            <NavLink to="account">
-              {
-                {
-                  English: 'Account',
-                  Hungarian: 'Fiók',
-                }[language]
-              }
-            </NavLink>
-            <button
-              onClick={async () => {
-                await authService.logout();
-                setGuest(null);
-                setHousehold(null);
-                navigate('/');
-              }}
-            >
-              {
-                {
-                  English: 'Log out',
-                  Hungarian: 'Kijelentkezés',
-                }[language]
-              }
-            </button>
-          </>
-        )}
-        {!guest && (
-          <button
-            onClick={() => {
-              if (location.pathname === '/login') {
-                return navigate(
-                  `/login?redirectTo=${queryParams.get('redirectTo')}`
-                );
-              }
-              return navigate(`/login?redirectTo=${location.pathname}`);
-            }}
-          >
-            {
-              {
-                English: 'Guest login',
-                Hungarian: 'Vendég bejelentkezés',
-              }[language]
-            }
-          </button>
-        )}
-      </div>
+      <Nav
+        mobileView={mobileView}
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+        language={language}
+        setLanguage={setLanguage}
+        guest={guest}
+        setGuest={setGuest}
+        setHousehold={setHousehold}
+        navRef={navRef}
+      />
+      <LanguageButton language={language} setLanguage={setLanguage} />
+      <AccountButtons
+        language={language}
+        guest={guest}
+        setGuest={setGuest}
+        setHousehold={setHousehold}
+      />
     </header>
   );
 };
