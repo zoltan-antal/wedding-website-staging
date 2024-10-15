@@ -107,22 +107,20 @@ function App() {
         setHousehold={setHousehold}
         navRef={navRef}
       ></Header>
-      {(!mobileView || !menuOpen) && (
-        <Outlet
-          context={
-            {
-              mobileView,
-              language,
-              guest,
-              setGuest,
-              household,
-              setHousehold,
-              mainRef,
-              navWidth,
-            } satisfies Context
-          }
-        />
-      )}
+      <Outlet
+        context={
+          {
+            mobileView,
+            language,
+            guest,
+            setGuest,
+            household,
+            setHousehold,
+            mainRef,
+            navWidth,
+          } satisfies Context
+        }
+      />
     </>
   );
 }

@@ -107,6 +107,11 @@ html {
   --input-border: grey;
   --input-border-focus: black;
 
+  header:has(nav.open)+main {
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
 
   main {
     align-self: center;
