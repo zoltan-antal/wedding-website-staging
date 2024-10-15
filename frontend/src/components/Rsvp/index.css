@@ -1,5 +1,9 @@
 main#rsvp-page {
+  align-self: stretch;
+
   .form-wrapper {
+    align-self: stretch;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -15,6 +19,11 @@ main#rsvp-page {
 
       min-width: 900px;
       max-width: 900px;
+
+      @media only screen and (max-width: 768px) {
+        align-self: stretch;
+        min-width: auto;
+      }
 
       fieldset {
         border: none;
