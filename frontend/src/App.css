@@ -55,7 +55,6 @@ th,
 caption,
 button {
   color: var(--text);
-  /* background-color: var(--background); */
   background-color: transparent;
 }
 
@@ -119,6 +118,10 @@ html {
     align-items: center;
 
     padding-bottom: 50px;
+
+    @media only screen and (max-width: 768px) {
+      width: auto !important;
+    }
 
     h1 {
       font-size: 2.4rem;

@@ -3,6 +3,7 @@ import { Guest } from './guest';
 import { Household } from './household';
 
 export type Context = {
+  mobileView: boolean;
   language: Language;
   guest: Guest | null;
   setGuest: React.Dispatch<React.SetStateAction<Guest | null>>;

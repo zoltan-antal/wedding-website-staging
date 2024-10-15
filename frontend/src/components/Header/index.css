@@ -1,11 +1,20 @@
 header {
   display: grid;
+
   grid-template-columns: 15% auto 15%;
   grid-template-rows: auto auto;
   grid-template-areas:
-    "language title account-buttons"
+    "language-button title account-buttons"
     "nav nav nav";
   justify-content: space-between;
+
+  @media only screen and (max-width: 768px) {
+    display: inline;
+
+    &:not(:has(nav.open)) {
+      border-bottom: 1px solid black;
+    }
+  }
 
   .title {
     grid-area: title;
@@ -16,12 +25,45 @@ header {
     align-items: center;
     gap: 10px;
 
+    @media only screen and (max-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      grid-template-rows: repeat(2, auto);
+      grid-template-areas:
+        "menu names ."
+        ". date .";
+    }
+
     padding: 30px 0 20px;
 
+    .menu-button {
+      grid-area: menu;
+
+      display: flex;
+
+      border: none;
+      margin-left: 5px;
+
+      @media only screen and not (max-width: 768px) {
+        display: none;
+      }
+
+      img {
+        height: 45px;
+      }
+    }
+
     .names {
+      grid-area: names;
+
       font-size: 3.25rem;
       word-spacing: 0.75rem;
       text-transform: uppercase;
+      text-align: center;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 1.75rem;
+      }
 
       .ampersand {
         text-transform: none;
@@ -29,11 +71,18 @@ header {
     }
 
     .date {
+      grid-area: date;
+
       font-size: 1.4rem;
+      text-align: center;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 1.1rem;
+      }
     }
   }
 
-  .language,
+  .language-button,
   .account-buttons {
     display: flex;
     flex-direction: column;
@@ -49,8 +98,15 @@ header {
     }
   }
 
-  .language {
-    grid-area: language;
+  >.language-button,
+  >.account-buttons {
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .language-button {
+    grid-area: language-button;
 
     align-items: flex-start;
 
@@ -63,9 +119,20 @@ header {
     align-items: flex-end;
 
     padding: 10px;
+
+    .active {
+      text-decoration: underline;
+      color: var(--green);
+      font-weight: bold;
+    }
   }
 
   nav {
     grid-area: nav;
+  }
+
+  ul {
+    list-style-type: none;
+    text-transform: uppercase;
   }
 }
