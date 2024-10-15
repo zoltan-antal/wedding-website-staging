@@ -131,6 +131,10 @@ html {
     h1 {
       font-size: 2.4rem;
       margin: 20px 0 20px;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 1.6rem;
+      }
     }
 
     form {
@@ -206,6 +210,16 @@ html {
         column-gap: 45px;
         row-gap: 60px;
 
+        @media only screen and (max-width: 768px) {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: stretch;
+          gap: 15px;
+
+          padding: 0 15px;
+        }
+
         .section {
           display: flex;
           flex-direction: column;
@@ -215,9 +229,21 @@ html {
 
           font-size: 1.2rem;
 
-          &:nth-of-type(2n) {
-            p {
-              text-align: right;
+          @media only screen and not (max-width: 768px) {
+            &:nth-of-type(2n) {
+              p {
+                text-align: right;
+              }
+            }
+          }
+
+          @media only screen and (max-width: 768px) {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            gap: 10px;
+
+            &:last-child {
+              margin-bottom: 0;
             }
           }
         }

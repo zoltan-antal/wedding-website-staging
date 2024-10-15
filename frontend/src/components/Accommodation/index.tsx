@@ -26,6 +26,7 @@ const Accommodation = () => {
     >
       <h1>{{ English: 'Accommodation', Hungarian: 'Szállás' }[language]}</h1>
       <div>
+        <img src={tentOutside} id="photo-tent-outside" />
         <div className="section" id="tent-intro">
           <p>
             {
@@ -38,6 +39,7 @@ const Accommodation = () => {
             }
           </p>
         </div>
+        <img src={tentInside} id="photo-tent-inside" />
         <div className="section" id="tent-info">
           <p>
             {
@@ -50,6 +52,7 @@ const Accommodation = () => {
             }
           </p>
         </div>
+        {household?.special && <img src={town} id="photo-town" />}
         {household?.special && (
           <div className="section" id="hotel">
             <p>
@@ -73,9 +76,6 @@ const Accommodation = () => {
             </p>
           </div>
         )}
-        <img src={tentOutside} id="photo-tent-outside" />
-        <img src={tentInside} id="photo-tent-inside" />
-        {household?.special && <img src={town} id="photo-town" />}
       </div>
     </main>
   );

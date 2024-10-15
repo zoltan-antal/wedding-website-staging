@@ -14,6 +14,7 @@ const Venue = () => {
     <main ref={mainRef} style={{ width: `${navWidth}px` }} id="venue-page">
       <h1>{{ English: 'Venue', Hungarian: 'Helyszín' }[language]}</h1>
       <div>
+        <img src={venueFar} id="photo-far" />
         <div className="section" id="intro1">
           <p>
             <strong>
@@ -35,6 +36,7 @@ const Venue = () => {
             }
           </p>
         </div>
+        <img src={venueOutside} id="photo-outside" />
         <div className="section" id="intro2">
           <p>
             {
@@ -56,6 +58,7 @@ const Venue = () => {
             }
           </p>
         </div>
+        <img src={venueInside} id="photo-inside" />
         <div className="section" id="barn">
           <p>
             {
@@ -68,6 +71,7 @@ const Venue = () => {
             }
           </p>
         </div>
+        <img src={venueTerrace} id="photo-terrace" />
         <div className="section" id="terrace">
           <p>
             {
@@ -80,6 +84,7 @@ const Venue = () => {
             }
           </p>
         </div>
+        <img src={venuePond} id="photo-pond" />
         <div className="section" id="pond">
           <p>
             {
@@ -92,11 +97,6 @@ const Venue = () => {
             }
           </p>
         </div>
-        <img src={venueFar} id="photo-far" />
-        <img src={venueOutside} id="photo-outside" />
-        <img src={venueInside} id="photo-inside" />
-        <img src={venueTerrace} id="photo-terrace" />
-        <img src={venuePond} id="photo-pond" />
       </div>
     </main>
   );
