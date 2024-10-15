@@ -11,6 +11,22 @@ main#home-page {
   justify-items: stretch;
   justify-content: stretch;
 
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 1fr;
+    grid-auto-rows: auto;
+    grid-template-areas:
+      "countdown countdown"
+      "rsvp faq"
+      "venue accommodation"
+      "travel schedule";
+    overflow: auto;
+    overflow-x: hidden;
+
+    width: 100vw;
+    padding-bottom: 0;
+  }
+
   /* INTERNAL GRIDLINES START */
   --gap: 2px;
   --line-offset: calc(var(--gap) / 2);
@@ -31,6 +47,7 @@ main#home-page {
     }
 
     &::after {
+      /* inline-size: 100%; */
       inline-size: 100vw;
       block-size: var(--line-thickness);
       inset-inline-start: 0;
@@ -53,21 +70,22 @@ main#home-page {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-
-  >div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
     gap: 8px;
+
+    @media only screen and (max-width: 768px) {
+      padding: 15px 5px;
+    }
 
     p,
     a {
       font-size: 1.1rem;
       font-weight: normal;
       text-align: center;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 0.95rem;
+      }
     }
 
     a {
@@ -75,6 +93,10 @@ main#home-page {
       font-weight: bold;
       color: var(--green);
       text-transform: uppercase;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 1rem;
+      }
     }
   }
 
