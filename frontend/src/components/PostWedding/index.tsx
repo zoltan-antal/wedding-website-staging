@@ -42,7 +42,7 @@ const PostWedding = () => {
                 English:
                   "We're going to Lake Balaton: a popular summer destination for both Hungarians and tourists alike. We're going to base ourselves in the lakeside town of Balatonfüred.",
                 Hungarian:
-                  'A Balatonra megyünk, egészen pontosan az északi part egyik legnagyobb városába, Balatonfüredre.',
+                  'A Balatonra, egészen pontosan az északi part egyik legnagyobb városába, Balatonfüredre.',
               }[language]
             }
             <br />
@@ -104,6 +104,9 @@ const PostWedding = () => {
                   'Ezen kívül még reméljük, hogy sikerül a közeli bobpályára is eljutnunk.',
               }[language]
             }
+            <br />
+            {language === 'English' &&
+              '(The course is located in the nearby town of Balatonfűzfő.)'}
           </p>
         </div>
         <img src={town} id="photo-town" />

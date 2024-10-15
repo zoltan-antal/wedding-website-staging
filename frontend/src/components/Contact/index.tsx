@@ -52,7 +52,7 @@ const Contact = () => {
               English:
                 'If you still need to contact us, you can reach us via email at',
               Hungarian:
-                'Ha ennek ellenére is szeretnéd felvenni velünk a kapcsolatot, kérjük, írj az alábbi e-mail címre:',
+                'Ha szeretnéd felvenni velünk a kapcsolatot, kérjük, írj az alábbi e-mail címre:',
             }[language]
           }
           <br />

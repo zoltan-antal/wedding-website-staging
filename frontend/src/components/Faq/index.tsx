@@ -32,7 +32,7 @@ const Faq = () => {
                   English:
                     "Invited guests are named on the invite envelope. Unfortunately, we're unable to accommodate any additional people.",
                   Hungarian:
-                    'A meghívott vendégek neve a meghívó borítékján szerepel. További személyeket sajnos nem tudunk fogadni.',
+                    'A meghívott vendégek nevei a meghívó borítékán szerepelnek. További személyeket sajnos nem tudunk fogadni.',
                 }[language]
               }
             </p>
@@ -218,7 +218,7 @@ const Faq = () => {
                   English:
                     'We would absolutely love to see our wedding through your eyes and any moments you capture! However, please put your phones & cameras away for the ceremony.',
                   Hungarian:
-                    'Szívesen megnézzük az általatok megörökített pillanatokat is az esküvőnkről! Kérjük azonban, hogy a szertartás idejére tegyétek el a telefonjaikat és kameráitokat.',
+                    'Szívesen megnézzük az általatok megörökített pillanatokat is az esküvőnkről! Kérjük azonban, hogy a szertartás idejére tegyétek el telefonjaitokat és kameráitokat.',
                 }[language]
               }
             </p>
@@ -250,7 +250,7 @@ const Faq = () => {
                   English:
                     "Thank you for considering getting us a gift! We're working on a list, and will notify everyone when it's available.",
                   Hungarian:
-                    'Köszönjük, hogy gondolkodol ajándékon. Dolgozunk egy ajándéklistán, és mindenkit értesítünk majd, amint kész van.',
+                    'Köszönjük, hogy gondolkodsz ajándékon. Dolgozunk egy ajándéklista összeállításán; mindenkit értesítünk, amint elkészül.',
                 }[language]
               }
             </p>
@@ -273,7 +273,7 @@ const Faq = () => {
                 English:
                   'Each page of the website includes further information on specific aspects.',
                 Hungarian:
-                  'A weboldal aloldalai részletes információkkal szolgálnak az egyes szempontokról.',
+                  'Az egyes aloldalakon igyekeztünk részletesen kitérni minden témára.',
               }[language]
             }
           </p>
@@ -282,7 +282,7 @@ const Faq = () => {
               {
                 English: "If your question still hasn't been answered, please ",
                 Hungarian:
-                  'Ha ennek ellenére továbbra is megválaszolatlan a kérdésed, kérjük ',
+                  'Azonban ha továbbra is megválaszolatlan a kérdésed, kérjük ',
               }[language]
             }
             <NavLink to="/contact">

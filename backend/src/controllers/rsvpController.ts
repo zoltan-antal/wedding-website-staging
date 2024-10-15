@@ -230,7 +230,7 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
           ? `${
               {
                 English: 'Interested in meet & greet',
-                Hungarian: 'Meet & greet érdeklődés',
+                Hungarian: 'Ismerkedős délután érdeklődés',
               }[language]
             }: ${booleanToText(formData.interestedInMeetAndGreet)}\n`
           : ''

@@ -11,7 +11,7 @@ const AlreadySubmitted = () => {
     rsvpSubmissions![rsvpSubmissions!.length - 1];
 
   return (
-    <>
+    <div>
       <h2>
         {
           {
@@ -29,71 +29,82 @@ const AlreadySubmitted = () => {
           }[language]
         }
       </h2>
-      <h3>
-        {
-          { English: 'Submission details', Hungarian: 'Beküldési adatok' }[
-            language
-          ]
-        }
-      </h3>
-      <div>
-        {(() => {
-          const submitter = household?.guests.find(
-            (guest) => guest.id === mostRecentRsvpSubmission.guestId
-          );
-          if (!submitter) return null;
-          return (
-            <p>
-              {
-                {
-                  English: 'Form submitted by',
-                  Hungarian: 'Az űrlapot beküldte',
-                }[language]
-              }
-              {': '}
-              {
-                {
-                  English: `${submitter.firstName} ${submitter.lastName}`,
-                  Hungarian: `${submitter.lastName} ${submitter.firstName}`,
-                }[language]
-              }
-            </p>
-          );
-        })()}
-        <p>
+      <div className="submission-details">
+        <h3>
           {
-            { English: 'Submitted at', Hungarian: 'Beküldés időpontja' }[
+            { English: 'Submission details', Hungarian: 'Beküldési adatok' }[
               language
             ]
           }
-          {': '}
+        </h3>
+        <div>
           {(() => {
-            const submissionDate = new Date(mostRecentRsvpSubmission.createdAt);
-            return submissionDate.toLocaleString();
+            const submitter = household?.guests.find(
+              (guest) => guest.id === mostRecentRsvpSubmission.guestId
+            );
+            if (!submitter) return null;
+            return (
+              <p>
+                {
+                  {
+                    English: 'Form submitted by',
+                    Hungarian: 'Az űrlapot beküldte',
+                  }[language]
+                }
+                {': '}
+                {
+                  {
+                    English: `${submitter.firstName} ${submitter.lastName}`,
+                    Hungarian: `${submitter.lastName} ${submitter.firstName}`,
+                  }[language]
+                }
+              </p>
+            );
           })()}
-        </p>
+          <p>
+            {
+              { English: 'Submitted at', Hungarian: 'Beküldés időpontja' }[
+                language
+              ]
+            }
+            {': '}
+            {(() => {
+              const submissionDate = new Date(
+                mostRecentRsvpSubmission.createdAt
+              );
+              return submissionDate.toLocaleString();
+            })()}
+          </p>
+        </div>
       </div>
-      <h3>
-        {
+      <div className="change-rsvp">
+        <h3>
           {
-            English: 'If something has changed, please contact us',
-            Hungarian: `Ha valami változott, kérjük, ${(() => {
-              if (!household) return 'lépj';
-              return household.guests.length > 1 ? 'lépjetek' : 'lépj';
-            })()} velünk kapcsolatba`,
-          }[language]
-        }
-        {':'}
-      </h3>
-      <NavLink to="/contact">
-        {
+            {
+              English: 'If something has changed, please contact us',
+              Hungarian: `Ha ${(() => {
+                if (!household) return 'szeretnél';
+                return household.guests.length > 1
+                  ? 'szeretnétek'
+                  : 'szeretnél';
+              })()} változtatni az elküldötteken, kérjük, ${(() => {
+                if (!household) return 'lépj';
+                return household.guests.length > 1 ? 'lépjetek' : 'lépj';
+              })()} velünk kapcsolatba`,
+            }[language]
+          }
+          {':'}
+        </h3>
+        <NavLink to="/contact">
           {
-            English: 'Contact',
-            Hungarian: 'Kapcsolat',
-          }[language]
-        }
-      </NavLink>
-    </>
+            {
+              English: 'Contact',
+              Hungarian: 'Kapcsolat',
+            }[language]
+          }
+        </NavLink>
+      </div>
+    </div>
   );
 };
 

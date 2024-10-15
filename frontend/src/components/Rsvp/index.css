@@ -1,6 +1,26 @@
 main#rsvp-page {
   align-self: stretch;
 
+  >div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+
+    h2,
+    h3 {
+      text-align: center;
+    }
+
+    >div {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+
   .form-wrapper {
     align-self: stretch;
 
@@ -47,4 +67,5 @@ main#rsvp-page {
       }
     }
   }
+
 }
