@@ -126,8 +126,8 @@ const Schedule = () => {
       <p className="remark">
         {
           {
-            English: 'More detail to follow',
-            Hungarian: 'További részletek hamarosan',
+            English: 'More detail and exact times to follow',
+            Hungarian: 'További részletek és pontos időpontok hamarosan',
           }[language]
         }
       </p>

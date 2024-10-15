@@ -263,31 +263,25 @@ const Travel = () => {
                   {
                     {
                       English:
-                        'Társa Pagony is a roughly 45 minute drive from the centre of Budapest, depending on traffic. The address is: Társa Pagony, Penc, 2614 Hungary. There is a sign at the turn off at the side of the road (to your left when driving up from Penc). There is free parking at the venue.',
+                        'Társa Pagony is a roughly 45 minute drive from the centre of Budapest, depending on traffic.',
                       Hungarian:
-                        'A Társa Pagonyt nagyjából 45 alatt lehet elérni Budapestről autóval, a forgalomtól függően. A pontos cím: Társa Pagony, Penc 2614. Penc irányából felfelé haladva az úton balra van egy tábla: ott kell behajtani. A helyszínen a parkolás díjmentes.',
+                        'A Társa Pagonyt forgalomtól függően nagyjából 45 perc alatt lehet elérni Budapestről autóval.',
                     }[language]
                   }
-                </p>
-              </div>
-            </div>
-            <div className="subsection">
-              <h3>
-                {
-                  {
-                    English: 'By public transport',
-                    Hungarian: 'Tömegközlekedéssel',
-                  }[language]
-                }
-              </h3>
-              <div>
-                <p>
+                  <br />
                   {
                     {
                       English:
-                        "It's difficult to get all the way to Társa Pagony by public transport, but you're able to get to the nearby town of Vác. There are trains that run from Budapest's Nyugati station, which take around 25 minutes on the fast train and 40 minutes on the slow train. From Vác there's a bus to the nearest village to Társa Pagony, but you have to walk the rest of the way on a country road, so we don't recommend it.",
+                        'The address is: Társa Pagony, Penc, 2614 Hungary. There is a sign at the turn off at the side of the road (to your left when driving up from Penc).',
                       Hungarian:
-                        'Tömegközlekedéssel nehéz eljutni egészen a Társa Pagonyba, de Vácot könnyedén el lehet érni vonattal. Vácról bár megy fel egy busz a közeli faluba, onnan még sokat kell gyalogolni tovább az út mentén, ezért ezt nem javasoljuk.',
+                        'A pontos cím: Társa Pagony, Penc 2614. Penc irányából felfelé haladva az úton balra van egy tábla: ott kell behajtani.',
+                    }[language]
+                  }
+                  <br />
+                  {
+                    {
+                      English: 'There is free parking at the venue.',
+                      Hungarian: 'A helyszínen a parkolás díjmentes.',
                     }[language]
                   }
                 </p>

@@ -92,7 +92,7 @@ const Venue = () => {
                 English:
                   'Throughout the day, we will also spend time on the venue grounds, which feature a pond and a campfire pit. The ceremony will be held out here, at the back of the grounds.',
                 Hungarian:
-                  'A nap során a Pajta mögötti részen is fogunk időt tölteni, ahol egy tó és tűzrakóhely is található. A ceremónia itt, a terület hátsó részén lesz tartva.',
+                  'A nap során a Pajta mögötti részen is fogunk időt tölteni, ahol egy tó és tűzrakóhely is található. A ceremónia itt, a terület hátsó részén lesz megtartva.',
               }[language]
             }
           </p>

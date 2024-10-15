@@ -450,7 +450,7 @@ const RsvpForm = () => {
                     {
                       {
                         English: `Is there anything else you'd like to add?`,
-                        Hungarian: 'Van bármi más, amiről tudnunk kell?',
+                        Hungarian: 'Egyéb megjegyzés',
                       }[language]
                     }
                     <AutoResizeTextarea
