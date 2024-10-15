@@ -1,10 +1,16 @@
 main#login-page,
 main#change-password-page {
+  align-self: stretch;
+
   .form-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
+
+    @media only screen and (max-width: 768px) {
+      align-self: stretch;
+    }
 
     form {
       display: flex;
@@ -13,6 +19,10 @@ main#change-password-page {
       align-items: stretch;
       min-width: 400px;
       gap: 20px;
+
+      @media only screen and (max-width: 768px) {
+        min-width: auto;
+      }
 
       label {
         display: flex;
