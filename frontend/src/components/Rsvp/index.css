@@ -29,7 +29,7 @@ main#rsvp-page {
         border: none;
       }
 
-      >fieldset>legend::first-line,
+      >fieldset>legend>span.first-line,
       >label {
         font-weight: bold;
       }

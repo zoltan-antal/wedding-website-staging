@@ -22,8 +22,13 @@ const RadioGroup = ({
       <legend>
         {label.split('\n').map((line, index, array) => (
           <React.Fragment key={index}>
-            {line}
-            {index === 0 && markedRequired && <span>*</span>}
+            {index !== 0 && line}
+            {index === 0 && (
+              <span className="first-line">
+                {line}
+                {markedRequired && <span>*</span>}
+              </span>
+            )}
             {index < array.length - 1 && <br />}
           </React.Fragment>
         ))}
