@@ -126,8 +126,11 @@ html {
 
     @media only screen and (max-width: 768px) {
       width: auto !important;
-      padding-left: 15px;
-      padding-right: 15px;
+
+      &:not(#home-page) {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
     }
 
     h1 {
