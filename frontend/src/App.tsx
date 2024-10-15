@@ -10,6 +10,7 @@ import { Context } from './types/context';
 import guestService from './services/guest';
 import householdService from './services/household';
 import authService from './services/auth';
+import pingService from './services/ping';
 
 function App() {
   const [language, setLanguage] = useState<Language>(
@@ -83,6 +84,15 @@ function App() {
       window.removeEventListener('resize', adjustMainWidth);
     };
   }, [language]);
+
+  const hasPingedBackend = useRef(false);
+  useEffect(() => {
+    if (!hasPingedBackend.current) {
+      pingService.ping().then(() => {
+        hasPingedBackend.current = true;
+      });
+    }
+  }, []);
 
   return (
     <>
