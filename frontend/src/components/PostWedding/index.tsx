@@ -25,6 +25,7 @@ const PostWedding = () => {
         }
       </h1>
       <div>
+        <img src={promenade} id="photo-promenade" />
         <div className="section" id="intro">
           <p>
             <strong>
@@ -54,6 +55,7 @@ const PostWedding = () => {
             }
           </p>
         </div>
+        <img src={beach} id="photo-beach" />
         <div className="section" id="beach">
           <p>
             <strong>
@@ -91,6 +93,7 @@ const PostWedding = () => {
             }
           </p>
         </div>
+        <img src={bob} id="photo-bob" />
         <div className="section" id="bob">
           <p>
             {
@@ -103,6 +106,7 @@ const PostWedding = () => {
             }
           </p>
         </div>
+        <img src={town} id="photo-town" />
         <div className="section" id="logistics">
           <p>
             <strong>
@@ -141,10 +145,6 @@ const PostWedding = () => {
             }
           </p>
         </div>
-        <img src={promenade} id="photo-promenade" />
-        <img src={beach} id="photo-beach" />
-        <img src={bob} id="photo-bob" />
-        <img src={town} id="photo-town" />
         {language === 'English' && <img src={cover} id="photo-cover" />}
       </div>
     </main>

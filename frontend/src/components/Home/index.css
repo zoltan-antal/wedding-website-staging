@@ -20,8 +20,7 @@ main#home-page {
       "rsvp faq"
       "venue accommodation"
       "travel schedule";
-    overflow: auto;
-    overflow-x: hidden;
+    overflow-y: auto;
 
     width: 100vw;
     padding-bottom: 0;

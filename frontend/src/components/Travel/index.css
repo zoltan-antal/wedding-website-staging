@@ -2,6 +2,10 @@ main#travel-page {
   .disclaimer {
     font-size: 1.15rem;
     margin-bottom: 20px;
+
+    @media only screen and (max-width: 768px) {
+      font-size: 1.1rem;
+    }
   }
 
   >div {
@@ -13,6 +17,11 @@ main#travel-page {
 
     width: 80%;
 
+
+    @media only screen and (max-width: 768px) {
+      width: auto;
+    }
+
     .section {
       display: flex;
       flex-direction: column;
@@ -20,19 +29,27 @@ main#travel-page {
       align-items: stretch;
       gap: 10px;
 
-      .subsection {
+      >div {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: stretch;
-        gap: 10px;
+        gap: 20px;
 
-        >div {
+        .subsection {
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
           align-items: stretch;
-          gap: 5px;
+          gap: 10px;
+
+          >div {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+            gap: 5px;
+          }
         }
       }
     }

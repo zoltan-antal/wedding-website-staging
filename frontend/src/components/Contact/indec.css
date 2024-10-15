@@ -13,6 +13,10 @@ main#contact-page {
     a {
       text-align: center;
       font-size: 1.05rem;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 1rem;
+      }
     }
 
     a {
@@ -21,6 +25,10 @@ main#contact-page {
       &#email {
         font-size: 1.3rem;
         font-weight: normal;
+
+        @media only screen and (max-width: 768px) {
+          font-size: 1.2rem;
+        }
       }
     }
   }

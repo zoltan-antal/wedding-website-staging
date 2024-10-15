@@ -24,68 +24,71 @@ const Travel = () => {
         {language === 'English' && (
           <div className="section">
             <h2>Getting into the city from Budapest airport</h2>
-            <div className="subsection">
-              <h3>By public transport</h3>
-              <div>
-                <p>
-                  There are two bus services that serve the airport: 100E and
-                  200E.
-                </p>
+            <div>
+              <div className="subsection">
+                <h3>By public transport</h3>
+                <div>
+                  <p>
+                    There are two bus services that serve the airport: 100E and
+                    200E.
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <b>100E</b>: This is the designated Airport Express for
+                    which you need a specific ticket. You can buy this at the
+                    airport or on the Budapest GO app. This will drop you at
+                    three stops in the city centre: Kálvin tér metro station,
+                    Astoria metro station, or Deák Ferenc tér metro station. It
+                    runs for 24 hours, 7 days a week and takes about 40 minutes
+                    to get to the city.
+                  </p>
+                  <p>
+                    <b>200E</b>: This is a regular bus service that runs to
+                    Kőbánya-Kispest metro station. You can use any valid public
+                    transport ticket or pass on it, which can be bought at the
+                    airport or on the Budapest GO app. From there, you can take
+                    Metro Line 3 to get to the city centre. The whole journey
+                    should take around 50 minutes. The service runs from 3:45am
+                    until 11:03pm on weekdays and 3:22am until 11:03pm on
+                    weekends. At night, this service runs to Határ út metro
+                    station. From here, you can take one of four night buses
+                    into the city centre.
+                  </p>
+                  <p>
+                    For both of these services, if you buy a ticket, you must
+                    validate it once you are on the bus. There are little
+                    machines on the bus poles where you can insert your ticket
+                    and it will mark it. If taking the metro, you must validate
+                    it at the metro entrance before you get to the platform.
+                  </p>
+                </div>
               </div>
-              <div>
-                <p>
-                  <b>100E</b>: This is the designated Airport Express for which
-                  you need a specific ticket. You can buy this at the airport or
-                  on the Budapest GO app. This will drop you at three stops in
-                  the city centre: Kálvin tér metro station, Astoria metro
-                  station, or Deák Ferenc tér metro station. It runs for 24
-                  hours, 7 days a week and takes about 40 minutes to get to the
-                  city.
-                </p>
-                <p>
-                  <b>200E</b>: This is a regular bus service that runs to
-                  Kőbánya-Kispest metro station. You can use any valid public
-                  transport ticket or pass on it, which can be bought at the
-                  airport or on the Budapest GO app. From there, you can take
-                  Metro Line 3 to get to the city centre. The whole journey
-                  should take around 50 minutes. The service runs from 3:45am
-                  until 11:03pm on weekdays and 3:22am until 11:03pm on
-                  weekends. At night, this service runs to Határ út metro
-                  station. From here, you can take one of four night buses into
-                  the city centre.
-                </p>
-                <p>
-                  For both of these services, if you buy a ticket, you must
-                  validate it once you are on the bus. There are little machines
-                  on the bus poles where you can insert your ticket and it will
-                  mark it. If taking the metro, you must validate it at the
-                  metro entrance before you get to the platform.
-                </p>
-              </div>
-            </div>
-            <div className="subsection">
-              <h3>By taxi</h3>
-              <div>
-                <p>
-                  All licensed taxis in Budapest are yellow. The main company
-                  serving the airport is called Főtaxi, but there are other
-                  licences taxi companies (even Uber and Bolt are licensed and
-                  yellow). All companies operate at the same price, so we
-                  recommend you use Főtaxi.
-                </p>
-                <p>
-                  The rates are a fixed tariff of 440 HUF/km (£0.92/km), in
-                  addition to a one-off base fee of 1100 HUF (£2.29) and a
-                  waiting fee. A ride to the city centre should typically cost
-                  around 10000-12500 HUF (£20-25), depending on traffic
-                  conditions. You should be able to pay by card.
-                </p>
-                <p>
-                  You can make a reservation at the Főtaxi booths located at the
-                  exits of Terminals 2A and 2B. We recommend booking here rather
-                  than flagging down a taxi as there could be non-licensed taxi
-                  service providers soliciting at the terminal buildings.
-                </p>
+              <div className="subsection">
+                <h3>By taxi</h3>
+                <div>
+                  <p>
+                    All licensed taxis in Budapest are yellow. The main company
+                    serving the airport is called Főtaxi, but there are other
+                    licences taxi companies (even Uber and Bolt are licensed and
+                    yellow). All companies operate at the same price, so we
+                    recommend you use Főtaxi.
+                  </p>
+                  <p>
+                    The rates are a fixed tariff of 440 HUF/km (£0.92/km), in
+                    addition to a one-off base fee of 1100 HUF (£2.29) and a
+                    waiting fee. A ride to the city centre should typically cost
+                    around 10000-12500 HUF (£20-25), depending on traffic
+                    conditions. You should be able to pay by card.
+                  </p>
+                  <p>
+                    You can make a reservation at the Főtaxi booths located at
+                    the exits of Terminals 2A and 2B. We recommend booking here
+                    rather than flagging down a taxi as there could be
+                    non-licensed taxi service providers soliciting at the
+                    terminal buildings.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -101,110 +104,115 @@ const Travel = () => {
                 passes valid for several days.
               </p>
             </div>
-            <div className="subsection">
-              <h3>Ticket guide</h3>
-              <div>
-                <p>
-                  All tickets and passes are only valid within the city limits,
-                  however you are unlikely to go outside of this zone.
-                </p>
+            <div>
+              <div className="subsection">
+                <h3>Ticket guide</h3>
+                <div>
+                  <p>
+                    All tickets and passes are only valid within the city
+                    limits, however you are unlikely to go outside of this zone.
+                  </p>
+                </div>
+                <div>
+                  <h4>Single ticket</h4>
+                  <p>Cost: 450 HUF (600 HUF if you buy from the driver)</p>
+                  <p>
+                    Use: a single journey on one type of transport. Needs to be
+                    validated. Whenever you get off and transfer to a new line
+                    (even if you're on the same type of transport), you'll need
+                    to use and validate a new ticket.
+                  </p>
+                </div>
+                <div>
+                  <h4>Set of 10 single tickets</h4>
+                  <p>Cost: 4000 HUF</p>
+                  <p>
+                    Use: Cheaper way to buy single tickets if you need many.
+                  </p>
+                </div>
+                <div>
+                  <h4>Airport transfer ticket</h4>
+                  <p>Cost: 2200 HUF</p>
+                  <p>
+                    Use: Specific ticket for the 100E airport bus straight to
+                    the city centre from the airport.
+                  </p>
+                </div>
+                <div>
+                  <h4>30 & 90 minute tickets</h4>
+                  <p>Cost: 530/750 HUF</p>
+                  <p>
+                    Use: Allows you an unlimited number of transfers between all
+                    types of transport. Needs validating when you begin your
+                    journey.
+                  </p>
+                </div>
+                <div>
+                  <h4>24 & 72 hour travelcards:</h4>
+                  <p>Cost: 2500/5500 HUF</p>
+                  <p>
+                    Use: Valid for the time period for an unlimited number of
+                    trips. If you purchase a paper version, the ticket will
+                    start the time period immediately. If you purchase a mobile
+                    ticket, you can choose when the validity starts. There's
+                    also a group 24 hour ticket for 5000 HUF, on which 5 people
+                    can travel together.
+                  </p>
+                </div>
+                <div>
+                  <h4>15 day pass</h4>
+                  <p>Cost: 5950 HUF</p>
+                  <p>
+                    Use: If you're staying in Budapest for more than 72 hours,
+                    we recommend buying this ticket as it works out cheaper than
+                    buying multiple 24/72 hour tickets.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4>Single ticket</h4>
-                <p>Cost: 450 HUF (600 HUF if you buy from the driver)</p>
-                <p>
-                  Use: a single journey on one type of transport. Needs to be
-                  validated. Whenever you get off and transfer to a new line
-                  (even if you're on the same type of transport), you'll need to
-                  use and validate a new ticket.
-                </p>
-              </div>
-              <div>
-                <h4>Set of 10 single tickets</h4>
-                <p>Cost: 4000 HUF</p>
-                <p>Use: Cheaper way to buy single tickets if you need many.</p>
-              </div>
-              <div>
-                <h4>Airport transfer ticket</h4>
-                <p>Cost: 2200 HUF</p>
-                <p>
-                  Use: Specific ticket for the 100E airport bus straight to the
-                  city centre from the airport.
-                </p>
-              </div>
-              <div>
-                <h4>30 & 90 minute tickets</h4>
-                <p>Cost: 530/750 HUF</p>
-                <p>
-                  Use: Allows you an unlimited number of transfers between all
-                  types of transport. Needs validating when you begin your
-                  journey.
-                </p>
-              </div>
-              <div>
-                <h4>24 & 72 hour travelcards:</h4>
-                <p>Cost: 2500/5500 HUF</p>
-                <p>
-                  Use: Valid for the time period for an unlimited number of
-                  trips. If you purchase a paper version, the ticket will start
-                  the time period immediately. If you purchase a mobile ticket,
-                  you can choose when the validity starts. There's also a group
-                  24 hour ticket for 5000 HUF, on which 5 people can travel
-                  together.
-                </p>
-              </div>
-              <div>
-                <h4>15 day pass</h4>
-                <p>Cost: 5950 HUF</p>
-                <p>
-                  Use: If you're staying in Budapest for more than 72 hours, we
-                  recommend buying this ticket as it works out cheaper than
-                  buying multiple 24/72 hour tickets.
-                </p>
-              </div>
-            </div>
-            <div className="subsection">
-              <h3>Ticket validation & other advice</h3>
-              <div>
-                <p>
-                  <b>Bus</b>: There are be little machines mounted on the poles
-                  inside the bus. You insert your ticket into the opening and it
-                  should make a noise and mark the ticket once you've inserted
-                  it in far enough. Some buses will request that you board at
-                  the front door and show the driver your ticket. The bus will
-                  say on the front "Felszállás az első ajtón". This is more
-                  common in smaller buses outside of the city centre.
-                </p>
-              </div>
-              <div>
-                <p>
-                  <b>Tram/suburban railway</b>: The same machines are also on
-                  the tram. On some trams, there's an old style of validating
-                  tickets whereby you insert your ticket into the red block on
-                  the top of the machine. You then pull the block towards you
-                  until you can't pull it further, then release. These can be
-                  temperamental so if one doesn't work, try another.
-                </p>
-              </div>
-              <div>
-                <p>
-                  <b>Metro</b>: The validation machines will be at the metro
-                  entrance before you get to the platform.
-                </p>
-              </div>
-              <div>
-                <p>
-                  <b>Inspectors</b>: Budapest Transport inspectors will randomly
-                  come onto trams and buses and ask to see your ticket. The
-                  inspectors will sometimes be stationed to check your tickets
-                  at the entrance/exit at the metro stops.
-                  <br />
-                  When you purchase a pass on the mobile app, it will ask you to
-                  enter the an ID number. You can use your driving licence or
-                  passport, but you have to have this piece of ID on you when
-                  you use the pass. The inspectors rarely ask for it, but you'll
-                  need it if they do.
-                </p>
+              <div className="subsection">
+                <h3>Ticket validation & other advice</h3>
+                <div>
+                  <p>
+                    <b>Bus</b>: There are be little machines mounted on the
+                    poles inside the bus. You insert your ticket into the
+                    opening and it should make a noise and mark the ticket once
+                    you've inserted it in far enough. Some buses will request
+                    that you board at the front door and show the driver your
+                    ticket. The bus will say on the front "Felszállás az első
+                    ajtón". This is more common in smaller buses outside of the
+                    city centre.
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <b>Tram/suburban railway</b>: The same machines are also on
+                    the tram. On some trams, there's an old style of validating
+                    tickets whereby you insert your ticket into the red block on
+                    the top of the machine. You then pull the block towards you
+                    until you can't pull it further, then release. These can be
+                    temperamental so if one doesn't work, try another.
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <b>Metro</b>: The validation machines will be at the metro
+                    entrance before you get to the platform.
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <b>Inspectors</b>: Budapest Transport inspectors will
+                    randomly come onto trams and buses and ask to see your
+                    ticket. The inspectors will sometimes be stationed to check
+                    your tickets at the entrance/exit at the metro stops.
+                    <br />
+                    When you purchase a pass on the mobile app, it will ask you
+                    to enter the an ID number. You can use your driving licence
+                    or passport, but you have to have this piece of ID on you
+                    when you use the pass. The inspectors rarely ask for it, but
+                    you'll need it if they do.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -240,48 +248,50 @@ const Travel = () => {
               }[language]
             }
           </h2>
-          <div className="subsection">
-            <h3>
-              {
-                {
-                  English: 'By car',
-                  Hungarian: 'Autóval',
-                }[language]
-              }
-            </h3>
-            <div>
-              <p>
+          <div>
+            <div className="subsection">
+              <h3>
                 {
                   {
-                    English:
-                      'Társa Pagony is a roughly 45 minute drive from the centre of Budapest, depending on traffic. The address is: Társa Pagony, Penc, 2614 Hungary. There is a sign at the turn off at the side of the road (to your left when driving up from Penc). There is free parking at the venue.',
-                    Hungarian:
-                      'A Társa Pagonyt nagyjából 45 alatt lehet elérni Budapestről autóval, a forgalomtól függően. A pontos cím: Társa Pagony, Penc 2614. Penc irányából felfelé haladva az úton balra van egy tábla: ott kell behajtani. A helyszínen a parkolás díjmentes.',
+                    English: 'By car',
+                    Hungarian: 'Autóval',
                   }[language]
                 }
-              </p>
+              </h3>
+              <div>
+                <p>
+                  {
+                    {
+                      English:
+                        'Társa Pagony is a roughly 45 minute drive from the centre of Budapest, depending on traffic. The address is: Társa Pagony, Penc, 2614 Hungary. There is a sign at the turn off at the side of the road (to your left when driving up from Penc). There is free parking at the venue.',
+                      Hungarian:
+                        'A Társa Pagonyt nagyjából 45 alatt lehet elérni Budapestről autóval, a forgalomtól függően. A pontos cím: Társa Pagony, Penc 2614. Penc irányából felfelé haladva az úton balra van egy tábla: ott kell behajtani. A helyszínen a parkolás díjmentes.',
+                    }[language]
+                  }
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="subsection">
-            <h3>
-              {
-                {
-                  English: 'By public transport',
-                  Hungarian: 'Tömegközlekedéssel',
-                }[language]
-              }
-            </h3>
-            <div>
-              <p>
+            <div className="subsection">
+              <h3>
                 {
                   {
-                    English:
-                      "It's difficult to get all the way to Társa Pagony by public transport, but you're able to get to the nearby town of Vác. There are trains that run from Budapest's Nyugati station, which take around 25 minutes on the fast train and 40 minutes on the slow train. From Vác there's a bus to the nearest village to Társa Pagony, but you have to walk the rest of the way on a country road, so we don't recommend it.",
-                    Hungarian:
-                      'Tömegközlekedéssel nehéz eljutni egészen a Társa Pagonyba, de Vácot könnyedén el lehet érni vonattal. Vácról bár megy fel egy busz a közeli faluba, onnan még sokat kell gyalogolni tovább az út mentén, ezért ezt nem javasoljuk.',
+                    English: 'By public transport',
+                    Hungarian: 'Tömegközlekedéssel',
                   }[language]
                 }
-              </p>
+              </h3>
+              <div>
+                <p>
+                  {
+                    {
+                      English:
+                        "It's difficult to get all the way to Társa Pagony by public transport, but you're able to get to the nearby town of Vác. There are trains that run from Budapest's Nyugati station, which take around 25 minutes on the fast train and 40 minutes on the slow train. From Vác there's a bus to the nearest village to Társa Pagony, but you have to walk the rest of the way on a country road, so we don't recommend it.",
+                      Hungarian:
+                        'Tömegközlekedéssel nehéz eljutni egészen a Társa Pagonyba, de Vácot könnyedén el lehet érni vonattal. Vácról bár megy fel egy busz a közeli faluba, onnan még sokat kell gyalogolni tovább az út mentén, ezért ezt nem javasoljuk.',
+                    }[language]
+                  }
+                </p>
+              </div>
             </div>
           </div>
         </div>
