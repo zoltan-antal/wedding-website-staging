@@ -115,13 +115,15 @@ const RsvpForm = () => {
           <form onSubmit={handleSubmit}>
             <fieldset>
               <legend>
-                {
+                <span className="first-line">
                   {
-                    English: 'Who will be attending?',
-                    Hungarian: 'Ki jön?',
-                  }[language]
-                }
-                <span>*</span>
+                    {
+                      English: 'Who will be attending?',
+                      Hungarian: 'Ki jön?',
+                    }[language]
+                  }
+                  <span>*</span>
+                </span>
               </legend>
               {household.guests
                 .toSorted((a, b) => {
