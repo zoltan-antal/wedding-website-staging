@@ -1,4 +1,13 @@
 main#travel-page {
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-align: center;
+  }
+
   .disclaimer {
     font-size: 1.15rem;
     margin-bottom: 20px;
@@ -12,7 +21,7 @@ main#travel-page {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: stretch;
+    align-items: center;
     gap: 30px;
 
     width: 80%;
@@ -26,28 +35,28 @@ main#travel-page {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      align-items: stretch;
+      align-items: center;
       gap: 10px;
 
       >div {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: stretch;
+        align-items: center;
         gap: 20px;
 
         .subsection {
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
-          align-items: stretch;
+          align-items: center;
           gap: 10px;
 
           >div {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            align-items: stretch;
+            align-items: center;
             gap: 5px;
           }
         }
