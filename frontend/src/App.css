@@ -95,7 +95,7 @@ html {
   align-items: stretch;
 
   /* overflow-y: scroll; */
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 
   --text: black;
   --green: #025839;
