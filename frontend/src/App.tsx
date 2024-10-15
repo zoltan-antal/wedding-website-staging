@@ -107,7 +107,7 @@ function App() {
         setHousehold={setHousehold}
         navRef={navRef}
       ></Header>
-      {!menuOpen && (
+      {(!mobileView || !menuOpen) && (
         <Outlet
           context={
             {

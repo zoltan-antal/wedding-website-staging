@@ -51,7 +51,9 @@ nav {
   }
 
   @media only screen and not (max-width: 768px) {
-    ul.account-buttons {
+
+    ul.account-buttons,
+    ul.language-button {
       display: none;
     }
   }
