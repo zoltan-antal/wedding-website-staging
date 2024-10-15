@@ -3,6 +3,10 @@ main#faq-page {
     gap: 10px;
     columns: 2;
     column-gap: 32px;
+
+    @media only screen and (max-width: 768px) {
+      columns: auto;
+    }
   }
 
   .item {
