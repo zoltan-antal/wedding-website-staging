@@ -65,6 +65,10 @@ main#rsvp-page {
         justify-content: flex-start;
         align-items: stretch;
       }
+
+      .processing {
+        margin-top: -10px;
+      }
     }
   }
 

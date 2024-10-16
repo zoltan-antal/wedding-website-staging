@@ -1,7 +1,7 @@
 header {
   display: grid;
 
-  grid-template-columns: 15% auto 15%;
+  grid-template-columns: 1fr auto 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:
     "language-button title account-buttons"

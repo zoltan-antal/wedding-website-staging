@@ -17,6 +17,7 @@ const RsvpForm = () => {
 
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [submissionSuccess, setSubmissionSuccess] = useState<boolean>(false);
+  const [processing, setProcessing] = useState<boolean>(false);
 
   const [formData, updateFormData] = useImmer<RsvpFormData>({
     guestsAttending: household
@@ -78,6 +79,7 @@ const RsvpForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setProcessing(true);
     try {
       setButtonDisabled(true);
       const responseBody = await rsvpService.submitRsvp(
@@ -91,10 +93,12 @@ const RsvpForm = () => {
         setHousehold(
           (prev) => ({ ...prev, rsvps: responseBody.rsvps } as Household)
         );
+        setProcessing(false);
         navigate('/');
       }, 1500);
     } catch (error) {
       setButtonDisabled(false);
+      setProcessing(false);
     }
   };
 
@@ -514,6 +518,16 @@ const RsvpForm = () => {
                 }[language]
               }
             </button>
+            {processing && (
+              <p className="processing">
+                {
+                  {
+                    English: 'Please wait...',
+                    Hungarian: 'Kérjük türelmedet...',
+                  }[language]
+                }
+              </p>
+            )}
           </form>
         </div>
       )}

@@ -13,6 +13,7 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [processing, setProcessing] = useState<boolean>(false);
 
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
@@ -30,10 +31,12 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
 
   const handleNext = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setProcessing(true);
     try {
       setButtonDisabled(true);
       const guestDetails = await guestService.findGuest(firstName, lastName);
       setErrorMessage('');
+      setProcessing(false);
       onNext(firstName, lastName, guestDetails.hasPassword);
     } catch (error) {
       setErrorMessage(
@@ -43,6 +46,7 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
         }[language]
       );
       setButtonDisabled(false);
+      setProcessing(false);
     }
   };
 
@@ -88,6 +92,15 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
           }[language]
         }
       </button>
+      {processing && (
+        <p className="processing">
+          {
+            { English: 'Please wait...', Hungarian: 'Kérjük türelmedet...' }[
+              language
+            ]
+          }
+        </p>
+      )}
       <p className="error">{errorMessage}</p>
     </form>
   );
