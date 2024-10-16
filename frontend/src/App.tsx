@@ -16,7 +16,7 @@ function App() {
   const [language, setLanguage] = useState<Language>(
     localStorage.getItem('EllaZoltanLanguage') !== null
       ? (localStorage.getItem('EllaZoltanLanguage') as Language)
-      : navigator.language === 'hu'
+      : navigator.language === 'hu' || navigator.languages.includes('hu')
       ? 'Hungarian'
       : 'English'
   );
