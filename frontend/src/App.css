@@ -273,4 +273,32 @@ html {
     }
 
   }
+
+  img.speckle {
+    position: fixed;
+    z-index: -1;
+    pointer-events: none;
+
+    width: 55vw;
+    rotate: 240deg;
+    left: 27.5%;
+    top: 3%;
+    opacity: 0.2;
+
+    @media only screen and (max-width: 768px) {
+      width: 140vw;
+      rotate: 170deg;
+      left: -15%;
+      top: 8%;
+    }
+
+    &:has(~ main#travel-page),
+    &:has(~ main#schedule-page),
+    &:has(~ main#dress-code-page),
+    &:has(~ main#faq-page),
+    &:has(~ main#contact-page),
+    &:has(~ main#rsvp-page) {
+      opacity: 0.125;
+    }
+  }
 }
