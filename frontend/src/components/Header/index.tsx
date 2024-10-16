@@ -6,6 +6,7 @@ import Nav from './Nav';
 import AccountButtons from './AccountButtons';
 import LanguageButton from './LanguageButton';
 import './index.css';
+import leafImage from '../../assets/images/graphics/leaf.webp';
 
 interface HeaderProps {
   mobileView: boolean;
@@ -38,6 +39,8 @@ const Header = ({
         <button className="menu-button" onClick={toggleMenu}>
           <img src={menuIcon} />
         </button>
+        <img src={leafImage} id="leaf-left" />
+        <img src={leafImage} id="leaf-right" />
         <h1 className="names">
           Ella{' '}
           <span className="ampersand">
