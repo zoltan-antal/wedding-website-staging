@@ -11,6 +11,7 @@ import guestService from './services/guest';
 import householdService from './services/household';
 import authService from './services/auth';
 import pingService from './services/ping';
+import speckleImage from './assets/images/graphics/speckle.webp';
 
 function App() {
   const [language, setLanguage] = useState<Language>(
@@ -96,6 +97,7 @@ function App() {
 
   return (
     <>
+      <img src={speckleImage} className="speckle" id="speckle" />
       <Header
         mobileView={mobileView}
         menuOpen={menuOpen}
