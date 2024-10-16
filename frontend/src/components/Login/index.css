@@ -38,7 +38,8 @@ main#change-password-page {
         }
       }
 
-      .error {
+      .error,
+      .processing {
         margin-top: -10px;
       }
     }
