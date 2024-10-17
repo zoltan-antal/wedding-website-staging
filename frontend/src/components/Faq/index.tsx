@@ -54,7 +54,7 @@ const Faq = () => {
                   English:
                     "Due to the nature of the venue, we're unfortunately unable to accommodate children. However, they're more than welcome to join us at Balaton for the post-wedding wind-down. Thank you for your understanding.",
                   Hungarian:
-                    'A helyszín jellegéből adódóan sajnos nem tudunk gyerekeket fogadni. Ugyanakkor szívesen látjuk őket az esküvő utáni Balatoni lazításon. Köszönjük a megértést.',
+                    'A helyszín jellegéből adódóan sajnos nem tudunk gyerekeket fogadni. Ugyanakkor szívesen látjuk őket az esküvő utáni Balatoni lazuláson. Köszönjük a megértést.',
                 }[language]
               }
             </p>
@@ -106,9 +106,9 @@ const Faq = () => {
               {
                 {
                   English:
-                    "There will be an open bar throughout the day, with a selection of soft drinks, beer & wine. Please don't bring your own drinks.",
+                    "There will be an open bar throughout the day, with a selection of soft drinks, beer, wine & coffee. Please don't bring your own drinks.",
                   Hungarian:
-                    'Korlátlan italfogyasztást biztosítunk a nap során, üdítőitalok, sör és bor választékával. Kérjük, ne hozzatok magatokkal saját italt.',
+                    'Korlátlan italfogyasztást biztosítunk a nap során, üdítőitalok, sör, bor és kávé választékával. Kérjük, ne hozzatok magatokkal saját italt.',
                 }[language]
               }
             </p>
@@ -228,7 +228,7 @@ const Faq = () => {
                   English:
                     "As we'll have a professional photographer and videographer, please be aware that the event will be recorded.",
                   Hungarian:
-                    'Mivel profi fotós és videós lesz jelen, az eseményt rögzítésre fog kerülni.',
+                    'Mivel profi fotós és videós lesz jelen, az esemény rögzítésre fog kerülni.',
                 }[language]
               }
             </p>

@@ -31,7 +31,7 @@ const Venue = () => {
                 English:
                   'An exclusive area in the far reaches of the Pest countryside, surrounded by woodland, ideal for undisturbed festivities. We hope you will love it as much as we do!',
                 Hungarian:
-                  'Ez egy különleges helyszín Pest megye szélén, erdőkkel övezve: ideális zavartalan ünnepléshez. Reméljük, nektek is annyira fog tetszeni, mint nekünk!',
+                  'Ez egy különleges helyszín a Cserhát lábánál, erdőkkel övezve: ideális a zavartalan ünnepléshez. Reméljük, nektek is annyira fog tetszeni, mint nekünk!',
               }[language]
             }
           </p>
@@ -66,7 +66,7 @@ const Venue = () => {
                 English:
                   "The reception will take place inside the Barn. You will also find here the bar, a kitchen, and bathrooms with toilets and showers. There's also a quieter lobby if you need some space.",
                 Hungarian:
-                  'A fogadásra a Pajtában kerül sor. Itt található a bár, konyha, valamint mosdók WC-vel és zuhanyzóval. Van egy csendesebb mellékrész is, ha egy kis nyugalomra vágysz.',
+                  'A fogadásra a Pajtában kerül sor. Itt található a bár, konyha, valamint mosdók WC-vel és zuhanyzóval. Van egy csendesebb előtér is, ha egy kis nyugalomra vágysz.',
               }[language]
             }
           </p>
@@ -79,7 +79,7 @@ const Venue = () => {
                 English:
                   "One of the main attractions of Társa Pagony is the terrace where you can soak in the sprawling woodland views. It'll be decked out with seating for you to sit and relax at any point during the course of the day.",
                 Hungarian:
-                  'A Pagony egyik fő különlegessége a terasz, ahol kilátás fogad az erdőre. A nap folyamán bármikor leülhetsz pihenni a teraszon.',
+                  'A Pagony egyik fő különlegessége a terasz, ahol az erdőre néző kilátás fogad. A nap folyamán bármikor kiülhetsz pihenni a teraszon.',
               }[language]
             }
           </p>
@@ -92,7 +92,7 @@ const Venue = () => {
                 English:
                   'Throughout the day, we will also spend time on the venue grounds, which feature a pond and a campfire pit. The ceremony will be held out here, at the back of the grounds.',
                 Hungarian:
-                  'A nap során a Pajta mögötti részen is fogunk időt tölteni, ahol egy tó és tűzrakóhely is található. A ceremónia itt, a terület hátsó részén lesz megtartva.',
+                  'A nap során a Pajta mögötti részen is fogunk időt tölteni, ahol egy tavacska és tűzrakóhely is található. A ceremónia itt, a terület hátsó részén lesz megtartva.',
               }[language]
             }
           </p>

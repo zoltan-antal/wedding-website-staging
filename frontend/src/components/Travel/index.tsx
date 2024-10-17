@@ -29,38 +29,27 @@ const Travel = () => {
                 <h3>By public transport</h3>
                 <div>
                   <p>
-                    There are two bus services that serve the airport: 100E and
-                    200E.
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    <b>100E</b>: This is the designated Airport Express for
-                    which you need a specific ticket. You can buy this at the
-                    airport or on the Budapest GO app. This will drop you at
-                    three stops in the city centre: Kálvin tér metro station,
-                    Astoria metro station, or Deák Ferenc tér metro station. It
-                    runs for 24 hours, 7 days a week and takes about 40 minutes
-                    to get to the city.
+                    There is a designated Airport Express bus service that takes
+                    you into the city centre: bus <b>100E</b>.
                   </p>
                   <p>
-                    <b>200E</b>: This is a regular bus service that runs to
-                    Kőbánya-Kispest metro station. You can use any valid public
-                    transport ticket or pass on it, which can be bought at the
-                    airport or on the Budapest GO app. From there, you can take
-                    Metro Line 3 to get to the city centre. The whole journey
-                    should take around 50 minutes. The service runs from 3:45am
-                    until 11:03pm on weekdays and 3:22am until 11:03pm on
-                    weekends. At night, this service runs to Határ út metro
-                    station. From here, you can take one of four night buses
-                    into the city centre.
+                    This will drop you at three stops in the city centre: Kálvin
+                    tér metro station, Astoria metro station, or Deák Ferenc tér
+                    metro station. It runs for 24 hours, 7 days a week and takes
+                    about 40 minutes to get to the city.
                   </p>
                   <p>
-                    For both of these services, if you buy a ticket, you must
-                    validate it once you are on the bus. There are little
+                    You need a specific ticket for this service (the normal
+                    public transport single tickets and passes are not valid for
+                    this service). You can buy the ticket at the airport or on
+                    the Budapest GO app.
+                  </p>
+                  <p>
+                    You must validate your ticket before getting on the bus by
+                    scanning the QR code if using a digital ticket, or once you
+                    are on the bus if using a physical ticket. There are little
                     machines on the bus poles where you can insert your ticket
-                    and it will mark it. If taking the metro, you must validate
-                    it at the metro entrance before you get to the platform.
+                    and it will mark it.
                   </p>
                 </div>
               </div>
@@ -148,7 +137,7 @@ const Travel = () => {
                   </p>
                 </div>
                 <div>
-                  <h4>24 & 72 hour travelcards:</h4>
+                  <h4>24 & 72 hour travelcards</h4>
                   <p>Cost: 2500/5500 HUF</p>
                   <p>
                     Use: Valid for the time period for an unlimited number of
@@ -172,6 +161,21 @@ const Travel = () => {
               <div className="subsection">
                 <h3>Ticket validation & other advice</h3>
                 <div>
+                  <p>
+                    Tickets must validated when you begin your journey. Passes
+                    and travelcards don't need to be validated.
+                  </p>
+                </div>
+                <div>
+                  <h4>Digital tickets</h4>
+                  <p>
+                    If you bought your ticket on the Budapest GO app, you need
+                    to scan the QR code at the side of the vehicle before you
+                    get on the bus/tram etc.
+                  </p>
+                </div>
+                <div>
+                  <h4>Physical tickets</h4>
                   <p>
                     <b>Bus</b>: There are be little machines mounted on the
                     poles inside the bus. You insert your ticket into the
@@ -200,11 +204,12 @@ const Travel = () => {
                   </p>
                 </div>
                 <div>
+                  <h4>Inspectors</h4>
                   <p>
-                    <b>Inspectors</b>: Budapest Transport inspectors will
-                    randomly come onto trams and buses and ask to see your
-                    ticket. The inspectors will sometimes be stationed to check
-                    your tickets at the entrance/exit at the metro stops.
+                    Budapest Transport inspectors will randomly come onto trams
+                    and buses and ask to see your ticket. The inspectors will
+                    sometimes be stationed to check your tickets at the
+                    entrance/exit at the metro stops.
                     <br />
                     When you purchase a pass on the mobile app, it will ask you
                     to enter the an ID number. You can use your driving licence
@@ -233,7 +238,7 @@ const Travel = () => {
                   English:
                     "We will arrange transport to and from Budapest. Once we have final numbers we'll give you more information on this.",
                   Hungarian:
-                    'Biztosítjuk az utazást Budapest és a helyszín között. Ha megvan a végleges létszám, további információt adunk majd erről.',
+                    'Budapest és a helyszín között biztosítjuk az utazást. Ha megvan a végleges létszám, további információt küldünk még erről.',
                 }[language]
               }
             </p>
@@ -265,7 +270,7 @@ const Travel = () => {
                       English:
                         'Társa Pagony is a roughly 45 minute drive from the centre of Budapest, depending on traffic.',
                       Hungarian:
-                        'A Társa Pagonyt forgalomtól függően nagyjából 45 perc alatt lehet elérni Budapestről autóval.',
+                        'Budapestről a Társa Pagonyt forgalomtól függően nagyjából 45 perc alatt lehet elérni.',
                     }[language]
                   }
                   <br />
