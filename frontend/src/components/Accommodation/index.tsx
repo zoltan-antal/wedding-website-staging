@@ -70,7 +70,7 @@ const Accommodation = () => {
                   English:
                     "As the number of tents are limited, you'll also be offered the choice on the RSVP form to stay in a hotel in the nearby town of Vác (a 15-minute drive away). We'll have a shuttle running back to the hotel every hour on Saturday night. The choice of hotel will depend on guest numbers (details to follow after the RSVP deadline).",
                   Hungarian:
-                    'Mivel a sátrak korlátozott számban elérhetőek, a visszajelzési űrlapon az is fel van ajánlva, hogy egy közeli hotelben aludj Vácon (15 percre autóval). Szombat este óránkénti minibuszt biztosítunk majd a hotelhez. A konkrét hotel a vendégek végleges létszámától függ (részletek a visszajelzési határidő után).',
+                    'Mivel a sátrak korlátozott számban elérhetőek, a visszajelzési űrlapon arra is van választási lehetőség, hogy egy közeli hotelben aludj Vácon (15 percre autóval). Szombat este óránkénti minibuszt biztosítunk majd a hotelhez. A konkrét hotel a vendégek végleges létszámától függ (részletek a visszajelzési határidő után).',
                 }[language]
               }
             </p>

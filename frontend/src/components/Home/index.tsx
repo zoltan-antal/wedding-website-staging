@@ -48,7 +48,7 @@ const Home = () => {
           {
             {
               English: 'Get a sneak peek of our beautiful',
-              Hungarian: 'Érdekel, hol lesz az esküvő?',
+              Hungarian: 'Tekintsd meg, milyen lesz a',
             }[language]
           }
         </p>
@@ -61,7 +61,7 @@ const Home = () => {
           {
             {
               English: "Find out about where you'll be staying:",
-              Hungarian: 'Tekintsd meg, hol lehet aludni:',
+              Hungarian: 'Nézd meg, hol lehet aludni:',
             }[language]
           }
         </p>
@@ -73,8 +73,8 @@ const Home = () => {
         <p>
           {
             {
-              English: 'All you need to know about getting here:',
-              Hungarian: 'Minden, amit az idejutásról tudnod kell:',
+              English: 'All you need to know about getting there:',
+              Hungarian: 'Minden, amit az odajutásról tudnod kell:',
             }[language]
           }
         </p>

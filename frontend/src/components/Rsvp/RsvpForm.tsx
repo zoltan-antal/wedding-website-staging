@@ -337,7 +337,7 @@ const RsvpForm = () => {
                     trueLabel={
                       {
                         English: 'Require transport',
-                        Hungarian: `Szállítást ${
+                        Hungarian: `Utaztatást ${
                           numberOfAttendingGuests > 1
                             ? 'igényelnénk'
                             : 'igényelnék'
@@ -395,7 +395,7 @@ const RsvpForm = () => {
                           numberOfAttendingGuests > 1
                             ? 'megismerjétek'
                             : 'megismerd'
-                        } a többi vendéget, aki az esküvőre jön. Ez valószínűleg Budapesten történne.`,
+                        } a többi vendéget, aki jön az esküvőre. Ez valószínűleg Budapesten lenne.`,
                       }[language]
                     }
                     trueLabel={
@@ -432,7 +432,7 @@ const RsvpForm = () => {
                           'Would you be interested in joining us on a post-wedding trip down to Lake Balaton?\nThink chilling by (or swimming in) the lake, BBQ and other fun things. We will take the train down from Budapest on Monday and stay overnight, heading back Tuesday afternoon or evening.\nDetails will depend on interest.',
                         Hungarian: `Lenne ${
                           numberOfAttendingGuests > 1 ? 'kedvetek' : 'kedved'
-                        } csatlakozni hozzánk egy esküvői utáni kiruccanásra a Balatonon?\nStrandolásra, sütögetésre és hasonló programokra gondoltunk. Hétfőn mennénk le vonattal, egy éjszakát ott töltenénk, és kedd délután vagy este jönnénk vissza.\nTovábbi részletek az érdeklődés függvényében.`,
+                        } csatlakozni hozzánk egy esküvő utáni kiruccanásra a Balatonon?\nStrandolásra, sütögetésre és hasonló programokra gondoltunk. Hétfőn mennénk le vonattal, egy éjszakát ott töltenénk, és kedd délután vagy este jönnénk vissza.\nTovábbi részletek az érdeklődés függvényében.`,
                       }[language]
                     }
                     trueLabel={
@@ -510,7 +510,6 @@ const RsvpForm = () => {
               markedRequired={true}
             ></RadioCheckbox>
             <button type="submit" disabled={buttonDisabled}>
-              {' '}
               {
                 {
                   English: 'Submit',
