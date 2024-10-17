@@ -21,6 +21,78 @@ const Travel = () => {
         </p>
       )}
       <div>
+        <div className="section">
+          <h2>
+            {
+              {
+                English: 'Travel to the wedding from Budapest together',
+                Hungarian: 'Közös utazás a helyszínre',
+              }[language]
+            }
+          </h2>
+          <div>
+            <p>
+              {
+                {
+                  English:
+                    "We will arrange transport to and from Budapest. Once we have final numbers we'll give you more information on this.",
+                  Hungarian:
+                    'Budapest és a helyszín között biztosítjuk az utazást. Ha megvan a végleges létszám, további információt küldünk még erről.',
+                }[language]
+              }
+            </p>
+          </div>
+        </div>
+        <div className="section">
+          <h2>
+            {
+              {
+                English: 'Making your own way to the wedding',
+                Hungarian: 'Külön eljutás a helyszínre',
+              }[language]
+            }
+          </h2>
+          <div>
+            <div className="subsection">
+              <h3>
+                {
+                  {
+                    English: 'By car',
+                    Hungarian: 'Autóval',
+                  }[language]
+                }
+              </h3>
+              <div>
+                <p>
+                  {
+                    {
+                      English:
+                        'Társa Pagony is a roughly 45 minute drive from the centre of Budapest, depending on traffic.',
+                      Hungarian:
+                        'Budapestről a Társa Pagonyt forgalomtól függően nagyjából 45 perc alatt lehet elérni.',
+                    }[language]
+                  }
+                  <br />
+                  {
+                    {
+                      English:
+                        'The address is: Társa Pagony, Penc, 2614 Hungary. There is a sign at the turn off at the side of the road (to your left when driving up from Penc).',
+                      Hungarian:
+                        'A pontos cím: Társa Pagony, Penc 2614. Penc irányából felfelé haladva az úton balra van egy tábla: ott kell behajtani.',
+                    }[language]
+                  }
+                  <br />
+                  {
+                    {
+                      English: 'There is free parking at the venue.',
+                      Hungarian: 'A helyszínen a parkolás díjmentes.',
+                    }[language]
+                  }
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         {language === 'English' && (
           <div className="section">
             <h2>Getting into the city from Budapest airport</h2>
@@ -222,78 +294,6 @@ const Travel = () => {
             </div>
           </div>
         )}
-        <div className="section">
-          <h2>
-            {
-              {
-                English: 'Travel to the wedding together',
-                Hungarian: 'Közös utazás a helyszínre',
-              }[language]
-            }
-          </h2>
-          <div>
-            <p>
-              {
-                {
-                  English:
-                    "We will arrange transport to and from Budapest. Once we have final numbers we'll give you more information on this.",
-                  Hungarian:
-                    'Budapest és a helyszín között biztosítjuk az utazást. Ha megvan a végleges létszám, további információt küldünk még erről.',
-                }[language]
-              }
-            </p>
-          </div>
-        </div>
-        <div className="section">
-          <h2>
-            {
-              {
-                English: 'Making your own way',
-                Hungarian: 'Külön eljutás a helyszínre',
-              }[language]
-            }
-          </h2>
-          <div>
-            <div className="subsection">
-              <h3>
-                {
-                  {
-                    English: 'By car',
-                    Hungarian: 'Autóval',
-                  }[language]
-                }
-              </h3>
-              <div>
-                <p>
-                  {
-                    {
-                      English:
-                        'Társa Pagony is a roughly 45 minute drive from the centre of Budapest, depending on traffic.',
-                      Hungarian:
-                        'Budapestről a Társa Pagonyt forgalomtól függően nagyjából 45 perc alatt lehet elérni.',
-                    }[language]
-                  }
-                  <br />
-                  {
-                    {
-                      English:
-                        'The address is: Társa Pagony, Penc, 2614 Hungary. There is a sign at the turn off at the side of the road (to your left when driving up from Penc).',
-                      Hungarian:
-                        'A pontos cím: Társa Pagony, Penc 2614. Penc irányából felfelé haladva az úton balra van egy tábla: ott kell behajtani.',
-                    }[language]
-                  }
-                  <br />
-                  {
-                    {
-                      English: 'There is free parking at the venue.',
-                      Hungarian: 'A helyszínen a parkolás díjmentes.',
-                    }[language]
-                  }
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </main>
   );

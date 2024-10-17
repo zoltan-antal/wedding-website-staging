@@ -31,17 +31,20 @@ header {
 
     @media only screen and (max-width: 768px) {
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: 1fr auto auto auto 1fr;
       grid-template-rows: repeat(2, auto);
       grid-template-areas:
-        "menu names ."
-        ". date .";
+        "menu-button names names names ."
+        ". leaf-left date leaf-right. ";
+      column-gap: 0;
+      row-gap: 0;
+      padding-bottom: 1px;
     }
 
     padding: 5px 0 0;
 
     .menu-button {
-      grid-area: menu;
+      grid-area: menu-button;
 
       display: flex;
 
@@ -67,6 +70,8 @@ header {
       text-align: center;
 
       @media only screen and (max-width: 768px) {
+        align-self: center;
+
         font-size: 1.75rem;
       }
 
@@ -91,18 +96,21 @@ header {
       height: 150px;
 
       @media only screen and (max-width: 768px) {
-        display: none;
+        align-self: start;
+        height: 32px;
       }
     }
 
     #leaf-left {
       grid-area: leaf-left;
+      justify-self: end;
 
       rotate: -90deg;
     }
 
     #leaf-right {
       grid-area: leaf-right;
+      justify-self: start;
 
       rotate: 90deg;
       transform: scaleX(-1);
