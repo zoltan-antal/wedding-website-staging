@@ -17,6 +17,17 @@ main#travel-page {
     }
   }
 
+  .map {
+    width: 600px;
+    height: 450px;
+    border: 1px solid black;
+
+    @media only screen and (max-width: 768px) {
+      width: 100%;
+      height: auto;
+    }
+  }
+
   >div {
     display: flex;
     flex-direction: column;
