@@ -93,9 +93,9 @@ const createPassword = async (req: CreatePasswordRequest, res: Response) => {
     });
   }
 
-  if (password.length < 8) {
+  if (password.length < 6) {
     return res.status(400).json({
-      error: 'Password must be at least 8 characters long',
+      error: 'Password must be at least 6 characters long',
     });
   }
 
@@ -138,9 +138,9 @@ const changePassword = async (req: ChangePasswordRequest, res: Response) => {
       error: 'Password must be different than current password',
     });
   }
-  if (newPassword.length < 8) {
+  if (newPassword.length < 6) {
     return res.status(400).json({
-      error: 'Password must be at least 8 characters long',
+      error: 'Password must be at least 6 characters long',
     });
   }
 
