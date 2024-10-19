@@ -3,6 +3,19 @@ main#change-password-page,
 main#change-email-page {
   align-self: stretch;
 
+  #login-reason {
+    margin-bottom: 20px;
+
+    p {
+      text-align: center;
+      font-size: 1.15rem;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
   .form-wrapper {
     display: flex;
     flex-direction: column;

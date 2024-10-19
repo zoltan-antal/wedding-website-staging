@@ -9,6 +9,8 @@ import CreatePasswordStep from './CreatePasswordStep';
 import SetEmailStep from './SetEmailStep';
 import './index.css';
 
+type RedirectTo = '/' | '/accommodation' | '/rsvp';
+
 const Login = () => {
   const [step, setStep] = useState<
     'enter-name' | 'enter-password' | 'create-password' | 'set-email'
@@ -23,6 +25,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const [redirectTo, setRedirectTo] = useState<RedirectTo>('/');
 
   useEffect(() => {
     if (guest) {
@@ -30,6 +33,11 @@ const Login = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    setRedirectTo((queryParams.get('redirectTo') as RedirectTo) || '/');
+  });
 
   const handleNameEntered = (
     firstName: string,
@@ -57,13 +65,13 @@ const Login = () => {
     if (!hasEmail) {
       setStep('set-email');
     } else {
-      navigate(queryParams.get('redirectTo') || '/');
+      navigate(redirectTo);
     }
   };
 
   const handleEmailSet = () => {
     setHasEmail(true);
-    navigate(queryParams.get('redirectTo') || '/');
+    navigate(redirectTo);
   };
 
   return (
@@ -76,6 +84,47 @@ const Login = () => {
           }[language]
         }
       </h1>
+      {redirectTo !== '/' && step === 'enter-name' && (
+        <div id="login-reason">
+          {(() => {
+            switch (redirectTo) {
+              case '/rsvp':
+                return (
+                  <>
+                    <p>
+                      {
+                        {
+                          English: 'Please log in to RSVP.',
+                          Hungarian: 'Kérjük, jelentkezz be a visszajelzéshez.',
+                        }[language]
+                      }
+                      <br />
+                      {
+                        {
+                          English: 'The deadline is 15th January 2025.',
+                          Hungarian: 'A határidő 2025. január 15.',
+                        }[language]
+                      }
+                    </p>
+                  </>
+                );
+
+              default:
+                return (
+                  <p>
+                    {
+                      {
+                        English: 'Please log in to view this page.',
+                        Hungarian:
+                          'Kérjük, jelentkezz be ennek az oldalnak a megtekintéséhez.',
+                      }[language]
+                    }
+                  </p>
+                );
+            }
+          })()}
+        </div>
+      )}
       <div className="form-wrapper">
         {step === 'enter-name' && <EnterNameStep onNext={handleNameEntered} />}
         {step === 'enter-password' && (
