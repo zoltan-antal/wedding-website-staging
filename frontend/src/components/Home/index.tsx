@@ -5,32 +5,62 @@ import './index.css';
 
 const Home = () => {
   const { language, mainRef, navWidth } = useOutletContext<Context>();
+  const currentDate = new Date();
+  const deadlineDate = new Date('2025-01-16T00:00:00.000Z');
 
   return (
     <main ref={mainRef} style={{ width: `${navWidth}px` }} id="home-page">
       <Countdown></Countdown>
       <div id="rsvp">
-        <p>
-          {
-            {
-              English: "Let us know if you're coming!",
-              Hungarian: 'Reméljük, el tudsz jönni!',
-            }[language]
-          }
-          <br />
-          {
-            {
-              English: 'Please',
-              Hungarian: 'Kérjük,',
-            }[language]
-          }
-        </p>
-        <NavLink to={'/rsvp'}>
-          {{ English: 'RSVP', Hungarian: 'Jelezz vissza' }[language]}
-        </NavLink>
-        <p>
-          {{ English: 'by 15th January', Hungarian: 'január 15-ig' }[language]}
-        </p>
+        {currentDate < deadlineDate && (
+          <>
+            <p>
+              {
+                {
+                  English: "Let us know if you're coming!",
+                  Hungarian: 'Reméljük, el tudsz jönni!',
+                }[language]
+              }
+              <br />
+              {
+                {
+                  English: 'Please',
+                  Hungarian: 'Kérjük,',
+                }[language]
+              }
+            </p>
+            <NavLink to={'/rsvp'}>
+              {{ English: 'RSVP', Hungarian: 'Jelezz vissza' }[language]}
+            </NavLink>
+            <p>
+              {
+                { English: 'by 15th January', Hungarian: 'január 15-ig' }[
+                  language
+                ]
+              }
+            </p>
+          </>
+        )}
+        {currentDate >= deadlineDate && (
+          <>
+            <p>
+              {
+                {
+                  English: 'The RSVP deadline has passed.',
+                  Hungarian: 'A visszajelzési határidő lejárt.',
+                }[language]
+              }
+            </p>
+            <p>
+              {
+                {
+                  English: 'See you in July!',
+                  Hungarian: 'Találkozunk júliusban!',
+                }[language]
+              }
+            </p>
+          </>
+        )}
       </div>
       <div id="faq">
         <p>
