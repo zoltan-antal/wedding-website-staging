@@ -37,7 +37,7 @@ const Rsvp = () => {
         <RsvpForm></RsvpForm>
       )}
       {!!household?.rsvps.length && <AlreadySubmitted></AlreadySubmitted>}
-      {!household?.rsvps.length && currentDate > deadlineDate && (
+      {!household?.rsvps.length && currentDate >= deadlineDate && (
         <h2>
           {
             {
