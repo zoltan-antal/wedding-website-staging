@@ -4,7 +4,12 @@ import { Context } from '../../types/context';
 import guestService from '../../services/guest';
 
 interface EnterNameStepProps {
-  onNext: (firstName: string, lastName: string, hasPassword: boolean) => void;
+  onNext: (
+    firstName: string,
+    lastName: string,
+    hasPassword: boolean,
+    hasEmail: boolean
+  ) => void;
 }
 
 const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
@@ -37,7 +42,12 @@ const EnterNameStep = ({ onNext }: EnterNameStepProps) => {
       const guestDetails = await guestService.findGuest(firstName, lastName);
       setErrorMessage('');
       setProcessing(false);
-      onNext(firstName, lastName, guestDetails.hasPassword);
+      onNext(
+        firstName,
+        lastName,
+        guestDetails.hasPassword,
+        guestDetails.hasEmail
+      );
     } catch (error) {
       setErrorMessage(
         {

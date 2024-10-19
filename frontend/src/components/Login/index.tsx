@@ -18,7 +18,7 @@ const Login = () => {
 
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [hasEmail, setHasEmail] = useState<boolean>(true);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,10 +34,14 @@ const Login = () => {
   const handleNameEntered = (
     firstName: string,
     lastName: string,
-    hasPassword: boolean
+    hasPassword: boolean,
+    hasEmail: boolean
   ) => {
     setFirstName(firstName);
     setLastName(lastName);
+    if (!hasEmail) {
+      setHasEmail(false);
+    }
     if (hasPassword) {
       setStep('enter-password');
     } else {
@@ -45,16 +49,20 @@ const Login = () => {
     }
   };
 
-  const handlePasswordCreated = (password: string) => {
-    setPassword(password);
-    setStep('set-email');
-  };
-
   const handleLogin = async () => {
     const guestData = await guestService.me();
     setGuest(guestData);
     const householdData = await householdService.me();
     setHousehold(householdData);
+    if (!hasEmail) {
+      setStep('set-email');
+    } else {
+      navigate(queryParams.get('redirectTo') || '/');
+    }
+  };
+
+  const handleEmailSet = () => {
+    setHasEmail(true);
     navigate(queryParams.get('redirectTo') || '/');
   };
 
@@ -81,15 +89,14 @@ const Login = () => {
           <CreatePasswordStep
             firstName={firstName}
             lastName={lastName}
-            onNext={handlePasswordCreated}
+            onNext={handleLogin}
           />
         )}
         {step === 'set-email' && (
           <SetEmailStep
             firstName={firstName}
             lastName={lastName}
-            password={password}
-            onNext={handleLogin}
+            onNext={handleEmailSet}
           />
         )}
       </div>

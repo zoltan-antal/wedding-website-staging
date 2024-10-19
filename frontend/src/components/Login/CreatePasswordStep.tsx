@@ -2,11 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import guestService from '../../services/guest';
+import authService from '../../services/auth';
 
 interface CreatePasswordStepProps {
   firstName: string;
   lastName: string;
-  onNext: (password: string) => void;
+  onNext: () => void;
 }
 
 const CreatePasswordStep = ({
@@ -23,6 +24,7 @@ const CreatePasswordStep = ({
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [passwordCreationSuccess, setPasswordCreationSuccess] =
     useState<boolean>(false);
+  const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
 
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
@@ -56,9 +58,16 @@ const CreatePasswordStep = ({
     setErrorMessage('');
     await guestService.createPassword(firstName, lastName, password);
     setPasswordCreationSuccess(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await authService.login({
+      firstName,
+      lastName,
+      password,
+    });
+    setLoginSuccess(true);
     setTimeout(() => {
-      onNext(password);
-    }, 1500);
+      onNext();
+    }, 1000);
   };
 
   return (
@@ -68,9 +77,8 @@ const CreatePasswordStep = ({
           <h3>
             {
               {
-                English:
-                  "You're logging in for the first time. Please create a password.",
-                Hungarian: 'Először jelentkezel be. Hozz létre egy jelszót!',
+                English: "You don't have a password yet. Please create one.",
+                Hungarian: 'Még nincs jelszavad. Kérjük, hozz létre egyet!',
               }[language]
             }
           </h3>
@@ -117,7 +125,7 @@ const CreatePasswordStep = ({
           <p className="error">{errorMessage}</p>
         </form>
       )}
-      {passwordCreationSuccess && (
+      {passwordCreationSuccess && !loginSuccess && (
         <>
           <h2>
             {
@@ -127,7 +135,25 @@ const CreatePasswordStep = ({
               }[language]
             }
           </h2>
+          <h2>
+            {
+              {
+                English: 'Logging you in...',
+                Hungarian: 'Bejelentkezés...',
+              }[language]
+            }
+          </h2>
         </>
+      )}
+      {loginSuccess && (
+        <h2>
+          {
+            {
+              English: 'Login successful!',
+              Hungarian: 'Sikeres bejelentkezés!',
+            }[language]
+          }
+        </h2>
       )}
     </>
   );

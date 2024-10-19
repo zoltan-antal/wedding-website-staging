@@ -54,7 +54,8 @@ main#change-email-page {
     }
   }
 
-  h2 {
+  h2,
+  h3 {
     text-align: center;
   }
 }
