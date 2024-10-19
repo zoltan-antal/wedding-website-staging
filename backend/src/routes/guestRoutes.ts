@@ -24,4 +24,8 @@ guestRoutes.post('/email', (req, res, next) => {
   guestController.setEmail(req, res).catch(next);
 });
 
+guestRoutes.put('/email', (req, res, next) => {
+  guestController.changeEmail(req, res).catch(next);
+});
+
 export default guestRoutes;

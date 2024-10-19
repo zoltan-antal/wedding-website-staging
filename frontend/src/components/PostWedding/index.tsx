@@ -101,7 +101,7 @@ const PostWedding = () => {
                 English:
                   "Another activity we're hoping to do is going to a mountain rail course, which is great fun!",
                 Hungarian:
-                  'Ezen kívül még reméljük, hogy sikerül a közeli bobpályára is eljutnunk.',
+                  'Ezenkívül még reméljük, hogy sikerül a közeli bobpályára is eljutnunk.',
               }[language]
             }
             <br />
@@ -143,7 +143,7 @@ const PostWedding = () => {
                 English:
                   "We're planning to leave for Balaton on Monday morning and come back Tuesday afternoon or evening, staying for one night.",
                 Hungarian:
-                  'Hétfő reggel tervezünk lemenni és, egy éjszaka ottalvás után, kedd délután vagy este visszajönni Budapestre.',
+                  'Hétfő reggel tervezünk lemenni és – egy éjszaka ottalvás után – kedd délután vagy este visszajönni Budapestre.',
               }[language]
             }
           </p>

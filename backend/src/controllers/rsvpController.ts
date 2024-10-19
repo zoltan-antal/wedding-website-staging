@@ -173,8 +173,8 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
         .map(
           ([guest, isComing]) =>
             `${guest}: ${
-              isComing ? '' : { English: 'not', Hungarian: 'nem' }[language]
-            } ${{ English: 'coming', Hungarian: 'jön' }[language]}`
+              isComing ? '' : { English: 'not ', Hungarian: 'nem ' }[language]
+            }${{ English: 'coming', Hungarian: 'jön' }[language]}`
         )
         .join('\n')}\n\n${
         formData.requireAccommodation !== undefined

@@ -78,7 +78,7 @@ const Travel = () => {
                       English:
                         'The address is: Társa Pagony, Penc, 2614 Hungary. There is a sign at the turn off at the side of the road (to your left when driving up from Penc).',
                       Hungarian:
-                        'A pontos cím: Társa Pagony, Penc 2614. Penc irányából felfelé haladva az úton balra van egy tábla: ott kell behajtani.',
+                        'A pontos cím: 2614 Penc, Társa Pagony. Penc irányából felfelé haladva az úton balra van egy tábla: ott kell behajtani.',
                     }[language]
                   }
                   <br />

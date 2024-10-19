@@ -41,6 +41,14 @@ const Account = () => {
           }[language]
         }
       </NavLink>
+      <NavLink to="/change-email">
+        {
+          {
+            English: 'Change email address',
+            Hungarian: 'E-mail cím változtatás',
+          }[language]
+        }
+      </NavLink>
     </main>
   );
 };

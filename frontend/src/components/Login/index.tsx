@@ -9,6 +9,8 @@ import CreatePasswordStep from './CreatePasswordStep';
 import SetEmailStep from './SetEmailStep';
 import './index.css';
 
+type RedirectTo = '/' | '/accommodation' | '/rsvp';
+
 const Login = () => {
   const [step, setStep] = useState<
     'enter-name' | 'enter-password' | 'create-password' | 'set-email'
@@ -18,11 +20,12 @@ const Login = () => {
 
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [hasEmail, setHasEmail] = useState<boolean>(true);
 
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const [redirectTo, setRedirectTo] = useState<RedirectTo>('/');
 
   useEffect(() => {
     if (guest) {
@@ -31,13 +34,22 @@ const Login = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    setRedirectTo((queryParams.get('redirectTo') as RedirectTo) || '/');
+  });
+
   const handleNameEntered = (
     firstName: string,
     lastName: string,
-    hasPassword: boolean
+    hasPassword: boolean,
+    hasEmail: boolean
   ) => {
     setFirstName(firstName);
     setLastName(lastName);
+    if (!hasEmail) {
+      setHasEmail(false);
+    }
     if (hasPassword) {
       setStep('enter-password');
     } else {
@@ -45,17 +57,21 @@ const Login = () => {
     }
   };
 
-  const handlePasswordCreated = (password: string) => {
-    setPassword(password);
-    setStep('set-email');
-  };
-
   const handleLogin = async () => {
     const guestData = await guestService.me();
     setGuest(guestData);
     const householdData = await householdService.me();
     setHousehold(householdData);
-    navigate(queryParams.get('redirectTo') || '/');
+    if (!hasEmail) {
+      setStep('set-email');
+    } else {
+      navigate(redirectTo);
+    }
+  };
+
+  const handleEmailSet = () => {
+    setHasEmail(true);
+    navigate(redirectTo);
   };
 
   return (
@@ -68,6 +84,47 @@ const Login = () => {
           }[language]
         }
       </h1>
+      {redirectTo !== '/' && step === 'enter-name' && (
+        <div id="login-reason">
+          {(() => {
+            switch (redirectTo) {
+              case '/rsvp':
+                return (
+                  <>
+                    <p>
+                      {
+                        {
+                          English: 'Please log in to RSVP.',
+                          Hungarian: 'Kérjük, jelentkezz be a visszajelzéshez.',
+                        }[language]
+                      }
+                      <br />
+                      {
+                        {
+                          English: 'The deadline is 15th January 2025.',
+                          Hungarian: 'A határidő 2025. január 15.',
+                        }[language]
+                      }
+                    </p>
+                  </>
+                );
+
+              default:
+                return (
+                  <p>
+                    {
+                      {
+                        English: 'Please log in to view this page.',
+                        Hungarian:
+                          'Kérjük, jelentkezz be ennek az oldalnak a megtekintéséhez.',
+                      }[language]
+                    }
+                  </p>
+                );
+            }
+          })()}
+        </div>
+      )}
       <div className="form-wrapper">
         {step === 'enter-name' && <EnterNameStep onNext={handleNameEntered} />}
         {step === 'enter-password' && (
@@ -81,15 +138,14 @@ const Login = () => {
           <CreatePasswordStep
             firstName={firstName}
             lastName={lastName}
-            onNext={handlePasswordCreated}
+            onNext={handleLogin}
           />
         )}
         {step === 'set-email' && (
           <SetEmailStep
             firstName={firstName}
             lastName={lastName}
-            password={password}
-            onNext={handleLogin}
+            onNext={handleEmailSet}
           />
         )}
       </div>

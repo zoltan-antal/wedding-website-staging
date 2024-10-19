@@ -1,22 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
+import validator from 'validator';
 import { useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import guestService from '../../services/guest';
-import authService from '../../services/auth';
 
 interface SetEmailStepProps {
   firstName: string;
   lastName: string;
-  password: string;
   onNext: () => void;
 }
 
-const SetEmailStep = ({
-  firstName,
-  lastName,
-  password,
-  onNext,
-}: SetEmailStepProps) => {
+const SetEmailStep = ({ firstName, lastName, onNext }: SetEmailStepProps) => {
   const { language } = useOutletContext<Context>();
 
   const [email, setEmail] = useState<string>('');
@@ -26,7 +20,6 @@ const SetEmailStep = ({
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [emailSettingSuccess, setEmailSettingSuccess] =
     useState<boolean>(false);
-  const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
 
   const emailInputRef = useRef<HTMLInputElement>(null);
 
@@ -47,7 +40,7 @@ const SetEmailStep = ({
       );
       return;
     }
-    if (!emailInputRef.current!.validity.valid) {
+    if (!emailInputRef.current!.validity.valid || !validator.isEmail(email)) {
       setErrorMessage(
         {
           English: 'The provided email address is invalid',
@@ -60,16 +53,9 @@ const SetEmailStep = ({
     setErrorMessage('');
     await guestService.setEmail(firstName, lastName, email);
     setEmailSettingSuccess(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    await authService.login({
-      firstName,
-      lastName,
-      password,
-    });
-    setLoginSuccess(true);
     setTimeout(() => {
       onNext();
-    }, 1000);
+    }, 1500);
   };
 
   return (
@@ -80,7 +66,7 @@ const SetEmailStep = ({
             {
               {
                 English:
-                  'Please also set an email address that we can use for communications.',
+                  'Please set an email address that we can use for communications.',
                 Hungarian:
                   'Kérünk, állíts be egy e-mail címet, amin el tudunk érni!',
               }[language]
@@ -129,7 +115,7 @@ const SetEmailStep = ({
           <p className="error">{errorMessage}</p>
         </form>
       )}
-      {emailSettingSuccess && !loginSuccess && (
+      {emailSettingSuccess && (
         <>
           <h2>
             {
@@ -139,25 +125,7 @@ const SetEmailStep = ({
               }[language]
             }
           </h2>
-          <h2>
-            {
-              {
-                English: 'Logging you in...',
-                Hungarian: 'Bejelentkezés...',
-              }[language]
-            }
-          </h2>
         </>
-      )}
-      {loginSuccess && (
-        <h2>
-          {
-            {
-              English: 'Login successful!',
-              Hungarian: 'Sikeres bejelentkezés!',
-            }[language]
-          }
-        </h2>
       )}
     </>
   );

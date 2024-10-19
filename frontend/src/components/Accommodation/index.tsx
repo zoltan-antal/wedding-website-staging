@@ -47,7 +47,7 @@ const Accommodation = () => {
                 English:
                   "The tents are fully kitted out with proper mattresses and bed linen, towels, rugs, power sockets and heaters. You'll also be provided an amenity kit for showering. We recommend you bring flip-flops or similar for trips to the bathroom.",
                 Hungarian:
-                  'A sátrak teljesen felszereltek rendes matracokkal, ágyneművel, törölközőkkel, szőnyeggel, konnektorokkal és fűtéssel. Ezen kívül a zuhanyzáshoz egy tisztálkodási csomaggal is ellátunk. Javasoljuk, hozz magaddal papucsot a mosdóhoz való eljutáshoz éjszaka.',
+                  'A sátrak teljesen felszereltek rendes matracokkal, ágyneművel, törölközőkkel, szőnyeggel, konnektorokkal és fűtéssel. Ezenkívül a zuhanyzáshoz egy tisztálkodási csomaggal is ellátunk. Javasoljuk, hozz magaddal papucsot a mosdóhoz való eljutáshoz éjszaka.',
               }[language]
             }
           </p>
