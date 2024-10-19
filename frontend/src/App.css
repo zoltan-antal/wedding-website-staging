@@ -214,6 +214,17 @@ html {
       }
     }
 
+    &#loading-page {
+      p {
+        margin-top: 20px;
+        font-size: 1.15rem;
+
+        @media only screen and (max-width: 768px) {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
     &#venue-page,
     &#accommodation-page,
     &#post-wedding-page {

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
+import Loading from '../Loading/Loading';
 import tentOutside from '../../assets/images/photos/tent-outside.jpg';
 import tentInside from '../../assets/images/photos/tent-inside.jpg';
 import town from '../../assets/images/photos/vac-close.jpg';
@@ -17,6 +18,10 @@ const Accommodation = () => {
       navigate('/login?redirectTo=/accommodation');
     }
   }, [guest, household, navigate]);
+
+  if (!guest || !household) {
+    return <Loading language={language} />;
+  }
 
   return (
     <main

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
+import Loading from '../Loading/Loading';
 import RsvpForm from './RsvpForm';
 import AlreadySubmitted from './AlreadySubmitted';
 import './index.css';
@@ -17,6 +18,10 @@ const Rsvp = () => {
       navigate('/login?redirectTo=/rsvp');
     }
   }, [guest, household, navigate]);
+
+  if (!guest || !household) {
+    return <Loading language={language} />;
+  }
 
   return (
     <main id="rsvp-page">
