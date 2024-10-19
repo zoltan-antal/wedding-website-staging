@@ -38,8 +38,8 @@ const AccountButtons = ({
           </li>
           <li>
             <button
-              onClick={async () => {
-                await authService.logout();
+              onClick={() => {
+                authService.logout();
                 setGuest(null);
                 setHousehold(null);
                 navigate('/');
