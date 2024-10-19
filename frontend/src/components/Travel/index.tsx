@@ -120,15 +120,18 @@ const Travel = () => {
                   <p>
                     You need a specific ticket for this service (the normal
                     public transport single tickets and passes are not valid for
-                    this service). You can buy the ticket at the airport or on
-                    the Budapest GO app.
+                    this service). You can buy the ticket at the airport (from
+                    the purple ticket machines) or on the Budapest GO app.
+                    Alternatively, you can tap your card when you get on the bus
+                    to pay for the journey.
                   </p>
                   <p>
                     You must validate your ticket before getting on the bus by
-                    scanning the QR code if using a digital ticket, or once you
-                    are on the bus if using a physical ticket. There are little
+                    scanning the QR code (located on the side of the bus) if
+                    using a digital ticket bought on the app, or once you are on
+                    the bus if using a physical ticket (there are little
                     machines on the bus poles where you can insert your ticket
-                    and it will mark it.
+                    and it will mark it).
                   </p>
                 </div>
               </div>
