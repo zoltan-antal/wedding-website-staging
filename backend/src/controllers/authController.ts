@@ -54,11 +54,10 @@ const loginGuest = async (req: HouseholdLoginRequest, res: Response) => {
 };
 
 const logoutGuest = (_req: Request, res: Response) => {
-  res.cookie('authToken', '', {
+  res.clearCookie('authToken', {
     httpOnly: true,
     secure: NODE_ENV === 'production',
     sameSite: 'strict',
-    maxAge: 0,
   });
   return res.status(200).json({ message: 'Successfully logged out' });
 };
