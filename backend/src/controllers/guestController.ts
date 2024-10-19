@@ -29,6 +29,14 @@ interface SetEmailRequest extends Request {
   };
 }
 
+interface ChangeEmailRequest extends Request {
+  body: {
+    firstName: string;
+    lastName: string;
+    newEmail: string;
+  };
+}
+
 const findGuest = async (req: Request, res: Response) => {
   const { firstName, lastName } = req.query;
   if (!firstName || !lastName) {
@@ -186,4 +194,38 @@ const setEmail = async (req: SetEmailRequest, res: Response) => {
   return res.status(200).json({ message: 'Email successfully set' });
 };
 
-export default { findGuest, me, createPassword, changePassword, setEmail };
+const changeEmail = async (req: ChangeEmailRequest, res: Response) => {
+  const { firstName, lastName, newEmail } = req.body;
+  if (!firstName || !lastName || !newEmail) {
+    return res.status(400).json({
+      error: 'Missing request body parameters',
+    });
+  }
+
+  const guest = await guestService.getGuestByName({ firstName, lastName });
+  if (!guest) {
+    return res.status(404).json({
+      error: 'Guest not found',
+    });
+  }
+
+  if (!validator.isEmail(newEmail)) {
+    return res.status(400).json({
+      error: 'Provided email is not valid',
+    });
+  }
+
+  guest.email = newEmail;
+  await guest.save();
+
+  return res.status(200).json({ message: 'Email successfully changed' });
+};
+
+export default {
+  findGuest,
+  me,
+  createPassword,
+  changePassword,
+  setEmail,
+  changeEmail,
+};

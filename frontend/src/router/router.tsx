@@ -16,6 +16,7 @@ import ResetPassword from '../components/Login/ResetPassword';
 import NotFound from './NotFound';
 import Account from '../components/Account';
 import ChangePassword from '../components/Account/ChangePassword';
+import ChangeEmail from '../components/Account/ChangeEmail';
 
 const router = createHashRouter(
   [
@@ -38,6 +39,7 @@ const router = createHashRouter(
         { path: 'reset-password', element: <ResetPassword /> },
         { path: 'account', element: <Account /> },
         { path: 'change-password', element: <ChangePassword /> },
+        { path: 'change-email', element: <ChangeEmail /> },
         { path: '*', element: <NotFound /> },
       ],
     },

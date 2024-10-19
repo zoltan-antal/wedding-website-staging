@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import validator from 'validator';
 import { useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import guestService from '../../services/guest';
@@ -47,7 +48,7 @@ const SetEmailStep = ({
       );
       return;
     }
-    if (!emailInputRef.current!.validity.valid) {
+    if (!emailInputRef.current!.validity.valid || !validator.isEmail(email)) {
       setErrorMessage(
         {
           English: 'The provided email address is invalid',

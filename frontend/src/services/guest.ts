@@ -58,4 +58,24 @@ async function setEmail(firstName: string, lastName: string, email: string) {
   return response;
 }
 
-export default { findGuest, me, createPassword, changePassword, setEmail };
+async function changeEmail(
+  firstName: string,
+  lastName: string,
+  newEmail: string
+) {
+  const response = await axios.put(`${baseUrl}/email`, {
+    firstName,
+    lastName,
+    newEmail,
+  });
+  return response;
+}
+
+export default {
+  findGuest,
+  me,
+  createPassword,
+  changePassword,
+  setEmail,
+  changeEmail,
+};

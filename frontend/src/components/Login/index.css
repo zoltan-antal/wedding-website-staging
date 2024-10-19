@@ -1,5 +1,6 @@
 main#login-page,
-main#change-password-page {
+main#change-password-page,
+main#change-email-page {
   align-self: stretch;
 
   .form-wrapper {
