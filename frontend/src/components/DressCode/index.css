@@ -17,7 +17,7 @@ main#dress-code-page {
       align-items: stretch;
       gap: 80px;
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 1025px) {
         flex-direction: column;
         justify-content: flex-start;
         gap: 40px;
@@ -43,7 +43,7 @@ main#dress-code-page {
           list-style-position: outside;
           padding-left: 40px;
 
-          @media only screen and (max-width: 768px) {
+          @media only screen and (max-width: 1025px) {
             padding-left: 20px;
           }
         }

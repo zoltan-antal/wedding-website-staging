@@ -108,7 +108,7 @@ html {
   --input-border-focus: black;
 
   header:has(nav.open)+main {
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1025px) {
       display: none;
     }
   }
@@ -124,8 +124,8 @@ html {
 
     padding-bottom: 50px;
 
-    @media only screen and (max-width: 768px) {
-      width: auto !important;
+    @media only screen and (max-width: 1025px) {
+      width: 100vw !important;
 
       &:not(#home-page) {
         padding-left: 15px;
@@ -137,19 +137,19 @@ html {
       font-size: 2.4rem;
       margin: 20px 0 20px;
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 1025px) {
         font-size: 1.6rem;
       }
     }
 
     h2 {
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 1025px) {
         font-size: 1.3rem;
       }
     }
 
     h3 {
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 1025px) {
         font-size: 1.15rem;
       }
     }
@@ -219,7 +219,7 @@ html {
         margin-top: 20px;
         font-size: 1.15rem;
 
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 1025px) {
           font-size: 1.1rem;
         }
       }
@@ -238,7 +238,7 @@ html {
         column-gap: 45px;
         row-gap: 60px;
 
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 1025px) {
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
@@ -255,7 +255,7 @@ html {
 
           font-size: 1.2rem;
 
-          @media only screen and not (max-width: 768px) {
+          @media only screen and not (max-width: 1025px) {
             &:nth-of-type(2n) {
               p {
                 text-align: right;
@@ -263,7 +263,7 @@ html {
             }
           }
 
-          @media only screen and (max-width: 768px) {
+          @media only screen and (max-width: 1025px) {
             font-size: 1rem;
             margin-bottom: 25px;
             gap: 10px;
@@ -296,7 +296,7 @@ html {
     top: 3%;
     opacity: 0.2;
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1025px) {
       width: 140vw;
       rotate: 170deg;
       left: -15%;

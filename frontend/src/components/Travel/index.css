@@ -12,7 +12,7 @@ main#travel-page {
     font-size: 1.15rem;
     margin-bottom: 20px;
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1025px) {
       font-size: 1.1rem;
     }
   }
@@ -22,7 +22,7 @@ main#travel-page {
     height: 450px;
     border: 1px solid black;
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1025px) {
       width: 100%;
       height: auto;
     }
@@ -38,7 +38,7 @@ main#travel-page {
     width: 80%;
 
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1025px) {
       width: auto;
     }
 
