@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import helmet from 'helmet';
 require('express-async-errors');
 import router from './routes';
 import cookieParser from 'cookie-parser';
@@ -34,6 +35,7 @@ switch (app.get('env')) {
   }
 }
 
+app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('tiny'));
