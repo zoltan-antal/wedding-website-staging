@@ -10,7 +10,7 @@ main#change-email-page {
       text-align: center;
       font-size: 1.15rem;
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 1025px) {
         font-size: 1.1rem;
       }
     }
@@ -22,7 +22,7 @@ main#change-email-page {
     justify-content: flex-start;
     align-items: stretch;
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1025px) {
       align-self: stretch;
     }
 
@@ -34,7 +34,7 @@ main#change-email-page {
       min-width: 400px;
       gap: 20px;
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 1025px) {
         min-width: auto;
       }
 

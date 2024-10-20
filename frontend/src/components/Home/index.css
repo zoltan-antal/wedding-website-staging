@@ -11,10 +11,10 @@ main#home-page {
   justify-items: stretch;
   justify-content: stretch;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1025px) {
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: 1fr;
-    grid-auto-rows: auto;
+    grid-auto-rows: 0.5fr;
     grid-template-areas:
       "countdown countdown"
       "rsvp faq"
@@ -72,7 +72,7 @@ main#home-page {
     flex-wrap: wrap;
     gap: 8px;
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1025px) {
       padding: 15px 5px;
     }
 
@@ -82,7 +82,7 @@ main#home-page {
       font-weight: normal;
       text-align: center;
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 1025px) {
         font-size: 0.95rem;
       }
     }
@@ -93,7 +93,7 @@ main#home-page {
       color: var(--green);
       text-transform: uppercase;
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 1025px) {
         font-size: 1rem;
       }
     }

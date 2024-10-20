@@ -1,5 +1,5 @@
 main#schedule-page {
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1025px) {
     width: 100% !important;
   }
 
@@ -26,7 +26,7 @@ main#schedule-page {
       background-color: black;
     }
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1025px) {
       &::before {
         left: 10%
       }
@@ -45,7 +45,7 @@ main#schedule-page {
 
         font-size: 1.4rem;
 
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 1025px) {
           width: 75%;
         }
       }
@@ -69,7 +69,7 @@ main#schedule-page {
           background-color: transparent;
           margin-top: 2px;
 
-          @media only screen and (max-width: 768px) {
+          @media only screen and (max-width: 1025px) {
             left: 10%;
             margin-top: 0;
           }
@@ -92,13 +92,13 @@ main#schedule-page {
           position: relative;
           width: 45%;
 
-          @media only screen and (max-width: 768px) {
+          @media only screen and (max-width: 1025px) {
             width: 75%;
           }
         }
       }
 
-      @media only screen and not (max-width: 768px) {
+      @media only screen and not (max-width: 1025px) {
         &:nth-of-type(2n) {
           .day-title {
             text-align: left;
@@ -124,7 +124,7 @@ main#schedule-page {
         }
       }
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 1025px) {
         .day-title {
           text-align: left;
           left: 25%;
