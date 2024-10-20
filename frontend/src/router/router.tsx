@@ -6,7 +6,6 @@ import Accommodation from '../components/Accommodation';
 import Travel from '../components/Travel';
 import Schedule from '../components/Schedule';
 import DressCode from '../components/DressCode';
-import Registry from '../components/Registry';
 import PostWedding from '../components/PostWedding';
 import Faq from '../components/Faq';
 import Contact from '../components/Contact';
@@ -30,7 +29,6 @@ const router = createHashRouter(
         { path: 'travel', element: <Travel /> },
         { path: 'schedule', element: <Schedule /> },
         { path: 'dress-code', element: <DressCode /> },
-        { path: 'registry', element: <Registry /> },
         { path: 'post-wedding', element: <PostWedding /> },
         { path: 'faq', element: <Faq /> },
         { path: 'contact', element: <Contact /> },

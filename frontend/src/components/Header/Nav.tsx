@@ -104,16 +104,6 @@ const Nav = ({
             }
           </NavLink>
         </li>
-        <li style={{ display: 'none' }}>
-          <NavLink to="/registry">
-            {
-              {
-                English: 'Registry',
-                Hungarian: 'Ajándéklista',
-              }[language]
-            }
-          </NavLink>
-        </li>
         <li>
           <NavLink to="/post-wedding">
             {
