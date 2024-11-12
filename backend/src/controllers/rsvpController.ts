@@ -215,7 +215,7 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
             }: ${booleanToText(formData.requireTransport)}\n`
           : ''
       }${
-        formData.requireTransport !== undefined
+        formData.dietaryRequirements !== undefined
           ? `${
               {
                 English: 'Dietary requirements',
@@ -235,16 +235,16 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
             }: ${booleanToText(formData.interestedInMeetAndGreet)}\n`
           : ''
       }${
-        formData.interestedInMeetAndGreet !== undefined
+        formData.interestedInPostWeddingWindDown !== undefined
           ? `${
               {
                 English: 'Interested in post-wedding trip',
                 Hungarian: 'Esküvő utáni kiruccanás érdeklődés',
               }[language]
-            }: ${booleanToText(formData.interestedInMeetAndGreet)}\n`
+            }: ${booleanToText(formData.interestedInPostWeddingWindDown)}\n`
           : ''
       }${
-        formData.requireTransport !== undefined
+        formData.comments !== undefined
           ? `${
               {
                 English: 'Comments',
