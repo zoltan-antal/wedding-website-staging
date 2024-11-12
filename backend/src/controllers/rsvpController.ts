@@ -5,7 +5,12 @@ import { Resend } from 'resend';
 import { GuestAttributes } from '../models/guests';
 import guestService from '../services/guestService';
 import rsvpService from '../services/rsvpService';
-import { RESEND_API_KEY, RESEND_EMAIL, INTERNAL_EMAIL } from '../utils/config';
+import {
+  RESEND_API_KEY,
+  RESEND_EMAIL,
+  INTERNAL_EMAIL,
+  NODE_ENV,
+} from '../utils/config';
 
 enum RsvpFormFieldNames {
   GuestsAttending = 'guestsAttending',
@@ -80,7 +85,12 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
     },${formData.comments}`;
 
     const dataDirectoryPath = path.join(__dirname, '../..', 'data');
-    const csvFilePath = path.join(__dirname, '../..', 'data', 'rsvpData.csv');
+    const csvFilePath = path.join(
+      __dirname,
+      '../..',
+      'data',
+      `rsvpData${NODE_ENV !== 'production' ? '-test' : ''}.csv`
+    );
     if (!fs.existsSync(dataDirectoryPath)) {
       fs.mkdirSync(dataDirectoryPath);
     }
