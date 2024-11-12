@@ -84,14 +84,11 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
       formData.interestedInPostWeddingWindDown
     },${formData.comments}`;
 
-    const dataDirectoryName = `data${NODE_ENV !== 'production' ? '-test' : ''}`;
-    const dataDirectoryPath = path.join(__dirname, '../..', dataDirectoryName);
-    const csvFilePath = path.join(
-      __dirname,
-      '../..',
-      dataDirectoryName,
-      'rsvpData.csv'
-    );
+    const dataDirectoryPath =
+      NODE_ENV === 'production'
+        ? '/data'
+        : path.join(__dirname, '../..', `data-test`);
+    const csvFilePath = path.join(dataDirectoryPath, 'rsvpData.csv');
     if (!fs.existsSync(dataDirectoryPath)) {
       fs.mkdirSync(dataDirectoryPath);
     }
