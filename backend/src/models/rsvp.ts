@@ -14,6 +14,7 @@ class Rsvp extends Model<InferAttributes<Rsvp>, InferCreationAttributes<Rsvp>> {
   declare id: CreationOptional<number>;
   declare guestId: ForeignKey<Guest['id']>;
   declare householdId: ForeignKey<Household['id']>;
+  declare data: string;
 }
 
 Rsvp.init(
@@ -22,6 +23,9 @@ Rsvp.init(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+    },
+    data: {
+      type: DataTypes.TEXT,
     },
   },
   {

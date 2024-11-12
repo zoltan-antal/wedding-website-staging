@@ -126,6 +126,7 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
     id: undefined,
     guestId: guest.id,
     householdId: guest.householdId,
+    data: JSON.stringify(formData),
   });
 
   // EMAIL COPY
