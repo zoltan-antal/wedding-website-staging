@@ -9,7 +9,7 @@ import './index.css';
 const Rsvp = () => {
   const { guest, household, language } = useOutletContext<Context>();
   const currentDate = new Date();
-  const deadlineDate = new Date('2025-01-16T00:00:00.000Z');
+  const deadlineDate = new Date('2025-01-23T00:00:00.000Z');
 
   const navigate = useNavigate();
 
