@@ -1,17 +1,18 @@
-import './App.css';
+import { useEffect, useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import './App.css';
+import speckleImage from './assets/images/graphics/speckle.webp';
 import Header from './components/Header/Header';
-import { useEffect, useState, useRef } from 'react';
-import { Language } from './types/language';
-import { Guest } from './types/guest';
-import { Household } from './types/household';
-import { AuthStatus } from './types/auth';
-import { Context } from './types/context';
+import Loading from './components/Loading/Loading';
+import authService from './services/auth';
 import guestService from './services/guest';
 import householdService from './services/household';
-import authService from './services/auth';
 import pingService from './services/ping';
-import speckleImage from './assets/images/graphics/speckle.webp';
+import { AuthStatus } from './types/auth';
+import { Context } from './types/context';
+import { Guest } from './types/guest';
+import { Household } from './types/household';
+import { Language } from './types/language';
 
 function App() {
   const [language, setLanguage] = useState<Language>(
@@ -78,18 +79,24 @@ function App() {
   const mainRef = useRef<HTMLElement | null>(null);
   const [navWidth, setNavWidth] = useState<number>(0);
   useEffect(() => {
-    const adjustMainWidth = () => {
-      if (navRef.current && mainRef.current) {
+    const observer = new ResizeObserver(() => {
+      if (navRef.current) {
         setNavWidth(navRef.current.offsetWidth);
       }
-    };
+    });
 
-    adjustMainWidth();
-    window.addEventListener('resize', adjustMainWidth);
+    const currentNavRef = navRef.current;
+
+    if (currentNavRef) {
+      observer.observe(currentNavRef);
+    }
+
     return () => {
-      window.removeEventListener('resize', adjustMainWidth);
+      if (currentNavRef) {
+        observer.unobserve(currentNavRef);
+      }
     };
-  }, [language]);
+  }, []);
 
   const hasPingedBackend = useRef(false);
   useEffect(() => {
@@ -113,22 +120,26 @@ function App() {
         setGuest={setGuest}
         setHousehold={setHousehold}
         navRef={navRef}
-      ></Header>
-      <Outlet
-        context={
-          {
-            mobileView,
-            language,
-            isInitialised,
-            guest,
-            setGuest,
-            household,
-            setHousehold,
-            mainRef,
-            navWidth,
-          } satisfies Context
-        }
       />
+      {navWidth > 0 ? (
+        <Outlet
+          context={
+            {
+              mobileView,
+              language,
+              isInitialised,
+              guest,
+              setGuest,
+              household,
+              setHousehold,
+              mainRef,
+              navWidth,
+            } satisfies Context
+          }
+        />
+      ) : (
+        <Loading language={language} />
+      )}
     </>
   );
 }
