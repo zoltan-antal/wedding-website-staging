@@ -5,7 +5,7 @@ import Loading from '../Loading/Loading';
 import tentOutside from '../../assets/images/photos/tent-outside.jpg';
 import tentInside from '../../assets/images/photos/tent-inside.jpg';
 import town from '../../assets/images/photos/vac-close.jpg';
-import './index.css';
+import './Accommodation.css';
 
 const Accommodation = () => {
   const { guest, household, language, mainRef, navWidth } =

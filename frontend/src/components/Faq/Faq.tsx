@@ -1,6 +1,6 @@
 import { useOutletContext, NavLink } from 'react-router-dom';
 import { Context } from '../../types/context';
-import './index.css';
+import './Faq.css';
 
 const Faq = () => {
   const { language, mainRef, navWidth } = useOutletContext<Context>();

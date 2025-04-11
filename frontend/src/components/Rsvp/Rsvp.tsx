@@ -4,7 +4,7 @@ import { Context } from '../../types/context';
 import Loading from '../Loading/Loading';
 import RsvpForm from './RsvpForm';
 import AlreadySubmitted from './AlreadySubmitted';
-import './index.css';
+import './Rsvp.css';
 
 const Rsvp = () => {
   const { guest, household, language } = useOutletContext<Context>();

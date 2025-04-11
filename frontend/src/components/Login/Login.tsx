@@ -7,7 +7,7 @@ import EnterNameStep from './EnterNameStep';
 import EnterPasswordStep from './EnterPasswordStep';
 import CreatePasswordStep from './CreatePasswordStep';
 import SetEmailStep from './SetEmailStep';
-import './index.css';
+import './Login.css';
 
 type RedirectTo = '/' | '/accommodation' | '/rsvp';
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
-import './index.css';
+import './Account.css';
 
 const Account = () => {
   const { language, guest } = useOutletContext<Context>();
