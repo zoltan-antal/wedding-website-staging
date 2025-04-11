@@ -11,6 +11,7 @@ import Home from '../components/Home/Home';
 import Login from '../components/Login/Login';
 import ResetPassword from '../components/Login/ResetPassword';
 import PostWedding from '../components/PostWedding/PostWedding';
+import Registry from '../components/Registry/Registry';
 import Rsvp from '../components/Rsvp/Rsvp';
 import Schedule from '../components/Schedule/Schedule';
 import Travel from '../components/Travel/Travel';
@@ -33,6 +34,7 @@ const router = createHashRouter(
         { path: 'faq', element: <Faq /> },
         { path: 'login', element: <Login /> },
         { path: 'post-wedding', element: <PostWedding /> },
+        { path: 'registry', element: <Registry /> },
         { path: 'reset-password', element: <ResetPassword /> },
         { path: 'rsvp', element: <Rsvp /> },
         { path: 'schedule', element: <Schedule /> },
