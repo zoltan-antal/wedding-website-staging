@@ -6,17 +6,18 @@ import GiftList from './GiftList';
 import './Registry.css';
 
 const Registry = () => {
-  const { guest, household, language } = useOutletContext<Context>();
+  const { isInitialised, guest, household, language } =
+    useOutletContext<Context>();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!guest || !household) {
+    if (isInitialised && (!guest || !household)) {
       navigate('/login?redirectTo=/registry');
     }
-  }, [guest, household, navigate]);
+  }, [isInitialised, guest, household, navigate]);
 
-  if (!guest || !household) {
+  if (!isInitialised) {
     return <Loading language={language} />;
   }
 

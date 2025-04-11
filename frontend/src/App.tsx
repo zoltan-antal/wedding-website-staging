@@ -24,6 +24,7 @@ function App() {
       ? 'Hungarian'
       : 'English'
   );
+  const [isInitialised, setIsInitialised] = useState<boolean>(false);
   const [guest, setGuest] = useState<Guest | null>(null);
   const [household, setHousehold] = useState<Household | null>(null);
 
@@ -40,6 +41,7 @@ function App() {
         return authStatus.loggedIn;
       } catch (error) {
         console.error('Error checking authentication status: ', error);
+        return false;
       }
     };
 
@@ -64,9 +66,9 @@ function App() {
     const fetchData = async () => {
       const loggedIn = await getAuthStatus();
       if (loggedIn) {
-        await fetchGuestData();
-        await fetchHouseholdData();
+        await Promise.all([fetchGuestData(), fetchHouseholdData()]);
       }
+      setIsInitialised(true);
     };
 
     fetchData();
@@ -117,6 +119,7 @@ function App() {
           {
             mobileView,
             language,
+            isInitialised,
             guest,
             setGuest,
             household,
