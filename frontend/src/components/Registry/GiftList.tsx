@@ -144,7 +144,7 @@ const GiftList = () => {
                     }[language]
                   }
                 </td>
-                <td>≈£{gift.price}</td>
+                <td>~£{gift.price}</td>
                 <td>
                   {gift.links.map((link, index) => (
                     <a
