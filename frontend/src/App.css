@@ -103,6 +103,7 @@ html {
   --button-background: var(--green);
   --button-background-hover: var(--darkgreen);
   --button-background-disabled: grey;
+  --text-disabled: darkgrey;
   --radio: var(--green);
   --input-border: grey;
   --input-border-focus: black;

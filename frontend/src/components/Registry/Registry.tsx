@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import Loading from '../Loading/Loading';
+import GiftList from './GiftList';
 import './Registry.css';
 
 const Registry = () => {
@@ -29,6 +30,7 @@ const Registry = () => {
           }[language]
         }
       </h1>
+      <GiftList />
     </main>
   );
 };
