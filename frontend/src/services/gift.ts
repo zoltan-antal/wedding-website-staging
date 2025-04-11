@@ -13,19 +13,21 @@ async function fetchAllGifts(): Promise<Gift[]> {
 async function claimGift(giftId: number) {
   const requestConfig = { withCredentials: true };
   const response = await axios.patch(
-    `${baseUrl}/:${giftId}/claim`,
+    `${baseUrl}/${giftId}/claim`,
+    null,
     requestConfig
   );
-  return response.data;
+  return response.data as Gift;
 }
 
 async function unclaimGift(giftId: number) {
   const requestConfig = { withCredentials: true };
   const response = await axios.patch(
-    `${baseUrl}/:${giftId}/unclaim`,
+    `${baseUrl}/${giftId}/unclaim`,
+    null,
     requestConfig
   );
-  return response.data;
+  return response.data as Gift;
 }
 
 export default { fetchAllGifts, claimGift, unclaimGift };
