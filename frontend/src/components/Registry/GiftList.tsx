@@ -20,7 +20,23 @@ const GiftList = () => {
       }
     };
 
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        fetchGifts();
+      }
+    };
+
     fetchGifts();
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', fetchGifts);
+    window.addEventListener('online', fetchGifts);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', fetchGifts);
+      window.removeEventListener('online', fetchGifts);
+    };
   }, []);
 
   const handleCheckboxChange = async (giftId: number, claim: boolean) => {
