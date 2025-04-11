@@ -13,6 +13,7 @@ class Gift extends Model<InferAttributes<Gift>, InferCreationAttributes<Gift>> {
   declare id: CreationOptional<number>;
   declare nameEnglish: string;
   declare nameHungarian: string;
+  declare price: number;
   declare links: string[];
   declare householdId: ForeignKey<Household['id']> | null;
 }
@@ -30,6 +31,10 @@ Gift.init(
     },
     nameHungarian: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    price: {
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     links: {
