@@ -23,12 +23,33 @@ const GiftList = () => {
     fetchGifts();
   }, []);
 
+  const handleCheckboxChange = async (giftId: number, claim: boolean) => {
+    try {
+      if (claim) {
+        await giftService.claimGift(giftId);
+      } else {
+        await giftService.unclaimGift(giftId);
+      }
+      setGifts((prevGifts) =>
+        prevGifts.map((gift) =>
+          gift.id === giftId
+            ? { ...gift, householdId: claim ? household!.id : null }
+            : gift
+        )
+      );
+    } catch (error) {
+      console.error('Failed to update gift claim:', error);
+    }
+  };
+
   const mapLinkToShop = (url: string) => {
     const urlObj = new URL(url);
     const domain = urlObj.hostname.split('.').at(-2);
     switch (domain) {
       case 'amazon':
         return 'Amazon';
+      case 'johnlewis':
+        return 'John Lewis';
       default:
         return {
           English: 'Manufacturer',
@@ -70,6 +91,16 @@ const GiftList = () => {
       </thead>
       <tbody>
         {gifts
+          .toSorted((a, b) => {
+            switch (language) {
+              case 'English':
+                return a.nameEnglish.localeCompare(b.nameEnglish);
+              case 'Hungarian':
+                return a.nameHungarian.localeCompare(b.nameHungarian);
+              default:
+                return 0;
+            }
+          })
           .toSorted((a, b) => {
             const aClaimedByOther =
               a.householdId !== null && a.householdId !== household?.id;
@@ -115,6 +146,9 @@ const GiftList = () => {
                     type="checkbox"
                     checked={!!gift.householdId}
                     disabled={isClaimedByOther}
+                    onChange={(e) =>
+                      handleCheckboxChange(gift.id, e.target.checked)
+                    }
                   />
                 </td>
               </tr>
