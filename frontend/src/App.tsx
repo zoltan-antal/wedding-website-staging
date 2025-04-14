@@ -121,7 +121,7 @@ function App() {
         setHousehold={setHousehold}
         navRef={navRef}
       />
-      {navWidth > 0 ? (
+      {mobileView || navWidth > 0 ? (
         <Outlet
           context={
             {
