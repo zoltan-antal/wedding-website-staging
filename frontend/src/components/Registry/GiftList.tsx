@@ -1,32 +1,62 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import giftService from '../../services/gift';
 import { Context } from '../../types/context';
 import { Gift } from '../../types/gift';
 import './GiftList.css';
 
+const STALE_TIME = 1 * 60 * 1000;
+
 const GiftList = () => {
   const { household, language } = useOutletContext<Context>();
 
   const [gifts, setGifts] = useState<Gift[]>([]);
 
-  useEffect(() => {
-    const fetchGifts = async () => {
-      try {
-        const fetchedGifts = await giftService.fetchAllGifts();
-        setGifts(fetchedGifts);
-      } catch (error) {
-        console.error('Failed to fetch gifts:', error);
+  const lastFetchRef = useRef(Date.now());
+  const idleTimeoutRef = useRef<number | null>(null);
+
+  const fetchGifts = useCallback(async () => {
+    try {
+      const fetchedGifts = await giftService.fetchAllGifts();
+      setGifts(fetchedGifts);
+
+      lastFetchRef.current = Date.now();
+      scheduleIdleTrigger();
+    } catch (error) {
+      console.error('Failed to fetch gifts:', error);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleWake = useCallback(() => {
+    if (Date.now() - lastFetchRef.current > STALE_TIME) {
+      fetchGifts();
+    }
+    window.removeEventListener('mousemove', handleWake);
+    window.removeEventListener('keydown', handleWake);
+  }, [fetchGifts]);
+
+  const scheduleIdleTrigger = useCallback(() => {
+    if (idleTimeoutRef.current) {
+      clearTimeout(idleTimeoutRef.current);
+    }
+
+    idleTimeoutRef.current = window.setTimeout(() => {
+      if (Date.now() - lastFetchRef.current > STALE_TIME) {
+        window.addEventListener('mousemove', handleWake);
+        window.addEventListener('keydown', handleWake);
       }
-    };
+    }, STALE_TIME);
+  }, [handleWake]);
+
+  useEffect(() => {
+    fetchGifts();
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
         fetchGifts();
       }
     };
-
-    fetchGifts();
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('focus', fetchGifts);
@@ -36,25 +66,33 @@ const GiftList = () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('focus', fetchGifts);
       window.removeEventListener('online', fetchGifts);
+      window.removeEventListener('mousemove', handleWake);
+      window.removeEventListener('keydown', handleWake);
+      if (idleTimeoutRef.current) {
+        clearTimeout(idleTimeoutRef.current);
+      }
     };
-  }, []);
+  }, [fetchGifts, handleWake]);
 
   const handleCheckboxChange = async (giftId: number, claim: boolean) => {
+    setGifts((prevGifts) =>
+      prevGifts.map((gift) =>
+        gift.id === giftId
+          ? { ...gift, householdId: claim ? household!.id : null }
+          : gift
+      )
+    );
+
     try {
       if (claim) {
         await giftService.claimGift(giftId);
       } else {
         await giftService.unclaimGift(giftId);
       }
-      setGifts((prevGifts) =>
-        prevGifts.map((gift) =>
-          gift.id === giftId
-            ? { ...gift, householdId: claim ? household!.id : null }
-            : gift
-        )
-      );
     } catch (error) {
       console.error('Failed to update gift claim:', error);
+    } finally {
+      await fetchGifts();
     }
   };
 
