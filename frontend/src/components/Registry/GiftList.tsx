@@ -214,7 +214,7 @@ const GiftList = ({ claiming, setClaiming }: GiftListProps) => {
             {
               {
                 English: 'Where to buy',
-                Hungarian: 'Megrendelhető',
+                Hungarian: 'Itt kapható',
               }[language]
             }
           </th>
