@@ -4,22 +4,23 @@ import { Context } from '../../types/context';
 import Loading from '../Loading/Loading';
 import RsvpForm from './RsvpForm';
 import AlreadySubmitted from './AlreadySubmitted';
-import './index.css';
+import './Rsvp.css';
 
 const Rsvp = () => {
-  const { guest, household, language } = useOutletContext<Context>();
+  const { isInitialised, guest, household, language } =
+    useOutletContext<Context>();
   const currentDate = new Date();
-  const deadlineDate = new Date('2025-01-16T00:00:00.000Z');
+  const deadlineDate = new Date('2025-01-23T00:00:00.000Z');
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!guest || !household) {
+    if (isInitialised && (!guest || !household)) {
       navigate('/login?redirectTo=/rsvp');
     }
-  }, [guest, household, navigate]);
+  }, [isInitialised, guest, household, navigate]);
 
-  if (!guest || !household) {
+  if (!isInitialised) {
     return <Loading language={language} />;
   }
 

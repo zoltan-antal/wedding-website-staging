@@ -2,12 +2,16 @@ import Household from './households';
 import Guest from './guests';
 import NameVariation from './nameVariations';
 import Rsvp from './rsvp';
+import Gift from './gifts';
 
 Guest.belongsTo(Household);
 Household.hasMany(Guest);
 
 NameVariation.belongsTo(Guest);
 Guest.hasMany(NameVariation);
+
+Gift.belongsTo(Household);
+Household.hasMany(Gift);
 
 Rsvp.belongsTo(Household);
 Rsvp.belongsTo(Guest);
@@ -38,6 +42,14 @@ NameVariation.sync({ alter: true })
     console.log('NameVariation table sync failed:');
     console.error(err);
   });
+Gift.sync({ alter: true })
+  .then(() => {
+    console.log('Gift table sync successful');
+  })
+  .catch((err) => {
+    console.log('Gift table sync failed:');
+    console.error(err);
+  });
 Rsvp.sync({ alter: true })
   .then(() => {
     console.log('Rsvp table sync successful');
@@ -47,4 +59,4 @@ Rsvp.sync({ alter: true })
     console.error(err);
   });
 
-export { Household, Guest, NameVariation, Rsvp };
+export { Household, Guest, NameVariation, Gift, Rsvp };

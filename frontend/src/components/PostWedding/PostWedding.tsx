@@ -5,7 +5,7 @@ import promenade from '../../assets/images/photos/balaton-promenade.jpg';
 import beach from '../../assets/images/photos/balaton-beach.jpg';
 import bob from '../../assets/images/photos/balaton-bob.jpg';
 import town from '../../assets/images/photos/balaton-town.jpg';
-import './index.css';
+import './PostWedding.css';
 
 const PostWedding = () => {
   const { language, mainRef, navWidth } = useOutletContext<Context>();

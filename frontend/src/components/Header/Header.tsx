@@ -5,7 +5,7 @@ import menuIcon from '../../assets/images/icons/menu.svg';
 import Nav from './Nav';
 import AccountButtons from './AccountButtons';
 import LanguageButton from './LanguageButton';
-import './index.css';
+import './Header.css';
 import leafImage from '../../assets/images/graphics/leaf.webp';
 
 interface HeaderProps {

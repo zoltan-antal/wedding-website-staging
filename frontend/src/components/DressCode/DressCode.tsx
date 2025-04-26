@@ -1,6 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
-import './index.css';
+import './DressCode.css';
 
 const DressCode = () => {
   const { language, mainRef, navWidth } = useOutletContext<Context>();

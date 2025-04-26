@@ -1,7 +1,7 @@
 import { useOutletContext, NavLink } from 'react-router-dom';
 import { Context } from '../../types/context';
 import Countdown from './Countdown';
-import './index.css';
+import './Home.css';
 
 const Home = () => {
   const { language, mainRef, navWidth } = useOutletContext<Context>();

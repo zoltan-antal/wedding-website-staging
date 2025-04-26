@@ -194,9 +194,6 @@ const calculateTimeLeft = () => {
   const now = new Date().getTime();
   const timeUntilStartTime = startTime - now;
   const timeSinceEndTime = now - endTime;
-  console.log(endTime);
-  console.log(now);
-  console.log(timeSinceEndTime);
 
   const daysUntilStartTime = Math.floor(
     timeUntilStartTime / (1000 * 60 * 60 * 24)

@@ -103,7 +103,9 @@ html {
   --button-background: var(--green);
   --button-background-hover: var(--darkgreen);
   --button-background-disabled: grey;
+  --text-disabled: darkgrey;
   --radio: var(--green);
+  --checkbox: darkgreen;
   --input-border: grey;
   --input-border-focus: black;
 
@@ -212,6 +214,10 @@ html {
           background-color: var(--button-background-disabled);
         }
       }
+    }
+
+    input[type="checkbox"] {
+      accent-color: var(--checkbox);
     }
 
     &#loading-page {

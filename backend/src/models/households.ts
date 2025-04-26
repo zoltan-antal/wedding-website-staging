@@ -27,7 +27,6 @@ Household.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
     type: {
       type: DataTypes.ENUM,
@@ -39,7 +38,13 @@ Household.init(
       allowNull: false,
     },
   },
-  { sequelize, underscored: true, timestamps: false, modelName: 'household' }
+  {
+    sequelize,
+    indexes: [{ unique: true, fields: ['username'] }],
+    underscored: true,
+    timestamps: false,
+    modelName: 'household',
+  }
 );
 
 export default Household;

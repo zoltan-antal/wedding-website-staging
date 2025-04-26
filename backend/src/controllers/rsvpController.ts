@@ -5,7 +5,12 @@ import { Resend } from 'resend';
 import { GuestAttributes } from '../models/guests';
 import guestService from '../services/guestService';
 import rsvpService from '../services/rsvpService';
-import { RESEND_API_KEY, RESEND_EMAIL, INTERNAL_EMAIL } from '../utils/config';
+import {
+  RESEND_API_KEY,
+  RESEND_EMAIL,
+  INTERNAL_EMAIL,
+  NODE_ENV,
+} from '../utils/config';
 
 enum RsvpFormFieldNames {
   GuestsAttending = 'guestsAttending',
@@ -79,8 +84,11 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
       formData.interestedInPostWeddingWindDown
     },${formData.comments}`;
 
-    const dataDirectoryPath = path.join(__dirname, '../..', 'data');
-    const csvFilePath = path.join(__dirname, '../..', 'data', 'rsvpData.csv');
+    const dataDirectoryPath =
+      NODE_ENV === 'production'
+        ? '/data'
+        : path.join(__dirname, '../..', `data-test`);
+    const csvFilePath = path.join(dataDirectoryPath, 'rsvpData.csv');
     if (!fs.existsSync(dataDirectoryPath)) {
       fs.mkdirSync(dataDirectoryPath);
     }
@@ -126,6 +134,7 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
     id: undefined,
     guestId: guest.id,
     householdId: guest.householdId,
+    data: JSON.stringify(formData),
   });
 
   // EMAIL COPY
@@ -215,7 +224,7 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
             }: ${booleanToText(formData.requireTransport)}\n`
           : ''
       }${
-        formData.requireTransport !== undefined
+        formData.dietaryRequirements !== undefined
           ? `${
               {
                 English: 'Dietary requirements',
@@ -235,16 +244,16 @@ const submitRsvp = async (req: RsvpSubmissionRequest, res: Response) => {
             }: ${booleanToText(formData.interestedInMeetAndGreet)}\n`
           : ''
       }${
-        formData.interestedInMeetAndGreet !== undefined
+        formData.interestedInPostWeddingWindDown !== undefined
           ? `${
               {
                 English: 'Interested in post-wedding trip',
                 Hungarian: 'Esküvő utáni kiruccanás érdeklődés',
               }[language]
-            }: ${booleanToText(formData.interestedInMeetAndGreet)}\n`
+            }: ${booleanToText(formData.interestedInPostWeddingWindDown)}\n`
           : ''
       }${
-        formData.requireTransport !== undefined
+        formData.comments !== undefined
           ? `${
               {
                 English: 'Comments',

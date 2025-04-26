@@ -1,0 +1,58 @@
+.gift-list {
+  /* border-collapse: collapse; */
+
+  th,
+  td {
+    padding-left: 20px;
+    padding-right: 20px;
+
+    @media only screen and (max-width: 1025px) {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    text-align: left;
+
+    &:last-child {
+      text-align: center;
+    }
+  }
+
+  td {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  tr.title {
+    font-weight: bold;
+
+    td {
+      padding-top: 20px;
+      padding-left: 0;
+      padding-bottom: 0;
+      text-align: left;
+    }
+  }
+
+  a {
+    display: block;
+    width: fit-content;
+  }
+
+  input[type='checkbox'] {
+    transform: scale(1.15);
+  }
+
+  .claimed-by-other {
+
+    td,
+    a {
+      color: var(--text-disabled);
+    }
+
+    a {
+      pointer-events: none;
+      text-decoration: none;
+    }
+  }
+}

@@ -5,21 +5,21 @@ import Loading from '../Loading/Loading';
 import tentOutside from '../../assets/images/photos/tent-outside.jpg';
 import tentInside from '../../assets/images/photos/tent-inside.jpg';
 import town from '../../assets/images/photos/vac-close.jpg';
-import './index.css';
+import './Accommodation.css';
 
 const Accommodation = () => {
-  const { guest, household, language, mainRef, navWidth } =
+  const { isInitialised, guest, household, language, mainRef, navWidth } =
     useOutletContext<Context>();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!guest || !household) {
+    if (isInitialised && (!guest || !household)) {
       navigate('/login?redirectTo=/accommodation');
     }
-  }, [guest, household, navigate]);
+  }, [isInitialised, guest, household, navigate]);
 
-  if (!guest || !household) {
+  if (!isInitialised) {
     return <Loading language={language} />;
   }
 

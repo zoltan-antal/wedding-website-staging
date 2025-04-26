@@ -5,7 +5,7 @@ import venueOutside from '../../assets/images/photos/venue-outside.jpg';
 import venueInside from '../../assets/images/photos/venue-inside.jpg';
 import venueTerrace from '../../assets/images/photos/venue-terrace.jpg';
 import venuePond from '../../assets/images/photos/venue-pond.jpg';
-import './index.css';
+import './Venue.css';
 
 const Venue = () => {
   const { language, mainRef, navWidth } = useOutletContext<Context>();
