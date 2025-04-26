@@ -5,6 +5,12 @@ import { Context } from '../../types/context';
 import { Gift } from '../../types/gift';
 import './GiftList.css';
 
+type GiftSectionProps = {
+  title: string;
+  className: string;
+  gifts: Gift[];
+};
+
 const STALE_TIME = 1 * 60 * 1000;
 
 const GiftList = () => {
@@ -21,15 +27,13 @@ const GiftList = () => {
         return 0;
     }
   });
-  const availableGifts = sortedGifts.filter(
-    (gift) => gift.householdId === null
-  );
-  const claimedByYouGifts = sortedGifts.filter(
-    (gift) => gift.householdId === household?.id
-  );
-  const claimedByOtherGifts = sortedGifts.filter(
-    (gift) => gift.householdId !== null && gift.householdId !== household?.id
-  );
+  const giftAvailable = (gift: Gift) => gift.householdId === null;
+  const giftClaimedByYou = (gift: Gift) => gift.householdId === household?.id;
+  const giftClaimedByOther = (gift: Gift) =>
+    gift.householdId !== null && gift.householdId !== household?.id;
+  const availableGifts = sortedGifts.filter(giftAvailable);
+  const claimedByYouGifts = sortedGifts.filter(giftClaimedByYou);
+  const claimedByOtherGifts = sortedGifts.filter(giftClaimedByOther);
 
   const lastFetchRef = useRef(Date.now());
   const idleTimeoutRef = useRef<number | null>(null);
@@ -131,6 +135,55 @@ const GiftList = () => {
     }
   };
 
+  const GiftSection = ({ title, className, gifts }: GiftSectionProps) => {
+    if (gifts.length === 0) {
+      return null;
+    }
+
+    return (
+      <>
+        <tr className="title">
+          <td colSpan={4}>{title}:</td>
+        </tr>
+        {gifts.map((gift) => (
+          <tr key={gift.id} className={className}>
+            <td>
+              {
+                {
+                  English: gift.nameEnglish,
+                  Hungarian: gift.nameHungarian,
+                }[language]
+              }
+            </td>
+            <td>~£{gift.price}</td>
+            <td>
+              {gift.links.map((link, index) => (
+                <a
+                  key={index}
+                  href={giftClaimedByOther(gift) ? undefined : link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {mapLinkToShop(link)}
+                </a>
+              ))}
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                checked={!giftAvailable(gift)}
+                disabled={giftClaimedByOther(gift)}
+                onChange={() =>
+                  handleCheckboxChange(gift.id, giftAvailable(gift))
+                }
+              />
+            </td>
+          </tr>
+        ))}
+      </>
+    );
+  };
+
   return (
     <table className="gift-list">
       <thead>
@@ -163,136 +216,36 @@ const GiftList = () => {
         </tr>
       </thead>
       <tbody>
-        {claimedByYouGifts.length > 0 && (
-          <tr className="title">
-            <td colSpan={4}>
-              {
-                {
-                  English: 'Reserved by you',
-                  Hungarian: 'Általad lefoglalva',
-                }[language]
-              }
-              :
-            </td>
-          </tr>
-        )}
-        {claimedByYouGifts.map((gift) => {
-          return (
-            <tr key={gift.id}>
-              <td>
-                {
-                  {
-                    English: gift.nameEnglish,
-                    Hungarian: gift.nameHungarian,
-                  }[language]
-                }
-              </td>
-              <td>~£{gift.price}</td>
-              <td>
-                {gift.links.map((link, index) => (
-                  <a
-                    key={index}
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {mapLinkToShop(link)}
-                  </a>
-                ))}
-              </td>
-              <td>
-                <input
-                  type="checkbox"
-                  checked
-                  onChange={() => handleCheckboxChange(gift.id, false)}
-                />
-              </td>
-            </tr>
-          );
-        })}
-        {availableGifts.length > 0 && (
-          <tr className="title">
-            <td colSpan={4}>
-              {
-                {
-                  English: 'Available',
-                  Hungarian: 'Elérhető',
-                }[language]
-              }
-              :
-            </td>
-          </tr>
-        )}
-        {availableGifts.map((gift) => {
-          return (
-            <tr key={gift.id}>
-              <td>
-                {
-                  {
-                    English: gift.nameEnglish,
-                    Hungarian: gift.nameHungarian,
-                  }[language]
-                }
-              </td>
-              <td>~£{gift.price}</td>
-              <td>
-                {gift.links.map((link, index) => (
-                  <a
-                    key={index}
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {mapLinkToShop(link)}
-                  </a>
-                ))}
-              </td>
-              <td>
-                <input
-                  type="checkbox"
-                  checked={false}
-                  onChange={() => handleCheckboxChange(gift.id, true)}
-                />
-              </td>
-            </tr>
-          );
-        })}
-        {claimedByOtherGifts.length > 0 && (
-          <tr className="title">
-            <td colSpan={4}>
-              {
-                {
-                  English: 'Reserved by others',
-                  Hungarian: 'Mások által lefoglalva',
-                }[language]
-              }
-              :
-            </td>
-          </tr>
-        )}
-        {claimedByOtherGifts.map((gift) => {
-          return (
-            <tr key={gift.id} className="claimed-by-other">
-              <td>
-                {
-                  {
-                    English: gift.nameEnglish,
-                    Hungarian: gift.nameHungarian,
-                  }[language]
-                }
-              </td>
-              <td>~£{gift.price}</td>
-              <td>
-                {gift.links.map((link, index) => (
-                  <a key={index}>{mapLinkToShop(link)}</a>
-                ))}
-              </td>
-              <td>
-                <input type="checkbox" checked disabled />
-              </td>
-            </tr>
-          );
-        })}
+        <GiftSection
+          title={
+            {
+              English: 'Reserved by you',
+              Hungarian: 'Általad lefoglalva',
+            }[language]
+          }
+          className="claimed-by-you"
+          gifts={claimedByYouGifts}
+        />
+        <GiftSection
+          title={
+            {
+              English: 'Available',
+              Hungarian: 'Elérhető',
+            }[language]
+          }
+          className="available"
+          gifts={availableGifts}
+        />
+        <GiftSection
+          title={
+            {
+              English: 'Reserved by others',
+              Hungarian: 'Mások által lefoglalva',
+            }[language]
+          }
+          className="claimed-by-other"
+          gifts={claimedByOtherGifts}
+        />
       </tbody>
     </table>
   );
