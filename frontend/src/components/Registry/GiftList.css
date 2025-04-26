@@ -12,6 +12,16 @@
     }
   }
 
+  tr.title {
+    font-weight: bold;
+
+    td {
+      padding-top: 20px;
+      padding-left: 0;
+      text-align: left;
+    }
+  }
+
   a {
     display: block;
     width: fit-content;
@@ -26,6 +36,7 @@
 
     a {
       pointer-events: none;
+      text-decoration: none;
     }
   }
 }

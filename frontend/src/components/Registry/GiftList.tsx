@@ -11,6 +11,25 @@ const GiftList = () => {
   const { household, language } = useOutletContext<Context>();
 
   const [gifts, setGifts] = useState<Gift[]>([]);
+  const sortedGifts = gifts.toSorted((a, b) => {
+    switch (language) {
+      case 'English':
+        return a.nameEnglish.localeCompare(b.nameEnglish);
+      case 'Hungarian':
+        return a.nameHungarian.localeCompare(b.nameHungarian);
+      default:
+        return 0;
+    }
+  });
+  const availableGifts = sortedGifts.filter(
+    (gift) => gift.householdId === null
+  );
+  const claimedByYouGifts = sortedGifts.filter(
+    (gift) => gift.householdId === household?.id
+  );
+  const claimedByOtherGifts = sortedGifts.filter(
+    (gift) => gift.householdId !== null && gift.householdId !== household?.id
+  );
 
   const lastFetchRef = useRef(Date.now());
   const idleTimeoutRef = useRef<number | null>(null);
@@ -144,70 +163,136 @@ const GiftList = () => {
         </tr>
       </thead>
       <tbody>
-        {gifts
-          .toSorted((a, b) => {
-            switch (language) {
-              case 'English':
-                return a.nameEnglish.localeCompare(b.nameEnglish);
-              case 'Hungarian':
-                return a.nameHungarian.localeCompare(b.nameHungarian);
-              default:
-                return 0;
-            }
-          })
-          .toSorted((a, b) => {
-            const aClaimedByOther =
-              a.householdId !== null && a.householdId !== household?.id;
-            const bClaimedByOther =
-              b.householdId !== null && b.householdId !== household?.id;
-
-            if (aClaimedByOther && !bClaimedByOther) return 1;
-            if (!aClaimedByOther && bClaimedByOther) return -1;
-            return 0;
-          })
-          .map((gift) => {
-            const isClaimedByOther =
-              gift.householdId !== null && gift.householdId !== household?.id;
-
-            return (
-              <tr
-                key={gift.id}
-                className={isClaimedByOther ? 'claimed-by-other' : ''}
-              >
-                <td>
+        {claimedByYouGifts.length > 0 && (
+          <tr className="title">
+            <td colSpan={4}>
+              {
+                {
+                  English: 'Reserved by you',
+                  Hungarian: 'Általad lefoglalva',
+                }[language]
+              }
+              :
+            </td>
+          </tr>
+        )}
+        {claimedByYouGifts.map((gift) => {
+          return (
+            <tr key={gift.id}>
+              <td>
+                {
                   {
-                    {
-                      English: gift.nameEnglish,
-                      Hungarian: gift.nameHungarian,
-                    }[language]
-                  }
-                </td>
-                <td>~£{gift.price}</td>
-                <td>
-                  {gift.links.map((link, index) => (
-                    <a
-                      key={index}
-                      href={link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {mapLinkToShop(link)}
-                    </a>
-                  ))}
-                </td>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={!!gift.householdId}
-                    disabled={isClaimedByOther}
-                    onChange={(e) =>
-                      handleCheckboxChange(gift.id, e.target.checked)
-                    }
-                  />
-                </td>
-              </tr>
-            );
-          })}
+                    English: gift.nameEnglish,
+                    Hungarian: gift.nameHungarian,
+                  }[language]
+                }
+              </td>
+              <td>~£{gift.price}</td>
+              <td>
+                {gift.links.map((link, index) => (
+                  <a
+                    key={index}
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {mapLinkToShop(link)}
+                  </a>
+                ))}
+              </td>
+              <td>
+                <input
+                  type="checkbox"
+                  checked
+                  onChange={() => handleCheckboxChange(gift.id, false)}
+                />
+              </td>
+            </tr>
+          );
+        })}
+        {availableGifts.length > 0 && (
+          <tr className="title">
+            <td colSpan={4}>
+              {
+                {
+                  English: 'Available',
+                  Hungarian: 'Elérhető',
+                }[language]
+              }
+              :
+            </td>
+          </tr>
+        )}
+        {availableGifts.map((gift) => {
+          return (
+            <tr key={gift.id}>
+              <td>
+                {
+                  {
+                    English: gift.nameEnglish,
+                    Hungarian: gift.nameHungarian,
+                  }[language]
+                }
+              </td>
+              <td>~£{gift.price}</td>
+              <td>
+                {gift.links.map((link, index) => (
+                  <a
+                    key={index}
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {mapLinkToShop(link)}
+                  </a>
+                ))}
+              </td>
+              <td>
+                <input
+                  type="checkbox"
+                  checked={false}
+                  onChange={() => handleCheckboxChange(gift.id, true)}
+                />
+              </td>
+            </tr>
+          );
+        })}
+        {claimedByOtherGifts.length > 0 && (
+          <tr className="title">
+            <td colSpan={4}>
+              {
+                {
+                  English: 'Reserved by others',
+                  Hungarian: 'Mások által lefoglalva',
+                }[language]
+              }
+              :
+            </td>
+          </tr>
+        )}
+        {claimedByOtherGifts.map((gift) => {
+          return (
+            <tr key={gift.id} className="claimed-by-other">
+              <td>
+                {
+                  {
+                    English: gift.nameEnglish,
+                    Hungarian: gift.nameHungarian,
+                  }[language]
+                }
+              </td>
+              <td>~£{gift.price}</td>
+              <td>
+                {gift.links.map((link, index) => (
+                  <a key={index}>{mapLinkToShop(link)}</a>
+                ))}
+              </td>
+              <td>
+                <input type="checkbox" checked disabled />
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
