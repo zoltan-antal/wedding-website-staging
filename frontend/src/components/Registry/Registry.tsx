@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import Loading from '../Loading/Loading';
@@ -8,6 +8,7 @@ import './Registry.css';
 const Registry = () => {
   const { isInitialised, guest, household, language } =
     useOutletContext<Context>();
+  const [claiming, setClaiming] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ const Registry = () => {
   }
 
   return (
-    <main id="registry-page">
+    <main id="registry-page" className={claiming ? 'claiming' : ''}>
       <h1>
         {
           {
@@ -31,7 +32,7 @@ const Registry = () => {
           }[language]
         }
       </h1>
-      <GiftList />
+      <GiftList claiming={claiming} setClaiming={setClaiming} />
     </main>
   );
 };

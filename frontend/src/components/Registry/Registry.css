@@ -1,3 +1,7 @@
 main#registry-page {
   align-self: stretch;
+
+  &.claiming {
+    cursor: wait;
+  }
 }

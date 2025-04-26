@@ -5,6 +5,11 @@ import { Context } from '../../types/context';
 import { Gift } from '../../types/gift';
 import './GiftList.css';
 
+type GiftListProps = {
+  claiming: boolean;
+  setClaiming: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
 type GiftSectionProps = {
   title: string;
   className: string;
@@ -13,7 +18,7 @@ type GiftSectionProps = {
 
 const STALE_TIME = 1 * 60 * 1000;
 
-const GiftList = () => {
+const GiftList = ({ claiming, setClaiming }: GiftListProps) => {
   const { household, language } = useOutletContext<Context>();
 
   const [gifts, setGifts] = useState<Gift[]>([]);
@@ -34,6 +39,9 @@ const GiftList = () => {
   const availableGifts = sortedGifts.filter(giftAvailable);
   const claimedByYouGifts = sortedGifts.filter(giftClaimedByYou);
   const claimedByOtherGifts = sortedGifts.filter(giftClaimedByOther);
+  const [giftIdBeingClaimed, setGiftIdBeingClaimed] = useState<number | null>(
+    null
+  );
 
   const lastFetchRef = useRef(Date.now());
   const idleTimeoutRef = useRef<number | null>(null);
@@ -97,14 +105,14 @@ const GiftList = () => {
     };
   }, [fetchGifts, handleWake]);
 
-  const handleCheckboxChange = async (giftId: number, claim: boolean) => {
-    setGifts((prevGifts) =>
-      prevGifts.map((gift) =>
-        gift.id === giftId
-          ? { ...gift, householdId: claim ? household!.id : null }
-          : gift
-      )
-    );
+  const handleCheckboxChange = async (
+    checkbox: HTMLInputElement,
+    giftId: number,
+    claim: boolean
+  ) => {
+    checkbox.disabled = true;
+    setClaiming(true);
+    setGiftIdBeingClaimed(giftId);
 
     try {
       if (claim) {
@@ -116,6 +124,8 @@ const GiftList = () => {
       console.error('Failed to update gift claim:', error);
     } finally {
       await fetchGifts();
+      setClaiming(false);
+      setGiftIdBeingClaimed(null);
     }
   };
 
@@ -172,9 +182,12 @@ const GiftList = () => {
               <input
                 type="checkbox"
                 checked={!giftAvailable(gift)}
-                disabled={giftClaimedByOther(gift)}
-                onChange={() =>
-                  handleCheckboxChange(gift.id, giftAvailable(gift))
+                disabled={
+                  giftClaimedByOther(gift) ||
+                  (claiming && giftIdBeingClaimed === gift.id)
+                }
+                onChange={(e) =>
+                  handleCheckboxChange(e.target, gift.id, giftAvailable(gift))
                 }
               />
             </td>
