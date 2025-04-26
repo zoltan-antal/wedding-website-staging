@@ -27,6 +27,10 @@
     width: fit-content;
   }
 
+  input[type='checkbox'] {
+    transform: scale(1.15);
+  }
+
   .claimed-by-other {
 
     td,
