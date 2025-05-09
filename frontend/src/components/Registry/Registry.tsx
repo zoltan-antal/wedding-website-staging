@@ -27,7 +27,7 @@ const Registry = () => {
       <h1>
         {
           {
-            English: 'Wedding registry',
+            English: 'Gift registry',
             Hungarian: 'Ajándéklista',
           }[language]
         }
