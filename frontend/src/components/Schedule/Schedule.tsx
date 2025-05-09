@@ -20,7 +20,7 @@ const Schedule = () => {
       day: { English: 'Friday', Hungarian: 'Péntek' }[language],
       events: [
         {
-          time: { English: 'afternoon', Hungarian: 'délután' }[language],
+          time: { English: '3 pm', Hungarian: '15:00' }[language],
           text:
             { English: 'Meet & Greet', Hungarian: 'Ismerkedős délután' }[
               language
@@ -48,6 +48,30 @@ const Schedule = () => {
             }[language] + ' 💍',
         },
         {
+          time: { English: 'afternoon', Hungarian: 'délután' }[language],
+          text:
+            {
+              English: 'Toast and cake',
+              Hungarian: 'Koccintás és torta',
+            }[language] + ' 🥂',
+        },
+        {
+          time: { English: 'afternoon', Hungarian: 'délután' }[language],
+          text:
+            {
+              English: 'Group photos',
+              Hungarian: 'Csoportképek',
+            }[language] + ' 📸',
+        },
+        {
+          time: { English: 'evening', Hungarian: 'este' }[language],
+          text:
+            {
+              English: 'First dance',
+              Hungarian: 'Nyitótánc',
+            }[language] + ' 💃',
+        },
+        {
           time: { English: 'evening', Hungarian: 'este' }[language],
           text:
             {
@@ -59,20 +83,12 @@ const Schedule = () => {
           time: { English: 'evening', Hungarian: 'este' }[language],
           text:
             {
-              English: 'Cake',
-              Hungarian: 'Torta',
-            }[language] + ' 🍰',
-        },
-        {
-          time: { English: 'evening', Hungarian: 'este' }[language],
-          text:
-            {
-              English: 'Party',
-              Hungarian: 'Buli',
+              English: 'More fun',
+              Hungarian: 'Még több vidámság',
             }[language] + ' 🎉',
         },
         {
-          time: { English: '12pm', Hungarian: '00:00' }[language],
+          time: { English: '12 pm', Hungarian: '00:00' }[language],
           text:
             {
               English: 'Midnight buffet',
@@ -90,7 +106,7 @@ const Schedule = () => {
             { English: 'Breakfast', Hungarian: 'Reggeli' }[language] + ' 🥐',
         },
         {
-          time: { English: 'by 2pm', Hungarian: '14:00-ig' }[language],
+          time: { English: 'by 2 pm', Hungarian: '14:00-ig' }[language],
           text:
             { English: 'Leave venue', Hungarian: 'Helyszín elhagyása' }[
               language
@@ -99,15 +115,56 @@ const Schedule = () => {
       ],
     },
     {
-      day: { English: 'Monday - Tuesday', Hungarian: 'Hétfő - kedd' }[language],
+      day: { English: 'Monday', Hungarian: 'Hétfő' }[language],
       events: [
         {
-          time: { English: 'all day', Hungarian: 'egész nap' }[language],
+          time: { English: 'morning', Hungarian: 'reggel' }[language],
           text:
             {
-              English: 'Post-wedding wind-down',
-              Hungarian: 'Esküvő utáni lazulás',
+              English: 'Travel to Balaton',
+              Hungarian: 'Utazás a Balatonra',
+            }[language] + ' 🚆',
+        },
+        {
+          time: { English: 'afternoon', Hungarian: 'délután' }[language],
+          text:
+            {
+              English: 'Chilling at the beach',
+              Hungarian: 'Strandolás',
             }[language] + ' 🏖️',
+        },
+        {
+          time: { English: 'evening', Hungarian: 'este' }[language],
+          text:
+            {
+              English: 'BBQ',
+              Hungarian: 'Sütögetés',
+            }[language] + ' 🍖',
+        },
+      ],
+    },
+    {
+      day: { English: 'Tuesday', Hungarian: 'Kedd' }[language],
+      events: [
+        {
+          time: { English: 'early afternoon', Hungarian: 'kora délután' }[
+            language
+          ],
+          text:
+            {
+              English: 'Mountain coaster',
+              Hungarian: 'Bobozás',
+            }[language] + ' 🎢',
+        },
+        {
+          time: { English: 'late afternoon', Hungarian: 'késő délután' }[
+            language
+          ],
+          text:
+            {
+              English: 'Travel back to Budapest',
+              Hungarian: 'Visszautazás Budapestre',
+            }[language] + ' 🚆',
         },
       ],
     },
