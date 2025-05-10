@@ -1,62 +1,89 @@
 .gift-list {
-  /* border-collapse: collapse; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 
-  th,
-  td {
-    padding-left: 20px;
-    padding-right: 20px;
+  .instructions {
+    font-size: 1.075rem;
+    font-style: italic;
+  }
 
-    @media only screen and (max-width: 1025px) {
-      padding-left: 8px;
-      padding-right: 8px;
+  .gift-list-table {
+    margin-top: 20px;
+
+    /* border-collapse: collapse; */
+    @media only screen and not (max-width: 1025px) {
+      min-width: 55%;
     }
 
-    text-align: left;
+    th,
+    td {
+      padding-left: 20px;
+      padding-right: 20px;
 
-    &:last-child {
-      text-align: center;
+      @media only screen and (max-width: 1025px) {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      text-align: left;
+
+      &:last-child {
+        text-align: center;
+      }
     }
-  }
 
-  th {
-    text-align: center;
-  }
+    th,
+    td {
 
-  td {
-    padding-top: 6px;
-    padding-bottom: 6px;
-  }
+      &.price,
+      &.reserved {
+        text-align: center;
 
-  tr.title {
-    font-weight: bold;
+        a {
+          text-align: center;
+        }
+      }
+    }
 
     td {
-      padding-top: 20px;
-      padding-left: 0;
-      padding-bottom: 0;
-      text-align: left;
+      padding-top: 6px;
+      padding-bottom: 6px;
     }
-  }
 
-  a {
-    display: block;
-    width: fit-content;
-  }
+    tr.title {
+      font-weight: bold;
 
-  input[type='checkbox'] {
-    transform: scale(1.15);
-  }
-
-  .claimed-by-other {
-
-    td,
-    a {
-      color: var(--text-disabled);
+      td {
+        padding-top: 20px;
+        padding-left: 0;
+        padding-bottom: 0;
+        text-align: left;
+      }
     }
 
     a {
-      pointer-events: none;
-      text-decoration: none;
+      display: block;
+      width: fit-content;
+    }
+
+    input[type='checkbox'] {
+      transform: scale(1.15);
+    }
+
+    .claimed-by-other {
+
+      td,
+      a {
+        color: var(--text-disabled);
+      }
+
+      a {
+        pointer-events: none;
+        text-decoration: none;
+      }
     }
   }
 }

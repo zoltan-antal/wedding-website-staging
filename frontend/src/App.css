@@ -314,6 +314,7 @@ html {
     &:has(~ main#dress-code-page),
     &:has(~ main#faq-page),
     &:has(~ main#contact-page),
+    &:has(~ main#registry-page),
     &:has(~ main#rsvp-page) {
       opacity: 0.125;
     }
