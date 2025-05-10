@@ -1,7 +1,15 @@
 main#registry-page {
-  align-self: stretch;
-
   &.claiming {
     cursor: wait;
+  }
+
+  p {
+    width: 80%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .gift-list {
+    margin-top: 20px;
   }
 }

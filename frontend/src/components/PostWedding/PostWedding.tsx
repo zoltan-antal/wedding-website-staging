@@ -99,7 +99,7 @@ const PostWedding = () => {
             {
               {
                 English:
-                  "Another activity we're hoping to do is going to a mountain rail course, which is great fun!",
+                  "Another activity we're hoping to do is going to a mountain coaster, which is great fun!",
                 Hungarian:
                   'Ezenkívül még reméljük, hogy sikerül a közeli bobpályára is eljutnunk.',
               }[language]

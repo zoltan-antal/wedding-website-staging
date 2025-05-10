@@ -3,7 +3,7 @@ main#home-page {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
-    "countdown countdown rsvp rsvp"
+    "countdown countdown registry registry"
     "countdown countdown faq faq"
     "venue accommodation travel schedule";
   align-items: stretch;
@@ -17,7 +17,7 @@ main#home-page {
     grid-auto-rows: 0.5fr;
     grid-template-areas:
       "countdown countdown"
-      "rsvp faq"
+      "registry faq"
       "venue accommodation"
       "travel schedule";
     overflow-y: auto;
@@ -122,8 +122,8 @@ main#home-page {
     }
   }
 
-  #rsvp {
-    grid-area: rsvp;
+  #registry {
+    grid-area: registry;
   }
 
   #faq {

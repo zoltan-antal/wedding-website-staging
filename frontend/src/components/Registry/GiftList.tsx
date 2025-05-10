@@ -157,7 +157,7 @@ const GiftList = ({ claiming, setClaiming }: GiftListProps) => {
         </tr>
         {gifts.map((gift) => (
           <tr key={gift.id} className={className}>
-            <td>
+            <td className="item">
               {
                 {
                   English: gift.nameEnglish,
@@ -165,8 +165,8 @@ const GiftList = ({ claiming, setClaiming }: GiftListProps) => {
                 }[language]
               }
             </td>
-            <td>~£{gift.price}</td>
-            <td>
+            <td className="price">~£{gift.price}</td>
+            <td className="shop">
               {gift.links.map((link, index) => (
                 <a
                   key={index}
@@ -178,7 +178,7 @@ const GiftList = ({ claiming, setClaiming }: GiftListProps) => {
                 </a>
               ))}
             </td>
-            <td>
+            <td className="reserved">
               <input
                 type="checkbox"
                 checked={!giftAvailable(gift)}
@@ -198,69 +198,81 @@ const GiftList = ({ claiming, setClaiming }: GiftListProps) => {
   };
 
   return (
-    <table className="gift-list">
-      <thead>
-        <tr>
-          <th></th>
-          <th>
-            {
+    <div className="gift-list">
+      <p className="instructions">
+        {
+          {
+            English:
+              "Once you've decided on a gift to give, please tick it off, so that other guests know what's still available.",
+            Hungarian:
+              'Ha már tudod, melyik ajándékot veszed, kérjük pipáld ki, hogy a többi vendég láthassa, mi elérhető még.',
+          }[language]
+        }
+      </p>
+      <table className="gift-list-table">
+        <thead>
+          <tr>
+            <th className="item"></th>
+            <th className="price">
               {
-                English: 'Price',
-                Hungarian: 'Ár',
+                {
+                  English: 'Price',
+                  Hungarian: 'Ár',
+                }[language]
+              }
+            </th>
+            <th className="shop">
+              {
+                {
+                  English: 'Where to buy',
+                  Hungarian: 'Itt kapható',
+                }[language]
+              }
+            </th>
+            <th className="reserved">
+              {
+                {
+                  English: 'Reserved',
+                  Hungarian: 'Lefoglalva',
+                }[language]
+              }
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <GiftSection
+            title={
+              {
+                English: 'Reserved by you',
+                Hungarian: 'Általad lefoglalva',
               }[language]
             }
-          </th>
-          <th>
-            {
+            className="claimed-by-you"
+            gifts={claimedByYouGifts}
+          />
+          <GiftSection
+            title={
               {
-                English: 'Where to buy',
-                Hungarian: 'Itt kapható',
+                English: 'Available',
+                Hungarian: 'Elérhető',
               }[language]
             }
-          </th>
-          <th>
-            {
+            className="available"
+            gifts={availableGifts}
+          />
+          <GiftSection
+            title={
               {
-                English: 'Reserved',
-                Hungarian: 'Lefoglalva',
+                English: 'Reserved by others',
+                Hungarian: 'Mások által lefoglalva',
               }[language]
             }
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <GiftSection
-          title={
-            {
-              English: 'Reserved by you',
-              Hungarian: 'Általad lefoglalva',
-            }[language]
-          }
-          className="claimed-by-you"
-          gifts={claimedByYouGifts}
-        />
-        <GiftSection
-          title={
-            {
-              English: 'Available',
-              Hungarian: 'Elérhető',
-            }[language]
-          }
-          className="available"
-          gifts={availableGifts}
-        />
-        <GiftSection
-          title={
-            {
-              English: 'Reserved by others',
-              Hungarian: 'Mások által lefoglalva',
-            }[language]
-          }
-          className="claimed-by-other"
-          gifts={claimedByOtherGifts}
-        />
-      </tbody>
-    </table>
+            className="claimed-by-other"
+            gifts={claimedByOtherGifts}
+          />
+        </tbody>
+      </table>
+    </div>
   );
 };
 

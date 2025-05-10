@@ -105,6 +105,16 @@ const Nav = ({
           </NavLink>
         </li>
         <li>
+          <NavLink to="/registry">
+            {
+              {
+                English: 'Registry',
+                Hungarian: 'Ajándéklista',
+              }[language]
+            }
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/post-wedding">
             {
               {
@@ -130,16 +140,6 @@ const Nav = ({
               {
                 English: 'Contact',
                 Hungarian: 'Kapcsolat',
-              }[language]
-            }
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/rsvp">
-            {
-              {
-                English: 'RSVP',
-                Hungarian: 'Visszajelzés',
               }[language]
             }
           </NavLink>

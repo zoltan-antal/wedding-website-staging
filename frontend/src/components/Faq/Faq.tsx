@@ -247,12 +247,19 @@ const Faq = () => {
             <p>
               {
                 {
-                  English:
-                    "Thank you for considering getting us a gift! We're working on a list, and will notify everyone when it's available.",
-                  Hungarian:
-                    'Köszönjük, hogy gondolkodsz ajándékon. Dolgozunk egy ajándéklista összeállításán; mindenkit értesítünk, amint elkészül.',
+                  English: 'Yes, you can take a look at it',
+                  Hungarian: 'Kérjük tekintsd meg az',
                 }[language]
-              }
+              }{' '}
+              <NavLink to="/registry">
+                {
+                  {
+                    English: 'here',
+                    Hungarian: 'ajándéklistánkat',
+                  }[language]
+                }
+              </NavLink>
+              .
             </p>
           </div>
         </div>
