@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
 import Loading from '../Loading/Loading';
-import GiftList from './GiftList';
-import './Registry.css';
+// import GiftList from './GiftList';
+import './Gifts.css';
 
-const Registry = () => {
+const Gifts = () => {
   const { isInitialised, guest, household, language, mainRef, navWidth } =
     useOutletContext<Context>();
-  const [claiming, setClaiming] = useState(false);
+  // const [claiming, setClaiming] = useState(false);
 
   const navigate = useNavigate();
 
@@ -27,13 +27,13 @@ const Registry = () => {
       ref={mainRef}
       style={{ width: `${navWidth}px` }}
       id="registry-page"
-      className={claiming ? 'claiming' : ''}
+      // className={claiming ? 'claiming' : ''}
     >
       <h1>
         {
           {
-            English: 'Gift registry',
-            Hungarian: 'Ajándéklista',
+            English: 'Gifts',
+            Hungarian: 'Ajándékozás',
           }[language]
         }
       </h1>
@@ -57,9 +57,9 @@ const Registry = () => {
           }[language]
         }
       </p>
-      <GiftList claiming={claiming} setClaiming={setClaiming} />
+      {/* <GiftList claiming={claiming} setClaiming={setClaiming} /> */}
     </main>
   );
 };
 
-export default Registry;
+export default Gifts;
