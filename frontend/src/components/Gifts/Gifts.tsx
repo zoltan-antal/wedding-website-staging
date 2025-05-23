@@ -41,9 +41,9 @@ const Gifts = () => {
         {
           {
             English:
-              "As we've been living together for a long time, we already have most household items that we need for where we live now. Because of this, there's not much we could put on a gift list. As we'll be looking to move to a new place in the near future, we're asking for monetary gifts, which will go towards making our new place home.",
+              "Since we've been living together for a long time, we already have most household items that we need for where we live now. Because of this, there's not much we could put on a gift list. As we'll be looking to move to a new place in the near future, we're asking for monetary gifts, which will go towards making our new place home.",
             Hungarian:
-              'Mivel már régóta együtt élünk, a mostani lakásunkhoz szükséges háztartási eszközök nagy részével már rendelkezünk, így nem sok mindent tudnánk egy ajándéklistára tenni. Mivel a közeljövőben új helyre szeretnénk költözni, inkább pénzbeli ajándékot kérnénk, amit az új otthonunk berendezésére fogunk költeni.',
+              'Mivel már régóta együtt élünk, a mostani lakásunkhoz szükséges háztartási eszközök nagy részével már rendelkezünk, ezért nem sok mindent tudnánk egy ajándéklistára tenni. Viszont a közeljövőben új helyre szeretnénk költözni, ezért inkább pénzbeli ajándékot kérnénk, amit az új otthonunk berendezésére fogunk költeni.',
           }[language]
         }
       </p>
