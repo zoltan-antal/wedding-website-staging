@@ -41,9 +41,25 @@ const Gifts = () => {
         {
           {
             English:
-              "As we've been living together for a long time, we already have most household items that people usually ask for as wedding gifts, so our gift list isn't very long. If you'd prefer — or if the item you wanted to gift has already been reserved by someone else — you're also welcome to gift us money, which we will put towards our honeymoon.",
+              "As we've been living together for a long time, we already have most household items that we need for where we live now. Because of this, there's not much we could put on a gift list. As we'll be looking to move to a new place in the near future, we're asking for monetary gifts, which will go towards making our new place home.",
             Hungarian:
-              'Mivel már régóta együtt élünk, szinte már minden háztartási eszközünk megvan, amit általában ajándékba szoktak kérni, ezért az ajándéklistánk nem túl hosszú. Ha úgy preferálod, — vagy ha az általad kiszemelt ajándék már le van foglalva — pénzt is ajándékozhatsz: ezt a nászutunkra tervezzük költeni.',
+              'Mivel már régóta együtt élünk, a mostani lakásunkhoz szükséges háztartási eszközök nagy részével már rendelkezünk, így nem sok mindent tudnánk egy ajándéklistára tenni. Mivel a közeljövőben új helyre szeretnénk költözni, inkább pénzbeli ajándékot kérnénk, amit az új otthonunk berendezésére fogunk költeni.',
+          }[language]
+        }
+      </p>
+      {language === 'Hungarian' && (
+        <p>
+          Többen kérdeztétek, hogy lesz-e menyasszontánc. Nem tervezünk – így ha
+          terveztél erre szánni, kérjük tedd ezt az összeget az ajándékhoz.
+        </p>
+      )}
+      <p>
+        {
+          {
+            English:
+              'In the email sent about gifting, you can find our bank account details if you prefer bank transfer instead of cash.',
+            Hungarian:
+              'Az ajándékozásról szóló e-mailben megtalálod a bankszámlaszámunkat is, ha kézpénz helyett az átutalást preferálnád.',
           }[language]
         }
       </p>
@@ -51,9 +67,9 @@ const Gifts = () => {
         {
           {
             English:
-              'In the email sent about the gift registry, you can find the delivery address for the gifts and bank account details if you wish to transfer a monetary gift.',
+              "If you'd still much rather give a physical gift, please let us know, and we'll try our best to give you some ideas.",
             Hungarian:
-              'Az ajándéklistáról szóló e-mailben megtalálod a szállítási címet az ajándékokhoz és a bankszámlaszámunkat (arra az esetre, ha átutalással szeretnél pénzbeli ajándékot adni).',
+              'Ha mégis mindenképpen kézzel fogható ajándékot szeretnél adni, kérjük szólj, és megpróbálunk adni pár ötletet.',
           }[language]
         }
       </p>
