@@ -59,7 +59,7 @@ const Gifts = () => {
             English:
               'In the email sent about gifting, you can find our bank account details if you prefer bank transfer instead of cash.',
             Hungarian:
-              'Az ajándékozásról szóló e-mailben megtalálod a bankszámlaszámunkat is, ha kézpénz helyett inkább az átutalást preferálnád.',
+              'Az ajándékozásról szóló e-mailben megtalálod a bankszámlaszámunkat is, ha pénzbeli ajándékhoz készpénz helyett inkább az átutalást preferálnád.',
           }[language]
         }
       </p>
