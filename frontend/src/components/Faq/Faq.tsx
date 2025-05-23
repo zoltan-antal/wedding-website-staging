@@ -216,9 +216,9 @@ const Faq = () => {
               {
                 {
                   English:
-                    'We would absolutely love to see our wedding through your eyes and any moments you capture! However, please put your phones & cameras away for the ceremony.',
+                    'We would absolutely love to see our wedding through your eyes and any moments you capture! However, please put your phones & cameras away for the ceremony and the first dance.',
                   Hungarian:
-                    'Szívesen megnézzük az általatok megörökített pillanatokat is az esküvőnkről! Kérjük azonban, hogy a szertartás idejére tegyétek el telefonjaitokat és kameráitokat.',
+                    'Szívesen megnézzük az általatok megörökített pillanatokat is az esküvőnkről! Kérjük azonban, hogy a szertartás és a nyitótánc idejére tegyétek el telefonjaitokat és kameráitokat.',
                 }[language]
               }
             </p>
@@ -247,22 +247,60 @@ const Faq = () => {
             <p>
               {
                 {
-                  English: 'Yes, you can take a look at it',
+                  English: 'All details can be found on the',
                   Hungarian: 'Kérjük tekintsd meg az',
                 }[language]
               }{' '}
-              <NavLink to="/registry">
+              <NavLink to="/gifts">
                 {
                   {
-                    English: 'here',
-                    Hungarian: 'ajándéklistánkat',
+                    English: 'gifting',
+                    Hungarian: 'ajándékozás',
                   }[language]
                 }
-              </NavLink>
-              .
+              </NavLink>{' '}
+              {
+                {
+                  English: 'page.',
+                  Hungarian: 'oldalt.',
+                }[language]
+              }{' '}
             </p>
           </div>
         </div>
+        {language === 'Hungarian' && (
+          <div className="item">
+            <h2>
+              {
+                {
+                  Hungarian: 'Lesz menyasszonytánc?',
+                }[language]
+              }
+            </h2>
+            <div className="answer">
+              <p>
+                {
+                  {
+                    Hungarian:
+                      'Nem lesz. Ezzel kapcsolatban kérjük tekintsd meg az ',
+                  }[language]
+                }
+                <NavLink to="/gifts">
+                  {
+                    {
+                      Hungarian: 'ajándékozás',
+                    }[language]
+                  }
+                </NavLink>
+                {
+                  {
+                    Hungarian: ' oldat.',
+                  }[language]
+                }
+              </p>
+            </div>
+          </div>
+        )}
       </div>
       <div className="item" id="other-question">
         <h2>
