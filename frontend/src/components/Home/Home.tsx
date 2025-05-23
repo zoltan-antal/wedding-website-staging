@@ -12,9 +12,10 @@ const Home = () => {
       <div id="registry">
         <p>
           {
-            { English: 'For gift ideas', Hungarian: 'Ajándékötletekért' }[
-              language
-            ]
+            {
+              English: 'For information on gifting,',
+              Hungarian: 'Információért az ajándékozásról',
+            }[language]
           }
           <br />
           {
@@ -23,13 +24,10 @@ const Home = () => {
             ]
           }
         </p>
-        <NavLink to={'/registry'}>
-          {
-            { English: 'Gift registry', Hungarian: 'Ajándéklistánkat' }[
-              language
-            ]
-          }
+        <NavLink to={'/gifts'}>
+          {{ English: 'Gifts', Hungarian: 'Ajándékozás' }[language]}
         </NavLink>
+        <p>{{ English: 'page', Hungarian: 'oldalunkat' }[language]}</p>
       </div>
       <div id="faq">
         <p>
