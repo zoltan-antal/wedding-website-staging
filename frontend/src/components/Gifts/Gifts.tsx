@@ -1,26 +1,25 @@
-import { useEffect } from 'react';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { Context } from '../../types/context';
-import Loading from '../Loading/Loading';
+// import Loading from '../Loading/Loading';
 // import GiftList from './GiftList';
 import './Gifts.css';
 
 const Gifts = () => {
-  const { isInitialised, guest, household, language, mainRef, navWidth } =
+  const { /* isInitialised, guest, household, */ language, mainRef, navWidth } =
     useOutletContext<Context>();
   // const [claiming, setClaiming] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isInitialised && (!guest || !household)) {
-      navigate('/login?redirectTo=/registry');
-    }
-  }, [isInitialised, guest, household, navigate]);
+  // useEffect(() => {
+  //   if (isInitialised && (!guest || !household)) {
+  //     navigate('/login?redirectTo=/registry');
+  //   }
+  // }, [isInitialised, guest, household, navigate]);
 
-  if (!isInitialised) {
-    return <Loading language={language} />;
-  }
+  // if (!isInitialised) {
+  //   return <Loading language={language} />;
+  // }
 
   return (
     <main
