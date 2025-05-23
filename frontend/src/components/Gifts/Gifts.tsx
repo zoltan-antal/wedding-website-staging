@@ -49,8 +49,8 @@ const Gifts = () => {
       </p>
       {language === 'Hungarian' && (
         <p>
-          Többen kérdeztétek, hogy lesz-e menyasszontánc. Nem tervezünk – így ha
-          terveztél erre szánni, kérjük tedd ezt az összeget az ajándékhoz.
+          Többen kérdeztétek, hogy lesz-e menyasszonytánc. Nem tervezünk – így
+          ha terveztél erre szánni, kérjük tedd ezt az összeget az ajándékhoz.
         </p>
       )}
       <p>
